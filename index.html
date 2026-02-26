@@ -1,0 +1,870 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lucro — Cancellation Intelligence</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f4f5fb;
+    --surface: #ffffff;
+    --card: #ffffff;
+    --border: #dde0f0;
+    --accent: #5b6ef5;
+    --accent2: #3a4fd4;
+    --accent3: #7c8ff7;
+    --text: #12183a;
+    --muted: #7b82a8;
+    --danger: #e0405a;
+    --warn: #e07a20;
+    --ok: #1aaa6b;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'DM Mono', monospace;
+    min-height: 100vh;
+    padding: 32px 24px;
+  }
+  header {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    margin-bottom: 40px;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+  .brand {
+    font-family: 'Syne', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  h1 {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(28px, 5vw, 52px);
+    font-weight: 800;
+    line-height: 1;
+    color: var(--text);
+    margin-top: 4px;
+  }
+  h1 span { color: var(--accent); }
+  .period {
+    font-size: 12px;
+    color: var(--muted);
+    border: 1px solid var(--border);
+    padding: 6px 14px;
+    border-radius: 20px;
+  }
+
+  /* KPI ROW */
+  .kpi-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 14px;
+    margin-bottom: 28px;
+  }
+  .kpi {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 20px 18px;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.2s;
+    box-shadow: 0 2px 12px rgba(91,110,245,0.06);
+  }
+  .kpi:hover { transform: translateY(-2px); }
+  .kpi::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: var(--kpi-color, var(--accent));
+    border-radius: 14px 14px 0 0;
+  }
+  .kpi-label {
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 10px;
+  }
+  .kpi-value {
+    font-family: 'Syne', sans-serif;
+    font-size: 36px;
+    font-weight: 800;
+    line-height: 1;
+    color: var(--kpi-color, var(--accent));
+  }
+  .kpi-sub {
+    font-size: 10px;
+    color: var(--muted);
+    margin-top: 6px;
+  }
+
+  /* GRID LAYOUT */
+  .grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 16px;
+  }
+  .grid-3 {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 16px;
+  }
+  @media (max-width: 900px) { .grid-2, .grid-3 { grid-template-columns: 1fr; } }
+
+  /* PANELS */
+  .panel {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 22px;
+    box-shadow: 0 2px 12px rgba(91,110,245,0.06);
+  }
+  .panel-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .panel-title .dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--accent);
+    flex-shrink: 0;
+  }
+
+  /* BAR CHART */
+  .bar-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 13px;
+    font-size: 11px;
+  }
+  .bar-label {
+    width: 160px;
+    flex-shrink: 0;
+    color: var(--text);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 11px;
+  }
+  .bar-track {
+    flex: 1;
+    height: 8px;
+    background: var(--border);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+  .bar-fill {
+    height: 100%;
+    border-radius: 4px;
+    background: var(--bar-color, var(--accent));
+    transition: width 1s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .bar-count {
+    width: 28px;
+    text-align: right;
+    color: var(--muted);
+    font-size: 11px;
+    flex-shrink: 0;
+  }
+
+  /* PHASE SPLIT */
+  .phase-row {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 14px;
+    flex-wrap: wrap;
+  }
+  .phase-pill {
+    flex: 1;
+    min-width: 100px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 14px;
+    text-align: center;
+  }
+  .phase-pill .pval {
+    font-family: 'Syne', sans-serif;
+    font-size: 28px;
+    font-weight: 800;
+    color: var(--pill-color, var(--accent));
+    display: block;
+  }
+  .phase-pill .plabel {
+    font-size: 9px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-top: 4px;
+  }
+
+  /* MONTHLY TIMELINE */
+  .month-cols {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+  }
+  .month-col {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 14px 12px;
+    text-align: center;
+  }
+  .month-col .mname {
+    font-size: 9px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 8px;
+  }
+  .month-col .mval {
+    font-family: 'Syne', sans-serif;
+    font-size: 32px;
+    font-weight: 800;
+  }
+  .month-col .msub {
+    font-size: 9px;
+    color: var(--muted);
+    margin-top: 4px;
+  }
+  .up { color: var(--accent2); }
+  .down { color: var(--ok); }
+
+  /* TABLE */
+  .insight-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 11px;
+  }
+  .insight-table th {
+    text-align: left;
+    padding: 8px 10px;
+    font-size: 9px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    border-bottom: 1px solid var(--border);
+  }
+  .insight-table td {
+    padding: 10px 10px;
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+  }
+  .insight-table tr:last-child td { border-bottom: none; }
+  .insight-table tr:hover td { background: rgba(91,110,245,0.04); }
+  .tag {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 20px;
+    font-size: 9px;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+  .tag-red { background: rgba(224,64,90,0.1); color: var(--danger); border: 1px solid rgba(224,64,90,0.25); }
+  .tag-orange { background: rgba(224,122,32,0.1); color: var(--warn); border: 1px solid rgba(224,122,32,0.25); }
+  .tag-green { background: rgba(26,170,107,0.1); color: var(--ok); border: 1px solid rgba(26,170,107,0.25); }
+  .tag-blue { background: rgba(91,110,245,0.1); color: var(--accent2); border: 1px solid rgba(91,110,245,0.25); }
+
+  /* RISK ALERTS */
+  .alert {
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+    padding: 16px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    border: 1px solid;
+  }
+  .alert-icon { font-size: 18px; flex-shrink: 0; line-height: 1; }
+  .alert-body { flex: 1; }
+  .alert-title { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 13px; margin-bottom: 4px; }
+  .alert-desc { font-size: 11px; color: var(--muted); line-height: 1.6; }
+  .alert-red { background: rgba(224,64,90,0.05); border-color: rgba(224,64,90,0.2); }
+  .alert-orange { background: rgba(224,122,32,0.05); border-color: rgba(224,122,32,0.2); }
+  .alert-yellow { background: rgba(91,110,245,0.05); border-color: rgba(91,110,245,0.2); }
+
+  /* SECTION LABEL */
+  .section-label {
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin: 32px 0 14px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .section-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  /* DONUT */
+  .donut-wrap {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+  svg.donut { flex-shrink: 0; }
+  .legend { flex: 1; min-width: 120px; }
+  .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 8px;
+    font-size: 11px;
+  }
+  .legend-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+
+  .full-width { grid-column: 1 / -1; }
+  .mb16 { margin-bottom: 16px; }
+</style>
+</head>
+<body>
+
+<header>
+  <div>
+    <div class="brand">Lucro · Strategy & Retention</div>
+    <h1>Cancellation <span>Tracker</span></h1>
+  </div>
+  <div class="period">Oct 2025 — Feb 2026</div>
+</header>
+
+<!-- KPIs -->
+<div class="kpi-row">
+  <div class="kpi" style="--kpi-color:#ff6b47">
+    <div class="kpi-label">Total Cancellations</div>
+    <div class="kpi-value">27</div>
+    <div class="kpi-sub">Cancelled + Paused</div>
+  </div>
+  <div class="kpi" style="--kpi-color:#ff4747">
+    <div class="kpi-label">Hard Cancels</div>
+    <div class="kpi-value">24</div>
+    <div class="kpi-sub">Confirmed exits</div>
+  </div>
+  <div class="kpi" style="--kpi-color:#ffb347">
+    <div class="kpi-label">Paused</div>
+    <div class="kpi-value">3</div>
+    <div class="kpi-sub">Re-engagement opportunity</div>
+  </div>
+  <div class="kpi" style="--kpi-color:#47c8ff">
+    <div class="kpi-label">Lost in Onboarding</div>
+    <div class="kpi-value">12</div>
+    <div class="kpi-sub">44% of all exits</div>
+  </div>
+  <div class="kpi" style="--kpi-color:#e8ff47">
+    <div class="kpi-label">Top Churn Driver</div>
+    <div class="kpi-value" style="font-size:20px;padding-top:4px">New CPA</div>
+    <div class="kpi-sub">~40% of cancellations</div>
+  </div>
+  <div class="kpi" style="--kpi-color:#47d98c">
+    <div class="kpi-label">Preventable Est.</div>
+    <div class="kpi-value">~40%</div>
+    <div class="kpi-sub">6 confirmed preventable exits</div>
+  </div>
+</div>
+
+<div class="section-label">Monthly Breakdown</div>
+
+<!-- Monthly Timeline -->
+<div class="panel mb16">
+  <div class="panel-title"><span class="dot"></span>Cancellations Per Month</div>
+  <div class="month-cols">
+    <div class="month-col">
+      <div class="mname">October 2025</div>
+      <div class="mval down">1</div>
+      <div class="msub">Baseline (pre-tracker)</div>
+    </div>
+    <div class="month-col">
+      <div class="mname">November 2025</div>
+      <div class="mval" style="color:var(--warn)">2</div>
+      <div class="msub">+100% MoM ↑</div>
+    </div>
+    <div class="month-col">
+      <div class="mname">December 2025</div>
+      <div class="mval up">8</div>
+      <div class="msub">+300% MoM ↑</div>
+    </div>
+    <div class="month-col">
+      <div class="mname">January 2026</div>
+      <div class="mval up">16</div>
+      <div class="msub">Peak month — +100% ↑</div>
+    </div>
+  </div>
+</div>
+
+<div class="section-label">Churn Drivers</div>
+<div class="grid-2">
+
+  <!-- Primary Drivers Bar Chart -->
+  <div class="panel">
+    <div class="panel-title"><span class="dot" style="background:var(--accent2)"></span>Primary Churn Reasons</div>
+
+    <div class="bar-item">
+      <div class="bar-label">New CPA / Bookkeeper</div>
+      <div class="bar-track"><div class="bar-fill" style="--bar-color:#ff6b47;width:0%" data-w="45"></div></div>
+      <div class="bar-count">10</div>
+    </div>
+    <div class="bar-item">
+      <div class="bar-label">Sales Misalignment</div>
+      <div class="bar-track"><div class="bar-fill" style="--bar-color:#ffb347;width:0%" data-w="23"></div></div>
+      <div class="bar-count">5</div>
+    </div>
+    <div class="bar-item">
+      <div class="bar-label">Perceived Lack of Value</div>
+      <div class="bar-track"><div class="bar-fill" style="--bar-color:#e8ff47;width:0%" data-w="14"></div></div>
+      <div class="bar-count">3</div>
+    </div>
+    <div class="bar-item">
+      <div class="bar-label">Practice Ceased Operations</div>
+      <div class="bar-track"><div class="bar-fill" style="--bar-color:#47c8ff;width:0%" data-w="9"></div></div>
+      <div class="bar-count">2</div>
+    </div>
+    <div class="bar-item">
+      <div class="bar-label">Financial Burden</div>
+      <div class="bar-track"><div class="bar-fill" style="--bar-color:#c847ff;width:0%" data-w="9"></div></div>
+      <div class="bar-count">2</div>
+    </div>
+    <div class="bar-item">
+      <div class="bar-label">In-house Bookkeeping</div>
+      <div class="bar-track"><div class="bar-fill" style="--bar-color:#47d98c;width:0%" data-w="9"></div></div>
+      <div class="bar-count">2</div>
+    </div>
+    <div class="bar-item">
+      <div class="bar-label">Unclear</div>
+      <div class="bar-track"><div class="bar-fill" style="--bar-color:#6b7585;width:0%" data-w="5"></div></div>
+      <div class="bar-count">1</div>
+    </div>
+  </div>
+
+  <!-- Phase Split Donut -->
+  <div class="panel">
+    <div class="panel-title"><span class="dot" style="background:var(--accent3)"></span>Cancellation Phase</div>
+    <div class="donut-wrap">
+      <svg class="donut" width="130" height="130" viewBox="0 0 130 130">
+        <circle cx="65" cy="65" r="50" fill="none" stroke="#dde0f0" stroke-width="22"/>
+        <!-- Onboarding: 13/35 = 37% → 231 of 314 -->
+        <circle cx="65" cy="65" r="50" fill="none" stroke="#47c8ff" stroke-width="22"
+          stroke-dasharray="116 198" stroke-dashoffset="78.5" stroke-linecap="butt"/>
+        <!-- Long-term: 12/35 = 34% -->
+        <circle cx="65" cy="65" r="50" fill="none" stroke="#47d98c" stroke-width="22"
+          stroke-dasharray="107 207" stroke-dashoffset="-38" stroke-linecap="butt"/>
+        <!-- Post-Onboarding: 4/35 = 11% -->
+        <circle cx="65" cy="65" r="50" fill="none" stroke="#e8ff47" stroke-width="22"
+          stroke-dasharray="35 279" stroke-dashoffset="-145" stroke-linecap="butt"/>
+        <!-- Mature/Other: 6/35 = 18% -->
+        <circle cx="65" cy="65" r="50" fill="none" stroke="#ff6b47" stroke-width="22"
+          stroke-dasharray="55 259" stroke-dashoffset="-180" stroke-linecap="butt"/>
+        <text x="65" y="61" text-anchor="middle" fill="#12183a" font-family="Syne,sans-serif" font-size="20" font-weight="800">27</text>
+        <text x="65" y="76" text-anchor="middle" fill="#7b82a8" font-family="DM Mono,monospace" font-size="9">total exits</text>
+      </svg>
+      <div class="legend">
+        <div class="legend-item"><div class="legend-dot" style="background:#47c8ff"></div>Onboarding (12 · 44%)</div>
+        <div class="legend-item"><div class="legend-dot" style="background:#47d98c"></div>Ongoing (15 · 56%)</div>
+        
+        
+        <div class="legend-item"><div class="legend-dot" style="background:#6b7585"></div>Unclear (0 · 0%)</div>
+      </div>
+    </div>
+
+    <div style="height:1px;background:var(--border);margin:18px 0"></div>
+
+    <div class="phase-row">
+      <div class="phase-pill" style="--pill-color:#47c8ff">
+        <span class="pval">44%</span>
+        <span class="plabel">Lost in Onboarding</span>
+      </div>
+      <div class="phase-pill" style="--pill-color:#47d98c">
+        <span class="pval">56%</span>
+        <span class="plabel">Ongoing clients lost</span>
+      </div>
+      <div class="phase-pill" style="--pill-color:#ff6b47">
+        <span class="pval">3</span>
+        <span class="plabel">Paused (salvageable)</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="section-label">Risk Signals & Actionable Insights</div>
+
+<div class="panel mb16">
+  <div class="panel-title"><span class="dot" style="background:var(--danger)"></span>Priority Issues</div>
+
+  <div class="alert alert-red">
+    <div class="alert-icon">🔴</div>
+    <div class="alert-body">
+      <div class="alert-title">Sales events creating misaligned clients at scale</div>
+      <div class="alert-desc">5 clients cancelled citing they didn't understand what Lucro was at signup — primarily from webinar/BPA events. One didn't know Lucro takes over bookkeeping; another didn't know QuickBooks was required. These are <strong>entirely preventable</strong> exits at the top of the funnel, representing the largest single preventable cohort.</div>
+    </div>
+  </div>
+
+  <div class="alert alert-red">
+    <div class="alert-icon">🔴</div>
+    <div class="alert-body">
+      <div class="alert-title">CPA takeovers are the #1 churn driver — no counter-strategy exists</div>
+      <div class="alert-desc">37% of all cancellations (10 of 27) cite a new CPA or bookkeeper taking over. This is a structural competitive threat. There is currently no apparent retention protocol for CPA-introduction scenarios, and no data suggesting Lucro is positioning itself as complementary (rather than competitive) to CPAs.</div>
+    </div>
+  </div>
+
+  <div class="alert alert-orange">
+    <div class="alert-icon">🟠</div>
+    <div class="alert-body">
+      <div class="alert-title">Onboarding churn is accelerating — 9 of 16 January exits were in-onboarding</div>
+      <div class="alert-desc">9 of 16 January exits (56%) occurred during onboarding — clients who never fully activated. Multiple records show "No Recent Interactions" even during onboarding, pointing to a systemic engagement gap where clients drop out before Lucro ever has a chance to deliver value.</div>
+    </div>
+  </div>
+
+  <div class="alert alert-orange">
+    <div class="alert-icon">🟠</div>
+    <div class="alert-body">
+      <div class="alert-title">Value proposition is not landing — "insights not relevant" is a recurring complaint</div>
+      <div class="alert-desc">Several clients (Druckman, Kreutz, Cornish, Annis) explicitly said they already knew what Lucro was showing them, or that the dashboard didn't meet expectations. This points to a gap between what sales promises and what delivery provides, especially for more financially literate clients.</div>
+    </div>
+  </div>
+
+  <div class="alert alert-yellow">
+    <div class="alert-icon">🟡</div>
+    <div class="alert-body">
+      <div class="alert-title">Internal bookkeeper transitions are causing preventable churn</div>
+      <div class="alert-desc">At least one client (Collaborative Medical) cancelled specifically because an internal Lucro bookkeeper transition was handled poorly. Smooth internal handoffs should be a retention-critical process — this is entirely within Lucro's control.</div>
+    </div>
+  </div>
+</div>
+
+<div class="section-label">Churn Preventability by Driver &amp; Revenue Tier</div>
+<div class="grid-2">
+
+  <div class="panel">
+    <div class="panel-title"><span class="dot" style="background:var(--ok)"></span>Preventability by Churn Driver</div>
+    <table class="insight-table" style="margin-bottom:14px">
+      <thead>
+        <tr>
+          <th>Churn Driver</th>
+          <th>Cases</th>
+          <th>Preventable?</th>
+          <th>Why</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>New CPA / Bookkeeper</td>
+          <td>10</td>
+          <td><span class="tag tag-orange">Partial</span></td>
+          <td style="color:var(--muted)">CPA partnership positioning could retain a portion; some clients will leave regardless</td>
+        </tr>
+        <tr>
+          <td>Sales Misalignment</td>
+          <td>5</td>
+          <td><span class="tag tag-green">Yes — 100%</span></td>
+          <td style="color:var(--muted)">Better event qualification &amp; product explainers eliminate this entirely</td>
+        </tr>
+        <tr>
+          <td>In-house Bookkeeping</td>
+          <td>2</td>
+          <td><span class="tag tag-orange">Partial</span></td>
+          <td style="color:var(--muted)">Better ICP screening at sales stage reduces this; some decisions are strategic</td>
+        </tr>
+        <tr>
+          <td>Practice Ceased Operations</td>
+          <td>2</td>
+          <td><span class="tag tag-red">No</span></td>
+          <td style="color:var(--muted)">Outside Lucro's control — practice closures are unpreventable exits</td>
+        </tr>
+        <tr>
+          <td>Lack of Value / Pricing</td>
+          <td>3</td>
+          <td><span class="tag tag-green">Yes — Likely</span></td>
+          <td style="color:var(--muted)">Stronger onboarding engagement &amp; clearer value communication addresses this</td>
+        </tr>
+        <tr>
+          <td>Financial Burden</td>
+          <td>2</td>
+          <td><span class="tag tag-orange">Partial</span></td>
+          <td style="color:var(--muted)">Pause/discount offers can save some; genuine cash flow crises cannot be prevented</td>
+        </tr>
+        <tr>
+          <td>Unclear</td>
+          <td>1</td>
+          <td><span class="tag tag-blue">Unknown</span></td>
+          <td style="color:var(--muted)">Insufficient data to classify — exit surveys needed</td>
+        </tr>
+      </tbody>
+    </table>
+    <div style="font-size:11px;color:var(--muted);line-height:1.7">
+      Only <span style="color:var(--ok);font-weight:600">6 exits are clearly preventable (22%)</span>, all via sales misalignment or in-house bookkeeping decisions. A further ~7 are partially preventable. The dominant driver — CPA takeovers — is largely outside Lucro's direct control.
+    </div>
+  </div>
+
+  <div class="panel">
+    <div class="panel-title"><span class="dot" style="background:var(--accent)"></span>Monthly Revenue Tier at Exit</div>
+    <div class="bar-item">
+      <div class="bar-label">$0 – $50k</div>
+      <div class="bar-track"><div class="bar-fill" style="--bar-color:#e8ff47;width:0%" data-w="50"></div></div>
+      <div class="bar-count">8</div>
+    </div>
+    <div class="bar-item">
+      <div class="bar-label">$101k – $200k</div>
+      <div class="bar-track"><div class="bar-fill" style="--bar-color:#47c8ff;width:0%" data-w="38"></div></div>
+      <div class="bar-count">6</div>
+    </div>
+    <div class="bar-item">
+      <div class="bar-label">$51k – $100k</div>
+      <div class="bar-track"><div class="bar-fill" style="--bar-color:#47d98c;width:0%" data-w="31"></div></div>
+      <div class="bar-count">5</div>
+    </div>
+    <div class="bar-item">
+      <div class="bar-label">Data Incomplete</div>
+      <div class="bar-track"><div class="bar-fill" style="--bar-color:#6b7585;width:0%" data-w="50"></div></div>
+      <div class="bar-count">8</div>
+    </div>
+    <div style="height:1px;background:var(--border);margin:18px 0"></div>
+    <div style="font-size:11px;color:var(--muted);line-height:1.7">
+      Smaller practices ($0–$50k) are over-represented in churn.
+    </div>
+  </div>
+</div>
+
+<div class="section-label">Actions by Department</div>
+
+<!-- SALES -->
+<div class="panel mb16">
+  <div class="panel-title">
+    <span class="dot" style="background:#5b6ef5"></span>
+    <span style="color:#5b6ef5;font-family:Syne,sans-serif;font-weight:700">Sales</span>
+  </div>
+  <table class="insight-table">
+    <thead>
+      <tr><th>#</th><th>Action</th><th>Addresses</th><th>Impact</th><th>Effort</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td style="color:var(--muted)">S1</td>
+        <td>Add an explicit product explainer to all mass sales events (webinars, BPA). Clearly communicate that Lucro takes over bookkeeping and that a QuickBooks account is required before signup.</td>
+        <td><span class="tag tag-red">Sales Misalignment</span></td>
+        <td><span class="tag tag-red">High</span></td>
+        <td><span class="tag tag-green">Low</span></td>
+      </tr>
+      <tr>
+        <td style="color:var(--muted)">S2</td>
+        <td>Introduce a pre-qualification checklist for all event signups — confirm QBO access, practice size, and bookkeeping setup before onboarding is initiated.</td>
+        <td><span class="tag tag-red">Sales Misalignment</span></td>
+        <td><span class="tag tag-red">High</span></td>
+        <td><span class="tag tag-green">Low</span></td>
+      </tr>
+      <tr>
+        <td style="color:var(--muted)">S3</td>
+        <td>Build a CPA partnership playbook — position Lucro as complementary to CPAs, not a replacement. Introduce CPA scenarios during sales calls.</td>
+        <td><span class="tag tag-orange">CPA Takeover</span></td>
+        <td><span class="tag tag-red">High</span></td>
+        <td><span class="tag tag-orange">Medium</span></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- ONBOARDING -->
+<div class="panel mb16">
+  <div class="panel-title">
+    <span class="dot" style="background:#e07a20"></span>
+    <span style="color:#e07a20;font-family:Syne,sans-serif;font-weight:700">Onboarding</span>
+  </div>
+  <table class="insight-table">
+    <thead>
+      <tr><th>#</th><th>Action</th><th>Addresses</th><th>Impact</th><th>Effort</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td style="color:var(--muted)">O1</td>
+        <td>90-day email connection strategy is in place (monthly touchpoints for 3 months post-onboarding). Audit whether touchpoints are driving replies, not just sends — flag any account that misses a check-in for immediate outreach.</td>
+        <td><span class="tag tag-blue">Onboarding Churn</span></td>
+        <td><span class="tag tag-red">High</span></td>
+        <td><span class="tag tag-green">In Progress</span></td>
+      </tr>
+      <tr>
+        <td style="color:var(--muted)">O2</td>
+        <td>Set a mandatory onboarding activation milestone — no client should go more than 14 days without a logged interaction. Escalate unresponsive accounts to the Onboarding Manager before day 21.</td>
+        <td><span class="tag tag-blue">Onboarding Churn</span></td>
+        <td><span class="tag tag-red">High</span></td>
+        <td><span class="tag tag-green">Low</span></td>
+      </tr>
+      <tr>
+        <td style="color:var(--muted)">O3</td>
+        <td>Improve the onboarding value demonstration — ensure clients see a meaningful insight or financial win within the first 30 days to reduce "lack of value" early exits.</td>
+        <td><span class="tag tag-blue">Lack of Value</span></td>
+        <td><span class="tag tag-orange">Medium</span></td>
+        <td><span class="tag tag-orange">Medium</span></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- ACCOUNT MANAGEMENT -->
+<div class="panel mb16">
+  <div class="panel-title">
+    <span class="dot" style="background:#1aaa6b"></span>
+    <span style="color:#1aaa6b;font-family:Syne,sans-serif;font-weight:700">Account Management</span>
+  </div>
+  <table class="insight-table">
+    <thead>
+      <tr><th>#</th><th>Action</th><th>Addresses</th><th>Impact</th><th>Effort</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td style="color:var(--muted)">A1</td>
+        <td>Introduce a CPA co-introduction call for any client who mentions a new CPA or bookkeeper. Position Lucro's reporting and insights as additive to what the CPA does, not duplicative.</td>
+        <td><span class="tag tag-orange">CPA Takeover</span></td>
+        <td><span class="tag tag-red">High</span></td>
+        <td><span class="tag tag-green">Low</span></td>
+      </tr>
+      <tr>
+        <td style="color:var(--muted)">A2</td>
+        <td>Develop a retention save script specifically for financial burden cases — offer a pause, discount, or reduced-scope plan before a cancellation is confirmed.</td>
+        <td><span class="tag tag-orange">Financial Burden</span></td>
+        <td><span class="tag tag-orange">Medium</span></td>
+        <td><span class="tag tag-green">Low</span></td>
+      </tr>
+      <tr>
+        <td style="color:var(--muted)">A3</td>
+        <td>Schedule quarterly business reviews for all long-term clients to proactively surface value before dissatisfaction builds — particularly for financially literate practices.</td>
+        <td><span class="tag tag-blue">Lack of Value</span></td>
+        <td><span class="tag tag-orange">Medium</span></td>
+        <td><span class="tag tag-orange">Medium</span></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- OPERATIONS -->
+<div class="panel mb16">
+  <div class="panel-title">
+    <span class="dot" style="background:#e0405a"></span>
+    <span style="color:#e0405a;font-family:Syne,sans-serif;font-weight:700">Operations</span>
+  </div>
+  <table class="insight-table">
+    <thead>
+      <tr><th>#</th><th>Action</th><th>Addresses</th><th>Impact</th><th>Effort</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td style="color:var(--muted)">P1</td>
+        <td>Create a formal internal bookkeeper transition protocol — include a client-facing communication template, a handoff checklist, and a post-transition satisfaction check within 7 days.</td>
+        <td><span class="tag tag-orange">Internal Handoffs</span></td>
+        <td><span class="tag tag-orange">Medium</span></td>
+        <td><span class="tag tag-green">Low</span></td>
+      </tr>
+      <tr>
+        <td style="color:var(--muted)">P2</td>
+        <td>An exit survey is already in place for cancelling clients. Focus on improving completion rates — currently ~4% of exits have unclear reasoning, suggesting low survey uptake. Consider adding a personal follow-up prompt to encourage responses without making it compulsory.</td>
+        <td><span class="tag tag-blue">Data Gaps</span></td>
+        <td><span class="tag tag-orange">Medium</span></td>
+        <td><span class="tag tag-green">Low</span></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- LEADERSHIP / STRATEGY -->
+<div class="panel">
+  <div class="panel-title">
+    <span class="dot" style="background:#12183a"></span>
+    <span style="color:#12183a;font-family:Syne,sans-serif;font-weight:700">Leadership & Strategy</span>
+  </div>
+  <table class="insight-table">
+    <thead>
+      <tr><th>#</th><th>Action</th><th>Addresses</th><th>Impact</th><th>Effort</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td style="color:var(--muted)">L1</td>
+        <td>Evaluate formal CPA partnership programme — explore referral agreements or co-branded reporting that makes CPAs an acquisition channel rather than a churn driver. CPA takeovers represent 37% of all exits.</td>
+        <td><span class="tag tag-orange">CPA Takeover</span></td>
+        <td><span class="tag tag-red">High</span></td>
+        <td><span class="tag tag-orange">Medium</span></td>
+      </tr>
+      <tr>
+        <td style="color:var(--muted)">L2</td>
+        <td>Re-evaluate the value proposition for financially literate clients. Consider a differentiated "pro" tier with deeper strategic insights or direct strategy calls to serve higher-capability practices.</td>
+        <td><span class="tag tag-blue">Lack of Value</span></td>
+        <td><span class="tag tag-orange">Medium</span></td>
+        <td><span class="tag tag-orange">Medium</span></td>
+      </tr>
+      <tr>
+        <td style="color:var(--muted)">L3</td>
+        <td>Review monthly churn data at leadership level. Since formal tracking began in November, exits have accelerated from 2 in November to 16 in January — a standing retention review cadence is warranted to catch trend shifts early.</td>
+        <td><span class="tag tag-red">Churn Trend</span></td>
+        <td><span class="tag tag-red">High</span></td>
+        <td><span class="tag tag-green">Low</span></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div style="margin-top:32px;font-size:10px;color:var(--muted);text-align:center;letter-spacing:0.08em">
+  LUCRO CANCELLATION INTELLIGENCE · OCT 2025 – FEB 2026 · 27 EXITS ANALYZED
+</div>
+
+<div style="text-align:center;margin:24px 0 8px">
+  <button onclick="window.print()" style="
+    background:#5b6ef5;
+    color:#ffffff;
+    font-family:'Syne',sans-serif;
+    font-weight:700;
+    font-size:13px;
+    letter-spacing:0.08em;
+    border:none;
+    border-radius:10px;
+    padding:14px 32px;
+    cursor:pointer;
+    box-shadow:0 4px 14px rgba(91,110,245,0.35);
+    transition:all 0.2s;
+  "
+  onmouseover="this.style.background='#3a4fd4';this.style.boxShadow='0 6px 20px rgba(91,110,245,0.45)'"
+  onmouseout="this.style.background='#5b6ef5';this.style.boxShadow='0 4px 14px rgba(91,110,245,0.35)'"
+  >
+    ↓ Download as PDF
+  </button>
+</div>
+
+<style>
+  @media print {
+    button { display: none !important; }
+    body { padding: 16px; }
+  }
+</style>
+
+<script>
+  // Animate bars on load
+  setTimeout(() => {
+    document.querySelectorAll('.bar-fill').forEach(el => {
+      el.style.width = el.dataset.w + '%';
+    });
+  }, 200);
+</script>
+</body>
+</html>
