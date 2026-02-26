@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Lucro — Cancellation Intelligence</title>
+<title>Lucro — Strategy & Retention</title>
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
   :root {
@@ -343,6 +343,118 @@
 
   .full-width { grid-column: 1 / -1; }
   .mb16 { margin-bottom: 16px; }
+
+  /* QUARTER SWITCHER */
+  .quarter-switcher {
+    position: relative;
+    display: inline-block;
+  }
+  .quarter-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: #ffffff;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 10px 16px;
+    font-family: 'Syne', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--text);
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(91,110,245,0.08);
+    transition: all 0.2s;
+    letter-spacing: 0.04em;
+  }
+  .quarter-btn:hover {
+    border-color: var(--accent);
+    box-shadow: 0 4px 14px rgba(91,110,245,0.15);
+  }
+  .quarter-btn .arrow {
+    font-size: 10px;
+    transition: transform 0.2s;
+    color: var(--muted);
+  }
+  .quarter-btn.open .arrow { transform: rotate(180deg); }
+  .quarter-dropdown {
+    display: none;
+    position: absolute;
+    top: calc(100% + 8px);
+    right: 0;
+    background: #ffffff;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    box-shadow: 0 8px 32px rgba(18,24,58,0.12);
+    overflow: hidden;
+    min-width: 180px;
+    z-index: 100;
+  }
+  .quarter-dropdown.open { display: block; }
+  .quarter-option {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 16px;
+    font-family: 'Syne', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--text);
+    cursor: pointer;
+    transition: background 0.15s;
+    letter-spacing: 0.04em;
+    border-bottom: 1px solid var(--border);
+  }
+  .quarter-option:last-child { border-bottom: none; }
+  .quarter-option:hover { background: #f4f5fb; }
+  .quarter-option.active {
+    background: rgba(91,110,245,0.06);
+    color: var(--accent);
+  }
+  .quarter-option .q-badge {
+    font-size: 9px;
+    padding: 2px 7px;
+    border-radius: 20px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+  }
+  .q-badge-live { background: rgba(26,170,107,0.12); color: var(--ok); border: 1px solid rgba(26,170,107,0.25); }
+  .q-badge-soon { background: rgba(123,130,168,0.1); color: var(--muted); border: 1px solid rgba(123,130,168,0.2); }
+  .q-badge-test { background: rgba(224,122,32,0.1); color: var(--warn); border: 1px solid rgba(224,122,32,0.25); }
+
+  /* PLACEHOLDER VIEW */
+  #placeholder-view {
+    display: none;
+    text-align: center;
+    padding: 80px 24px;
+  }
+  #placeholder-view .ph-icon { font-size: 48px; margin-bottom: 20px; }
+  #placeholder-view .ph-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 28px;
+    font-weight: 800;
+    color: var(--text);
+    margin-bottom: 10px;
+  }
+  #placeholder-view .ph-sub {
+    font-size: 13px;
+    color: var(--muted);
+    max-width: 380px;
+    margin: 0 auto;
+    line-height: 1.7;
+  }
+  #placeholder-view .ph-badge {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 8px 20px;
+    background: rgba(91,110,245,0.08);
+    border: 1px solid rgba(91,110,245,0.2);
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--accent);
+    letter-spacing: 0.08em;
+    font-family: 'Syne', sans-serif;
+  }
 </style>
 </head>
 <body>
@@ -352,9 +464,43 @@
     <div class="brand">Lucro · Strategy & Retention</div>
     <h1>Cancellation <span>Tracker</span></h1>
   </div>
-  <div class="period">Oct 2025 — Feb 2026</div>
+  <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap">
+    <div class="period" id="active-period">Oct 2025 — Feb 2026</div>
+    <div class="quarter-switcher">
+      <button class="quarter-btn" id="quarter-btn" onclick="toggleDropdown()">
+        <span id="quarter-label">2026 Test</span>
+        <span class="arrow">▼</span>
+      </button>
+      <div class="quarter-dropdown" id="quarter-dropdown">
+        <div class="quarter-option active" onclick="selectQuarter('test')">
+          2026 Test <span class="q-badge q-badge-test">Current</span>
+        </div>
+        <div class="quarter-option" onclick="selectQuarter('q1')">
+          2026 Q1 <span class="q-badge q-badge-soon">Coming Soon</span>
+        </div>
+        <div class="quarter-option" onclick="selectQuarter('q2')">
+          2026 Q2 <span class="q-badge q-badge-soon">Coming Soon</span>
+        </div>
+        <div class="quarter-option" onclick="selectQuarter('q3')">
+          2026 Q3 <span class="q-badge q-badge-soon">Coming Soon</span>
+        </div>
+        <div class="quarter-option" onclick="selectQuarter('q4')">
+          2026 Q4 <span class="q-badge q-badge-soon">Coming Soon</span>
+        </div>
+      </div>
+    </div>
+  </div>
 </header>
 
+<!-- PLACEHOLDER VIEW FOR FUTURE QUARTERS -->
+<div id="placeholder-view">
+  <div class="ph-icon">📊</div>
+  <div class="ph-title" id="ph-title">2026 Q1</div>
+  <div class="ph-sub">Data for this quarter hasn't been added yet. Check back once the quarter is underway.</div>
+  <div class="ph-badge">NO DATA YET</div>
+</div>
+
+<div id="dashboard-content">
 <!-- KPIs -->
 <div class="kpi-row">
   <div class="kpi" style="--kpi-color:#ff6b47">
@@ -829,6 +975,7 @@
   LUCRO CANCELLATION INTELLIGENCE · OCT 2025 – FEB 2026 · 27 EXITS ANALYZED
 </div>
 
+</div><!-- end dashboard-content -->
 <div style="text-align:center;margin:24px 0 8px">
   <button onclick="window.print()" style="
     background:#5b6ef5;
@@ -865,6 +1012,57 @@
       el.style.width = el.dataset.w + '%';
     });
   }, 200);
+</script>
+
+<script>
+  // Quarter switcher logic
+  const quarters = {
+    test: { label: '2026 Test', period: 'Oct 2025 — Feb 2026' },
+    q1:   { label: '2026 Q1',   period: 'Jan 2026 — Mar 2026' },
+    q2:   { label: '2026 Q2',   period: 'Apr 2026 — Jun 2026' },
+    q3:   { label: '2026 Q3',   period: 'Jul 2026 — Sep 2026' },
+    q4:   { label: '2026 Q4',   period: 'Oct 2026 — Dec 2026' },
+  };
+
+  let currentQuarter = 'test';
+
+  function toggleDropdown() {
+    const btn = document.getElementById('quarter-btn');
+    const dropdown = document.getElementById('quarter-dropdown');
+    btn.classList.toggle('open');
+    dropdown.classList.toggle('open');
+  }
+
+  function selectQuarter(q) {
+    currentQuarter = q;
+    const data = quarters[q];
+
+    // Update button label
+    document.getElementById('quarter-label').textContent = data.label;
+    document.getElementById('active-period').textContent = data.period;
+    document.getElementById('ph-title').textContent = data.label;
+
+    // Update active state on options
+    document.querySelectorAll('.quarter-option').forEach(el => el.classList.remove('active'));
+    event.currentTarget.classList.add('active');
+
+    // Show/hide dashboard vs placeholder
+    const isDashboard = q === 'test';
+    document.getElementById('placeholder-view').style.display = isDashboard ? 'none' : 'block';
+    document.getElementById('dashboard-content').style.display = isDashboard ? 'block' : 'none';
+
+    // Close dropdown
+    document.getElementById('quarter-btn').classList.remove('open');
+    document.getElementById('quarter-dropdown').classList.remove('open');
+  }
+
+  // Close dropdown when clicking outside
+  document.addEventListener('click', function(e) {
+    if (!e.target.closest('.quarter-switcher')) {
+      document.getElementById('quarter-btn').classList.remove('open');
+      document.getElementById('quarter-dropdown').classList.remove('open');
+    }
+  });
 </script>
 </body>
 </html>
