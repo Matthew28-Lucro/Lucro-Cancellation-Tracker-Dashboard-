@@ -4,27 +4,27 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Lucro — Strategy & Retention</title>
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+
 <style>
   :root {
-    --bg: #f4f5fb;
-    --surface: #ffffff;
-    --card: #ffffff;
-    --border: #dde0f0;
-    --accent: #5b6ef5;
-    --accent2: #3a4fd4;
-    --accent3: #7c8ff7;
-    --text: #12183a;
-    --muted: #7b82a8;
-    --danger: #e0405a;
-    --warn: #e07a20;
-    --ok: #1aaa6b;
+    --bg: #e8eaf5;
+    --surface: #f0f2fa;
+    --card: #f5f6fc;
+    --border: #c2c7e0;
+    --accent: #3a50e8;
+    --accent2: #1f35c4;
+    --accent3: #5c72f0;
+    --text: #080e2e;
+    --muted: #505880;
+    --danger: #c41f3b;
+    --warn: #c45a00;
+    --ok: #0a7a4a;
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
   body {
     background: var(--bg);
     color: var(--text);
-    font-family: 'DM Mono', monospace;
+    font-family: Verdana, Geneva, sans-serif;
     min-height: 100vh;
     padding: 32px 24px;
   }
@@ -37,7 +37,7 @@
     gap: 16px;
   }
   .brand {
-    font-family: 'Syne', sans-serif;
+    font-family: Verdana, Geneva, sans-serif;
     font-size: 13px;
     font-weight: 600;
     letter-spacing: 0.18em;
@@ -45,7 +45,7 @@
     color: var(--muted);
   }
   h1 {
-    font-family: 'Syne', sans-serif;
+    font-family: Verdana, Geneva, sans-serif;
     font-size: clamp(28px, 5vw, 52px);
     font-weight: 800;
     line-height: 1;
@@ -76,7 +76,7 @@
     position: relative;
     overflow: hidden;
     transition: transform 0.2s;
-    box-shadow: 0 2px 12px rgba(91,110,245,0.06);
+    box-shadow: 0 2px 12px rgba(31,53,196,0.1);
   }
   .kpi:hover { transform: translateY(-2px); }
   .kpi::before {
@@ -95,7 +95,7 @@
     margin-bottom: 10px;
   }
   .kpi-value {
-    font-family: 'Syne', sans-serif;
+    font-family: Verdana, Geneva, sans-serif;
     font-size: 36px;
     font-weight: 800;
     line-height: 1;
@@ -128,10 +128,10 @@
     border: 1px solid var(--border);
     border-radius: 14px;
     padding: 22px;
-    box-shadow: 0 2px 12px rgba(91,110,245,0.06);
+    box-shadow: 0 2px 12px rgba(31,53,196,0.1);
   }
   .panel-title {
-    font-family: 'Syne', sans-serif;
+    font-family: Verdana, Geneva, sans-serif;
     font-size: 11px;
     font-weight: 700;
     letter-spacing: 0.14em;
@@ -204,7 +204,7 @@
     text-align: center;
   }
   .phase-pill .pval {
-    font-family: 'Syne', sans-serif;
+    font-family: Verdana, Geneva, sans-serif;
     font-size: 28px;
     font-weight: 800;
     color: var(--pill-color, var(--accent));
@@ -239,7 +239,7 @@
     margin-bottom: 8px;
   }
   .month-col .mval {
-    font-family: 'Syne', sans-serif;
+    font-family: Verdana, Geneva, sans-serif;
     font-size: 32px;
     font-weight: 800;
   }
@@ -282,10 +282,10 @@
     letter-spacing: 0.06em;
     text-transform: uppercase;
   }
-  .tag-red { background: rgba(224,64,90,0.1); color: var(--danger); border: 1px solid rgba(224,64,90,0.25); }
-  .tag-orange { background: rgba(224,122,32,0.1); color: var(--warn); border: 1px solid rgba(224,122,32,0.25); }
-  .tag-green { background: rgba(26,170,107,0.1); color: var(--ok); border: 1px solid rgba(26,170,107,0.25); }
-  .tag-blue { background: rgba(91,110,245,0.1); color: var(--accent2); border: 1px solid rgba(91,110,245,0.25); }
+  .tag-red { background: rgba(224,64,90,0.1); color: var(--danger); border: 1px solid rgba(196,31,59,0.35); }
+  .tag-orange { background: rgba(196,90,0,0.12); color: var(--warn); border: 1px solid rgba(196,90,0,0.35); }
+  .tag-green { background: rgba(26,170,107,0.1); color: var(--ok); border: 1px solid rgba(10,122,74,0.35); }
+  .tag-blue { background: rgba(91,110,245,0.1); color: var(--accent2); border: 1px solid rgba(31,53,196,0.35); }
 
   /* RISK ALERTS */
   .alert {
@@ -299,7 +299,7 @@
   }
   .alert-icon { font-size: 18px; flex-shrink: 0; line-height: 1; }
   .alert-body { flex: 1; }
-  .alert-title { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 13px; margin-bottom: 4px; }
+  .alert-title { font-family: Verdana, Geneva, sans-serif; font-weight: 700; font-size: 13px; margin-bottom: 4px; }
   .alert-desc { font-size: 11px; color: var(--muted); line-height: 1.6; }
   .alert-red { background: rgba(224,64,90,0.05); border-color: rgba(224,64,90,0.2); }
   .alert-orange { background: rgba(224,122,32,0.05); border-color: rgba(224,122,32,0.2); }
@@ -357,18 +357,18 @@
     border: 1px solid var(--border);
     border-radius: 10px;
     padding: 10px 16px;
-    font-family: 'Syne', sans-serif;
+    font-family: Verdana, Geneva, sans-serif;
     font-size: 13px;
     font-weight: 700;
     color: var(--text);
     cursor: pointer;
-    box-shadow: 0 2px 8px rgba(91,110,245,0.08);
+    box-shadow: 0 2px 8px rgba(31,53,196,0.12);
     transition: all 0.2s;
     letter-spacing: 0.04em;
   }
   .quarter-btn:hover {
     border-color: var(--accent);
-    box-shadow: 0 4px 14px rgba(91,110,245,0.15);
+    box-shadow: 0 4px 14px rgba(31,53,196,0.2);
   }
   .quarter-btn .arrow {
     font-size: 10px;
@@ -395,7 +395,7 @@
     align-items: center;
     justify-content: space-between;
     padding: 12px 16px;
-    font-family: 'Syne', sans-serif;
+    font-family: Verdana, Geneva, sans-serif;
     font-size: 12px;
     font-weight: 600;
     color: var(--text);
@@ -405,9 +405,9 @@
     border-bottom: 1px solid var(--border);
   }
   .quarter-option:last-child { border-bottom: none; }
-  .quarter-option:hover { background: #f4f5fb; }
+  .quarter-option:hover { background: #dde0f0; }
   .quarter-option.active {
-    background: rgba(91,110,245,0.06);
+    background: rgba(31,53,196,0.08);
     color: var(--accent);
   }
   .quarter-option .q-badge {
@@ -417,9 +417,9 @@
     font-weight: 600;
     letter-spacing: 0.06em;
   }
-  .q-badge-live { background: rgba(26,170,107,0.12); color: var(--ok); border: 1px solid rgba(26,170,107,0.25); }
-  .q-badge-soon { background: rgba(123,130,168,0.1); color: var(--muted); border: 1px solid rgba(123,130,168,0.2); }
-  .q-badge-test { background: rgba(224,122,32,0.1); color: var(--warn); border: 1px solid rgba(224,122,32,0.25); }
+  .q-badge-live { background: rgba(10,122,74,0.15); color: var(--ok); border: 1px solid rgba(10,122,74,0.35); }
+  .q-badge-soon { background: rgba(58,66,96,0.12); color: var(--muted); border: 1px solid rgba(58,66,96,0.3); }
+  .q-badge-test { background: rgba(196,90,0,0.12); color: var(--warn); border: 1px solid rgba(196,90,0,0.35); }
 
   /* PLACEHOLDER VIEW */
   #placeholder-view {
@@ -429,7 +429,7 @@
   }
   #placeholder-view .ph-icon { font-size: 48px; margin-bottom: 20px; }
   #placeholder-view .ph-title {
-    font-family: 'Syne', sans-serif;
+    font-family: Verdana, Geneva, sans-serif;
     font-size: 28px;
     font-weight: 800;
     color: var(--text);
@@ -453,7 +453,7 @@
     font-weight: 700;
     color: var(--accent);
     letter-spacing: 0.08em;
-    font-family: 'Syne', sans-serif;
+    font-family: Verdana, Geneva, sans-serif;
   }
 </style>
 </head>
@@ -533,32 +533,32 @@
 <div id="dashboard-content" style="display:none">
 <!-- KPIs -->
 <div class="kpi-row">
-  <div class="kpi" style="--kpi-color:#ff6b47">
+  <div class="kpi" style="--kpi-color:#c94020">
     <div class="kpi-label">Total Cancellations</div>
     <div class="kpi-value">27</div>
     <div class="kpi-sub">Cancelled + Paused</div>
   </div>
-  <div class="kpi" style="--kpi-color:#ff4747">
+  <div class="kpi" style="--kpi-color:#c41f3b">
     <div class="kpi-label">Hard Cancels</div>
     <div class="kpi-value">24</div>
     <div class="kpi-sub">Confirmed exits</div>
   </div>
-  <div class="kpi" style="--kpi-color:#ffb347">
+  <div class="kpi" style="--kpi-color:#c45a00">
     <div class="kpi-label">Paused</div>
     <div class="kpi-value">3</div>
     <div class="kpi-sub">Re-engagement opportunity</div>
   </div>
-  <div class="kpi" style="--kpi-color:#47c8ff">
+  <div class="kpi" style="--kpi-color:#0077b8">
     <div class="kpi-label">Lost in Onboarding</div>
     <div class="kpi-value">12</div>
     <div class="kpi-sub">44% of all exits</div>
   </div>
-  <div class="kpi" style="--kpi-color:#e8ff47">
+  <div class="kpi" style="--kpi-color:#7a8a00">
     <div class="kpi-label">Top Churn Driver</div>
     <div class="kpi-value" style="font-size:20px;padding-top:4px">New CPA</div>
     <div class="kpi-sub">~40% of cancellations</div>
   </div>
-  <div class="kpi" style="--kpi-color:#47d98c">
+  <div class="kpi" style="--kpi-color:#0a7a4a">
     <div class="kpi-label">Preventable Est.</div>
     <div class="kpi-value">~40%</div>
     <div class="kpi-sub">6 confirmed preventable exits</div>
@@ -603,37 +603,37 @@
 
     <div class="bar-item">
       <div class="bar-label">New CPA / Bookkeeper</div>
-      <div class="bar-track"><div class="bar-fill" style="--bar-color:#ff6b47;width:0%" data-w="45"></div></div>
+      <div class="bar-track"><div class="bar-fill" style="--bar-color:#c94020;width:0%" data-w="45"></div></div>
       <div class="bar-count">10</div>
     </div>
     <div class="bar-item">
       <div class="bar-label">Sales Misalignment</div>
-      <div class="bar-track"><div class="bar-fill" style="--bar-color:#ffb347;width:0%" data-w="23"></div></div>
+      <div class="bar-track"><div class="bar-fill" style="--bar-color:#c45a00;width:0%" data-w="23"></div></div>
       <div class="bar-count">5</div>
     </div>
     <div class="bar-item">
       <div class="bar-label">Perceived Lack of Value</div>
-      <div class="bar-track"><div class="bar-fill" style="--bar-color:#e8ff47;width:0%" data-w="14"></div></div>
+      <div class="bar-track"><div class="bar-fill" style="--bar-color:#7a8a00;width:0%" data-w="14"></div></div>
       <div class="bar-count">3</div>
     </div>
     <div class="bar-item">
       <div class="bar-label">Practice Ceased Operations</div>
-      <div class="bar-track"><div class="bar-fill" style="--bar-color:#47c8ff;width:0%" data-w="9"></div></div>
+      <div class="bar-track"><div class="bar-fill" style="--bar-color:#0077b8;width:0%" data-w="9"></div></div>
       <div class="bar-count">2</div>
     </div>
     <div class="bar-item">
       <div class="bar-label">Financial Burden</div>
-      <div class="bar-track"><div class="bar-fill" style="--bar-color:#c847ff;width:0%" data-w="9"></div></div>
+      <div class="bar-track"><div class="bar-fill" style="--bar-color:#7a00c4;width:0%" data-w="9"></div></div>
       <div class="bar-count">2</div>
     </div>
     <div class="bar-item">
       <div class="bar-label">In-house Bookkeeping</div>
-      <div class="bar-track"><div class="bar-fill" style="--bar-color:#47d98c;width:0%" data-w="9"></div></div>
+      <div class="bar-track"><div class="bar-fill" style="--bar-color:#0a7a4a;width:0%" data-w="9"></div></div>
       <div class="bar-count">2</div>
     </div>
     <div class="bar-item">
       <div class="bar-label">Unclear</div>
-      <div class="bar-track"><div class="bar-fill" style="--bar-color:#6b7585;width:0%" data-w="5"></div></div>
+      <div class="bar-track"><div class="bar-fill" style="--bar-color:#3a4260;width:0%" data-w="5"></div></div>
       <div class="bar-count">1</div>
     </div>
   </div>
@@ -643,28 +643,28 @@
     <div class="panel-title"><span class="dot" style="background:var(--accent3)"></span>Cancellation Phase</div>
     <div class="donut-wrap">
       <svg class="donut" width="130" height="130" viewBox="0 0 130 130">
-        <circle cx="65" cy="65" r="50" fill="none" stroke="#dde0f0" stroke-width="22"/>
+        <circle cx="65" cy="65" r="50" fill="none" stroke="#c2c7e0" stroke-width="22"/>
         <!-- Onboarding: 13/35 = 37% → 231 of 314 -->
-        <circle cx="65" cy="65" r="50" fill="none" stroke="#47c8ff" stroke-width="22"
+        <circle cx="65" cy="65" r="50" fill="none" stroke="#0077b8" stroke-width="22"
           stroke-dasharray="116 198" stroke-dashoffset="78.5" stroke-linecap="butt"/>
         <!-- Long-term: 12/35 = 34% -->
-        <circle cx="65" cy="65" r="50" fill="none" stroke="#47d98c" stroke-width="22"
+        <circle cx="65" cy="65" r="50" fill="none" stroke="#0a7a4a" stroke-width="22"
           stroke-dasharray="107 207" stroke-dashoffset="-38" stroke-linecap="butt"/>
         <!-- Post-Onboarding: 4/35 = 11% -->
-        <circle cx="65" cy="65" r="50" fill="none" stroke="#e8ff47" stroke-width="22"
+        <circle cx="65" cy="65" r="50" fill="none" stroke="#7a8a00" stroke-width="22"
           stroke-dasharray="35 279" stroke-dashoffset="-145" stroke-linecap="butt"/>
         <!-- Mature/Other: 6/35 = 18% -->
-        <circle cx="65" cy="65" r="50" fill="none" stroke="#ff6b47" stroke-width="22"
+        <circle cx="65" cy="65" r="50" fill="none" stroke="#c94020" stroke-width="22"
           stroke-dasharray="55 259" stroke-dashoffset="-180" stroke-linecap="butt"/>
-        <text x="65" y="61" text-anchor="middle" fill="#12183a" font-family="Syne,sans-serif" font-size="20" font-weight="800">27</text>
-        <text x="65" y="76" text-anchor="middle" fill="#7b82a8" font-family="DM Mono,monospace" font-size="9">total exits</text>
+        <text x="65" y="61" text-anchor="middle" fill="#080e2e" font-family="Syne,sans-serif" font-size="20" font-weight="800">27</text>
+        <text x="65" y="76" text-anchor="middle" fill="#505880" font-family="DM Mono,monospace" font-size="9">total exits</text>
       </svg>
       <div class="legend">
-        <div class="legend-item"><div class="legend-dot" style="background:#47c8ff"></div>Onboarding (12 · 44%)</div>
-        <div class="legend-item"><div class="legend-dot" style="background:#47d98c"></div>Ongoing (15 · 56%)</div>
+        <div class="legend-item"><div class="legend-dot" style="background:#0077b8"></div>Onboarding (12 · 44%)</div>
+        <div class="legend-item"><div class="legend-dot" style="background:#0a7a4a"></div>Ongoing (15 · 56%)</div>
         
         
-        <div class="legend-item"><div class="legend-dot" style="background:#6b7585"></div>Unclear (0 · 0%)</div>
+        <div class="legend-item"><div class="legend-dot" style="background:#3a4260"></div>Unclear (0 · 0%)</div>
       </div>
     </div>
 
@@ -801,22 +801,22 @@
     <div class="panel-title"><span class="dot" style="background:var(--accent)"></span>Monthly Revenue Tier at Exit</div>
     <div class="bar-item">
       <div class="bar-label">$0 – $50k</div>
-      <div class="bar-track"><div class="bar-fill" style="--bar-color:#e8ff47;width:0%" data-w="50"></div></div>
+      <div class="bar-track"><div class="bar-fill" style="--bar-color:#7a8a00;width:0%" data-w="50"></div></div>
       <div class="bar-count">8</div>
     </div>
     <div class="bar-item">
       <div class="bar-label">$101k – $200k</div>
-      <div class="bar-track"><div class="bar-fill" style="--bar-color:#47c8ff;width:0%" data-w="38"></div></div>
+      <div class="bar-track"><div class="bar-fill" style="--bar-color:#0077b8;width:0%" data-w="38"></div></div>
       <div class="bar-count">6</div>
     </div>
     <div class="bar-item">
       <div class="bar-label">$51k – $100k</div>
-      <div class="bar-track"><div class="bar-fill" style="--bar-color:#47d98c;width:0%" data-w="31"></div></div>
+      <div class="bar-track"><div class="bar-fill" style="--bar-color:#0a7a4a;width:0%" data-w="31"></div></div>
       <div class="bar-count">5</div>
     </div>
     <div class="bar-item">
       <div class="bar-label">Data Incomplete</div>
-      <div class="bar-track"><div class="bar-fill" style="--bar-color:#6b7585;width:0%" data-w="50"></div></div>
+      <div class="bar-track"><div class="bar-fill" style="--bar-color:#3a4260;width:0%" data-w="50"></div></div>
       <div class="bar-count">8</div>
     </div>
     <div style="height:1px;background:var(--border);margin:18px 0"></div>
@@ -831,8 +831,8 @@
 <!-- SALES -->
 <div class="panel mb16">
   <div class="panel-title">
-    <span class="dot" style="background:#5b6ef5"></span>
-    <span style="color:#5b6ef5;font-family:Syne,sans-serif;font-weight:700">Sales</span>
+    <span class="dot" style="background:#1f35c4"></span>
+    <span style="color:#1f35c4;font-family:Syne,sans-serif;font-weight:700">Sales</span>
   </div>
   <table class="insight-table">
     <thead>
@@ -867,8 +867,8 @@
 <!-- ONBOARDING -->
 <div class="panel mb16">
   <div class="panel-title">
-    <span class="dot" style="background:#e07a20"></span>
-    <span style="color:#e07a20;font-family:Syne,sans-serif;font-weight:700">Onboarding</span>
+    <span class="dot" style="background:#c45a00"></span>
+    <span style="color:#c45a00;font-family:Syne,sans-serif;font-weight:700">Onboarding</span>
   </div>
   <table class="insight-table">
     <thead>
@@ -903,8 +903,8 @@
 <!-- ACCOUNT MANAGEMENT -->
 <div class="panel mb16">
   <div class="panel-title">
-    <span class="dot" style="background:#1aaa6b"></span>
-    <span style="color:#1aaa6b;font-family:Syne,sans-serif;font-weight:700">Account Management</span>
+    <span class="dot" style="background:#0a7a4a"></span>
+    <span style="color:#0a7a4a;font-family:Syne,sans-serif;font-weight:700">Account Management</span>
   </div>
   <table class="insight-table">
     <thead>
@@ -939,8 +939,8 @@
 <!-- OPERATIONS -->
 <div class="panel mb16">
   <div class="panel-title">
-    <span class="dot" style="background:#e0405a"></span>
-    <span style="color:#e0405a;font-family:Syne,sans-serif;font-weight:700">Operations</span>
+    <span class="dot" style="background:#c41f3b"></span>
+    <span style="color:#c41f3b;font-family:Syne,sans-serif;font-weight:700">Operations</span>
   </div>
   <table class="insight-table">
     <thead>
@@ -1008,9 +1008,9 @@
 </div><!-- end dashboard-content -->
 <div style="text-align:center;margin:24px 0 8px">
   <button onclick="window.print()" style="
-    background:#5b6ef5;
+    background:#1f35c4;
     color:#ffffff;
-    font-family:'Syne',sans-serif;
+    font-family:Verdana,Geneva,sans-serif;
     font-weight:700;
     font-size:13px;
     letter-spacing:0.08em;
@@ -1018,11 +1018,11 @@
     border-radius:10px;
     padding:14px 32px;
     cursor:pointer;
-    box-shadow:0 4px 14px rgba(91,110,245,0.35);
+    box-shadow:0 4px 14px rgba(31,53,196,0.4);
     transition:all 0.2s;
   "
-  onmouseover="this.style.background='#3a4fd4';this.style.boxShadow='0 6px 20px rgba(91,110,245,0.45)'"
-  onmouseout="this.style.background='#5b6ef5';this.style.boxShadow='0 4px 14px rgba(91,110,245,0.35)'"
+  onmouseover="this.style.background='#0d22a8';this.style.boxShadow='0 6px 20px rgba(31,53,196,0.5)'"
+  onmouseout="this.style.background='#1f35c4';this.style.boxShadow='0 4px 14px rgba(31,53,196,0.4)'"
   >
     ↓ Download as PDF
   </button>
@@ -1052,32 +1052,32 @@
 
   <!-- Summary KPIs across all months -->
   <div class="kpi-row">
-    <div class="kpi" style="--kpi-color:#ff6b47">
+    <div class="kpi" style="--kpi-color:#c94020">
       <div class="kpi-label">Total Exits Tracked</div>
       <div class="kpi-value">26</div>
       <div class="kpi-sub">Nov 2025 — Jan 2026</div>
     </div>
-    <div class="kpi" style="--kpi-color:#ff4747">
+    <div class="kpi" style="--kpi-color:#c41f3b">
       <div class="kpi-label">Hard Cancels</div>
       <div class="kpi-value">23</div>
       <div class="kpi-sub">Confirmed exits</div>
     </div>
-    <div class="kpi" style="--kpi-color:#ffb347">
+    <div class="kpi" style="--kpi-color:#c45a00">
       <div class="kpi-label">Paused</div>
       <div class="kpi-value">3</div>
       <div class="kpi-sub">Re-engagement opportunity</div>
     </div>
-    <div class="kpi" style="--kpi-color:#47c8ff">
+    <div class="kpi" style="--kpi-color:#0077b8">
       <div class="kpi-label">Lost in Onboarding</div>
       <div class="kpi-value">14</div>
       <div class="kpi-sub">54% of all exits</div>
     </div>
-    <div class="kpi" style="--kpi-color:#e8ff47">
+    <div class="kpi" style="--kpi-color:#7a8a00">
       <div class="kpi-label">Top Churn Driver</div>
       <div class="kpi-value" style="font-size:18px;padding-top:4px">New CPA/BK</div>
       <div class="kpi-sub">17 of 26 exits</div>
     </div>
-    <div class="kpi" style="--kpi-color:#47d98c">
+    <div class="kpi" style="--kpi-color:#0a7a4a">
       <div class="kpi-label">Clearly Preventable</div>
       <div class="kpi-value">6</div>
       <div class="kpi-sub">23% of all exits</div>
@@ -1104,7 +1104,7 @@
       </thead>
       <tbody>
         <tr>
-          <td style="font-family:'Syne',sans-serif;font-weight:700">November 2025</td>
+          <td style="font-family:Verdana,Geneva,sans-serif;font-weight:700">November 2025</td>
           <td>2</td><td>2</td><td>0</td>
           <td>0 (0%)</td>
           <td><span class="tag tag-orange">In-house Bookkeeping</span></td>
@@ -1112,7 +1112,7 @@
           <td>Positive / Neutral</td>
         </tr>
         <tr>
-          <td style="font-family:'Syne',sans-serif;font-weight:700">December 2025</td>
+          <td style="font-family:Verdana,Geneva,sans-serif;font-weight:700">December 2025</td>
           <td>8</td><td>8</td><td>0</td>
           <td>3 (38%)</td>
           <td><span class="tag tag-orange">New CPA/BK</span></td>
@@ -1120,7 +1120,7 @@
           <td>Neutral / Positive</td>
         </tr>
         <tr>
-          <td style="font-family:'Syne',sans-serif;font-weight:700">January 2026</td>
+          <td style="font-family:Verdana,Geneva,sans-serif;font-weight:700">January 2026</td>
           <td>16</td><td>13</td><td>3</td>
           <td>9 (56%)</td>
           <td><span class="tag tag-orange">New CPA/BK</span></td>
@@ -1128,7 +1128,7 @@
           <td>Neutral / Positive</td>
         </tr>
         <tr style="background:rgba(91,110,245,0.04);font-weight:600">
-          <td style="font-family:'Syne',sans-serif;font-weight:800">Total</td>
+          <td style="font-family:Verdana,Geneva,sans-serif;font-weight:800">Total</td>
           <td>26</td><td>23</td><td>3</td>
           <td>12 (46%)</td>
           <td><span class="tag tag-orange">New CPA/BK</span></td>
@@ -1145,12 +1145,12 @@
       <div class="panel-title"><span class="dot" style="background:var(--accent2)"></span>Exit Volume by Month</div>
       <div class="bar-item">
         <div class="bar-label">November 2025</div>
-        <div class="bar-track"><div class="bar-fill" style="--bar-color:#47d98c;width:0%" data-w="13"></div></div>
+        <div class="bar-track"><div class="bar-fill" style="--bar-color:#0a7a4a;width:0%" data-w="13"></div></div>
         <div class="bar-count">2</div>
       </div>
       <div class="bar-item">
         <div class="bar-label">December 2025</div>
-        <div class="bar-track"><div class="bar-fill" style="--bar-color:#ffb347;width:0%" data-w="50"></div></div>
+        <div class="bar-track"><div class="bar-fill" style="--bar-color:#c45a00;width:0%" data-w="50"></div></div>
         <div class="bar-count">8</div>
       </div>
       <div class="bar-item">
@@ -1168,37 +1168,37 @@
       <div class="panel-title"><span class="dot" style="background:var(--accent2)"></span>Top Churn Drivers — All Months</div>
       <div class="bar-item">
         <div class="bar-label">New CPA / Bookkeeper</div>
-        <div class="bar-track"><div class="bar-fill" style="--bar-color:#ff6b47;width:0%" data-w="65"></div></div>
+        <div class="bar-track"><div class="bar-fill" style="--bar-color:#c94020;width:0%" data-w="65"></div></div>
         <div class="bar-count">17</div>
       </div>
       <div class="bar-item">
         <div class="bar-label">Sales Misalignment</div>
-        <div class="bar-track"><div class="bar-fill" style="--bar-color:#ffb347;width:0%" data-w="35"></div></div>
+        <div class="bar-track"><div class="bar-fill" style="--bar-color:#c45a00;width:0%" data-w="35"></div></div>
         <div class="bar-count">9</div>
       </div>
       <div class="bar-item">
         <div class="bar-label">In-house Bookkeeping</div>
-        <div class="bar-track"><div class="bar-fill" style="--bar-color:#47d98c;width:0%" data-w="23"></div></div>
+        <div class="bar-track"><div class="bar-fill" style="--bar-color:#0a7a4a;width:0%" data-w="23"></div></div>
         <div class="bar-count">6</div>
       </div>
       <div class="bar-item">
         <div class="bar-label">Lack of Value / Insights</div>
-        <div class="bar-track"><div class="bar-fill" style="--bar-color:#e8a347;width:0%" data-w="19"></div></div>
+        <div class="bar-track"><div class="bar-fill" style="--bar-color:#b05a00;width:0%" data-w="19"></div></div>
         <div class="bar-count">5</div>
       </div>
       <div class="bar-item">
         <div class="bar-label">Financial Burden</div>
-        <div class="bar-track"><div class="bar-fill" style="--bar-color:#c847ff;width:0%" data-w="15"></div></div>
+        <div class="bar-track"><div class="bar-fill" style="--bar-color:#7a00c4;width:0%" data-w="15"></div></div>
         <div class="bar-count">4</div>
       </div>
       <div class="bar-item">
         <div class="bar-label">Practice Ceased Ops</div>
-        <div class="bar-track"><div class="bar-fill" style="--bar-color:#47c8ff;width:0%" data-w="12"></div></div>
+        <div class="bar-track"><div class="bar-fill" style="--bar-color:#0077b8;width:0%" data-w="12"></div></div>
         <div class="bar-count">3</div>
       </div>
       <div class="bar-item">
         <div class="bar-label">Pricing / Unclear</div>
-        <div class="bar-track"><div class="bar-fill" style="--bar-color:#6b7585;width:0%" data-w="8"></div></div>
+        <div class="bar-track"><div class="bar-fill" style="--bar-color:#3a4260;width:0%" data-w="8"></div></div>
         <div class="bar-count">2</div>
       </div>
     </div>
@@ -1257,19 +1257,19 @@
       <div class="panel-title"><span class="dot" style="background:var(--accent3)"></span>Exit Phase — All Months</div>
       <div class="donut-wrap">
         <svg class="donut" width="130" height="130" viewBox="0 0 130 130">
-          <circle cx="65" cy="65" r="50" fill="none" stroke="#dde0f0" stroke-width="22"/>
+          <circle cx="65" cy="65" r="50" fill="none" stroke="#c2c7e0" stroke-width="22"/>
           <!-- Onboarding: 12/26 = 46% -->
-          <circle cx="65" cy="65" r="50" fill="none" stroke="#47c8ff" stroke-width="22"
+          <circle cx="65" cy="65" r="50" fill="none" stroke="#0077b8" stroke-width="22"
             stroke-dasharray="145 169" stroke-dashoffset="78.5" stroke-linecap="butt"/>
           <!-- Ongoing: 14/26 = 54% -->
-          <circle cx="65" cy="65" r="50" fill="none" stroke="#47d98c" stroke-width="22"
+          <circle cx="65" cy="65" r="50" fill="none" stroke="#0a7a4a" stroke-width="22"
             stroke-dasharray="169 145" stroke-dashoffset="-66" stroke-linecap="butt"/>
-          <text x="65" y="61" text-anchor="middle" fill="#12183a" font-family="Syne,sans-serif" font-size="20" font-weight="800">26</text>
-          <text x="65" y="76" text-anchor="middle" fill="#7b82a8" font-family="DM Mono,monospace" font-size="9">total exits</text>
+          <text x="65" y="61" text-anchor="middle" fill="#080e2e" font-family="Syne,sans-serif" font-size="20" font-weight="800">26</text>
+          <text x="65" y="76" text-anchor="middle" fill="#505880" font-family="DM Mono,monospace" font-size="9">total exits</text>
         </svg>
         <div class="legend">
-          <div class="legend-item"><div class="legend-dot" style="background:#47d98c"></div>Ongoing (14 · 54%)</div>
-          <div class="legend-item"><div class="legend-dot" style="background:#47c8ff"></div>Onboarding (12 · 46%)</div>
+          <div class="legend-item"><div class="legend-dot" style="background:#0a7a4a"></div>Ongoing (14 · 54%)</div>
+          <div class="legend-item"><div class="legend-dot" style="background:#0077b8"></div>Onboarding (12 · 46%)</div>
         </div>
       </div>
       <div style="height:1px;background:var(--border);margin:18px 0"></div>
@@ -1303,10 +1303,10 @@
         {
           label: 'Total Exits',
           data: [2, 8, 16],
-          borderColor: '#ff6b47',
-          backgroundColor: 'rgba(255,107,71,0.08)',
+          borderColor: '#c94020',
+          backgroundColor: 'rgba(201,64,32,0.08)',
           borderWidth: 3,
-          pointBackgroundColor: '#ff6b47',
+          pointBackgroundColor: '#c94020',
           pointRadius: 6,
           pointHoverRadius: 8,
           tension: 0.35,
@@ -1315,10 +1315,10 @@
         {
           label: 'New CPA/BK',
           data: [0, 2, 5],
-          borderColor: '#5b6ef5',
-          backgroundColor: 'rgba(91,110,245,0.06)',
+          borderColor: '#1f35c4',
+          backgroundColor: 'rgba(31,53,196,0.08)',
           borderWidth: 2,
-          pointBackgroundColor: '#5b6ef5',
+          pointBackgroundColor: '#1f35c4',
           pointRadius: 5,
           pointHoverRadius: 7,
           tension: 0.35,
@@ -1328,10 +1328,10 @@
         {
           label: 'Sales Misalignment',
           data: [0, 1, 4],
-          borderColor: '#ffb347',
-          backgroundColor: 'rgba(255,179,71,0.06)',
+          borderColor: '#c45a00',
+          backgroundColor: 'rgba(196,90,0,0.08)',
           borderWidth: 2,
-          pointBackgroundColor: '#ffb347',
+          pointBackgroundColor: '#c45a00',
           pointRadius: 5,
           pointHoverRadius: 7,
           tension: 0.35,
@@ -1340,10 +1340,10 @@
         {
           label: 'Lost in Onboarding',
           data: [0, 3, 9],
-          borderColor: '#47c8ff',
-          backgroundColor: 'rgba(71,200,255,0.06)',
+          borderColor: '#0077b8',
+          backgroundColor: 'rgba(0,119,184,0.08)',
           borderWidth: 2,
-          pointBackgroundColor: '#47c8ff',
+          pointBackgroundColor: '#0077b8',
           pointRadius: 5,
           pointHoverRadius: 7,
           tension: 0.35,
@@ -1360,21 +1360,21 @@
         legend: {
           position: 'bottom',
           labels: {
-            font: { family: "'DM Mono', monospace", size: 11 },
-            color: '#7b82a8',
+            font: { family: 'Verdana, Geneva, sans-serif', size: 11 },
+            color: '#505880',
             padding: 20,
             usePointStyle: true,
             pointStyleWidth: 10,
           }
         },
         tooltip: {
-          backgroundColor: '#ffffff',
-          borderColor: '#dde0f0',
+          backgroundColor: '#f5f6fc',
+          borderColor: '#c2c7e0',
           borderWidth: 1,
-          titleColor: '#12183a',
-          bodyColor: '#7b82a8',
-          titleFont: { family: "'Syne', sans-serif", weight: '700', size: 12 },
-          bodyFont: { family: "'DM Mono', monospace", size: 11 },
+          titleColor: '#080e2e',
+          bodyColor: '#505880',
+          titleFont: { family: 'Verdana, Geneva, sans-serif', weight: '700', size: 12 },
+          bodyFont: { family: 'Verdana, Geneva, sans-serif', size: 11 },
           padding: 12,
           callbacks: {
             label: ctx => `  ${ctx.dataset.label}: ${ctx.parsed.y}`
@@ -1383,18 +1383,18 @@
       },
       scales: {
         x: {
-          grid: { color: '#f0f1f8' },
+          grid: { color: '#d8daf0' },
           ticks: {
-            font: { family: "'DM Mono', monospace", size: 11 },
-            color: '#7b82a8',
+            font: { family: 'Verdana, Geneva, sans-serif', size: 11 },
+            color: '#505880',
           }
         },
         y: {
           beginAtZero: true,
-          grid: { color: '#f0f1f8' },
+          grid: { color: '#d8daf0' },
           ticks: {
-            font: { family: "'DM Mono', monospace", size: 11 },
-            color: '#7b82a8',
+            font: { family: 'Verdana, Geneva, sans-serif', size: 11 },
+            color: '#505880',
             stepSize: 2,
           }
         }
@@ -1407,32 +1407,32 @@
 <div id="dashboard-jan" style="display:none">
 
   <div class="kpi-row">
-    <div class="kpi" style="--kpi-color:#ff6b47">
+    <div class="kpi" style="--kpi-color:#c94020">
       <div class="kpi-label">Total Cancellations</div>
       <div class="kpi-value">16</div>
       <div class="kpi-sub">Cancelled + Paused</div>
     </div>
-    <div class="kpi" style="--kpi-color:#ff4747">
+    <div class="kpi" style="--kpi-color:#c41f3b">
       <div class="kpi-label">Hard Cancels</div>
       <div class="kpi-value">13</div>
       <div class="kpi-sub">Confirmed exits</div>
     </div>
-    <div class="kpi" style="--kpi-color:#ffb347">
+    <div class="kpi" style="--kpi-color:#c45a00">
       <div class="kpi-label">Paused</div>
       <div class="kpi-value">3</div>
       <div class="kpi-sub">Re-engagement opportunity</div>
     </div>
-    <div class="kpi" style="--kpi-color:#47c8ff">
+    <div class="kpi" style="--kpi-color:#0077b8">
       <div class="kpi-label">Lost in Onboarding</div>
       <div class="kpi-value">9</div>
       <div class="kpi-sub">56% of exits</div>
     </div>
-    <div class="kpi" style="--kpi-color:#e8ff47">
+    <div class="kpi" style="--kpi-color:#7a8a00">
       <div class="kpi-label">Top Churn Driver</div>
       <div class="kpi-value" style="font-size:18px;padding-top:4px">New CPA/BK</div>
       <div class="kpi-sub">5 of 16 exits</div>
     </div>
-    <div class="kpi" style="--kpi-color:#47d98c">
+    <div class="kpi" style="--kpi-color:#0a7a4a">
       <div class="kpi-label">Preventable</div>
       <div class="kpi-value">4</div>
       <div class="kpi-sub">25% of exits</div>
@@ -1628,37 +1628,37 @@
       <div class="panel-title"><span class="dot" style="background:var(--accent2)"></span>Primary Churn Reasons</div>
       <div class="bar-item">
         <div class="bar-label">New CPA / Bookkeeper</div>
-        <div class="bar-track"><div class="bar-fill" style="--bar-color:#ff6b47;width:0%" data-w="56"></div></div>
+        <div class="bar-track"><div class="bar-fill" style="--bar-color:#c94020;width:0%" data-w="56"></div></div>
         <div class="bar-count">5</div>
       </div>
       <div class="bar-item">
         <div class="bar-label">Sales Misalignment</div>
-        <div class="bar-track"><div class="bar-fill" style="--bar-color:#ffb347;width:0%" data-w="44"></div></div>
+        <div class="bar-track"><div class="bar-fill" style="--bar-color:#c45a00;width:0%" data-w="44"></div></div>
         <div class="bar-count">4</div>
       </div>
       <div class="bar-item">
         <div class="bar-label">Financial Burden</div>
-        <div class="bar-track"><div class="bar-fill" style="--bar-color:#c847ff;width:0%" data-w="22"></div></div>
+        <div class="bar-track"><div class="bar-fill" style="--bar-color:#7a00c4;width:0%" data-w="22"></div></div>
         <div class="bar-count">2</div>
       </div>
       <div class="bar-item">
         <div class="bar-label">Lack of Value / Insights</div>
-        <div class="bar-track"><div class="bar-fill" style="--bar-color:#e8a347;width:0%" data-w="22"></div></div>
+        <div class="bar-track"><div class="bar-fill" style="--bar-color:#b05a00;width:0%" data-w="22"></div></div>
         <div class="bar-count">2</div>
       </div>
       <div class="bar-item">
         <div class="bar-label">In-house Bookkeeping</div>
-        <div class="bar-track"><div class="bar-fill" style="--bar-color:#47d98c;width:0%" data-w="11"></div></div>
+        <div class="bar-track"><div class="bar-fill" style="--bar-color:#0a7a4a;width:0%" data-w="11"></div></div>
         <div class="bar-count">1</div>
       </div>
       <div class="bar-item">
         <div class="bar-label">Unclear</div>
-        <div class="bar-track"><div class="bar-fill" style="--bar-color:#6b7585;width:0%" data-w="11"></div></div>
+        <div class="bar-track"><div class="bar-fill" style="--bar-color:#3a4260;width:0%" data-w="11"></div></div>
         <div class="bar-count">1</div>
       </div>
       <div class="bar-item">
         <div class="bar-label">Paused</div>
-        <div class="bar-track"><div class="bar-fill" style="--bar-color:#47c8ff;width:0%" data-w="11"></div></div>
+        <div class="bar-track"><div class="bar-fill" style="--bar-color:#0077b8;width:0%" data-w="11"></div></div>
         <div class="bar-count">1</div>
       </div>
     </div>
@@ -1730,8 +1730,8 @@
 
   <div class="panel mb16">
     <div class="panel-title">
-      <span class="dot" style="background:#5b6ef5"></span>
-      <span style="color:#5b6ef5;font-family:Syne,sans-serif;font-weight:700">Sales</span>
+      <span class="dot" style="background:#1f35c4"></span>
+      <span style="color:#1f35c4;font-family:Syne,sans-serif;font-weight:700">Sales</span>
     </div>
     <table class="insight-table">
       <thead><tr><th>#</th><th>Action</th><th>Addresses</th><th>Impact</th><th>Effort</th></tr></thead>
@@ -1756,8 +1756,8 @@
 
   <div class="panel mb16">
     <div class="panel-title">
-      <span class="dot" style="background:#e07a20"></span>
-      <span style="color:#e07a20;font-family:Syne,sans-serif;font-weight:700">Onboarding</span>
+      <span class="dot" style="background:#c45a00"></span>
+      <span style="color:#c45a00;font-family:Syne,sans-serif;font-weight:700">Onboarding</span>
     </div>
     <table class="insight-table">
       <thead><tr><th>#</th><th>Action</th><th>Addresses</th><th>Impact</th><th>Effort</th></tr></thead>
@@ -1782,8 +1782,8 @@
 
   <div class="panel mb16">
     <div class="panel-title">
-      <span class="dot" style="background:#1aaa6b"></span>
-      <span style="color:#1aaa6b;font-family:Syne,sans-serif;font-weight:700">Account Management</span>
+      <span class="dot" style="background:#0a7a4a"></span>
+      <span style="color:#0a7a4a;font-family:Syne,sans-serif;font-weight:700">Account Management</span>
     </div>
     <table class="insight-table">
       <thead><tr><th>#</th><th>Action</th><th>Addresses</th><th>Impact</th><th>Effort</th></tr></thead>
@@ -1845,32 +1845,32 @@
 <div id="dashboard-dec25" style="display:none">
 
   <div class="kpi-row">
-    <div class="kpi" style="--kpi-color:#ff6b47">
+    <div class="kpi" style="--kpi-color:#c94020">
       <div class="kpi-label">Total Cancellations</div>
       <div class="kpi-value">8</div>
       <div class="kpi-sub">Cancelled + Paused</div>
     </div>
-    <div class="kpi" style="--kpi-color:#ff4747">
+    <div class="kpi" style="--kpi-color:#c41f3b">
       <div class="kpi-label">Hard Cancels</div>
       <div class="kpi-value">8</div>
       <div class="kpi-sub">Confirmed exits</div>
     </div>
-    <div class="kpi" style="--kpi-color:#ffb347">
+    <div class="kpi" style="--kpi-color:#c45a00">
       <div class="kpi-label">Paused</div>
       <div class="kpi-value">0</div>
       <div class="kpi-sub">Re-engagement opportunity</div>
     </div>
-    <div class="kpi" style="--kpi-color:#47c8ff">
+    <div class="kpi" style="--kpi-color:#0077b8">
       <div class="kpi-label">Lost in Onboarding</div>
       <div class="kpi-value">3</div>
       <div class="kpi-sub">38% of exits</div>
     </div>
-    <div class="kpi" style="--kpi-color:#e8ff47">
+    <div class="kpi" style="--kpi-color:#7a8a00">
       <div class="kpi-label">Top Churn Driver</div>
       <div class="kpi-value" style="font-size:18px;padding-top:4px">New CPA/BK</div>
       <div class="kpi-sub">2 of 8 exits</div>
     </div>
-    <div class="kpi" style="--kpi-color:#47d98c">
+    <div class="kpi" style="--kpi-color:#0a7a4a">
       <div class="kpi-label">Preventable</div>
       <div class="kpi-value">2</div>
       <div class="kpi-sub">25% of exits</div>
@@ -1985,27 +1985,27 @@
       <div class="panel-title"><span class="dot" style="background:var(--accent2)"></span>Primary Churn Reasons</div>
       <div class="bar-item">
         <div class="bar-label">New CPA / Bookkeeper</div>
-        <div class="bar-track"><div class="bar-fill" style="--bar-color:#ff6b47;width:0%" data-w="50"></div></div>
+        <div class="bar-track"><div class="bar-fill" style="--bar-color:#c94020;width:0%" data-w="50"></div></div>
         <div class="bar-count">2</div>
       </div>
       <div class="bar-item">
         <div class="bar-label">Practice Ceased Ops</div>
-        <div class="bar-track"><div class="bar-fill" style="--bar-color:#47c8ff;width:0%" data-w="50"></div></div>
+        <div class="bar-track"><div class="bar-fill" style="--bar-color:#0077b8;width:0%" data-w="50"></div></div>
         <div class="bar-count">2</div>
       </div>
       <div class="bar-item">
         <div class="bar-label">Lack of Value / Insights</div>
-        <div class="bar-track"><div class="bar-fill" style="--bar-color:#e8a347;width:0%" data-w="25"></div></div>
+        <div class="bar-track"><div class="bar-fill" style="--bar-color:#b05a00;width:0%" data-w="25"></div></div>
         <div class="bar-count">2</div>
       </div>
       <div class="bar-item">
         <div class="bar-label">Sales Misalignment</div>
-        <div class="bar-track"><div class="bar-fill" style="--bar-color:#ffb347;width:0%" data-w="12"></div></div>
+        <div class="bar-track"><div class="bar-fill" style="--bar-color:#c45a00;width:0%" data-w="12"></div></div>
         <div class="bar-count">1</div>
       </div>
       <div class="bar-item">
         <div class="bar-label">Pricing</div>
-        <div class="bar-track"><div class="bar-fill" style="--bar-color:#c847ff;width:0%" data-w="12"></div></div>
+        <div class="bar-track"><div class="bar-fill" style="--bar-color:#7a00c4;width:0%" data-w="12"></div></div>
         <div class="bar-count">1</div>
       </div>
     </div>
@@ -2088,8 +2088,8 @@
 
   <div class="panel mb16">
     <div class="panel-title">
-      <span class="dot" style="background:#e0405a"></span>
-      <span style="color:#e0405a;font-family:Syne,sans-serif;font-weight:700">Operations</span>
+      <span class="dot" style="background:#c41f3b"></span>
+      <span style="color:#c41f3b;font-family:Syne,sans-serif;font-weight:700">Operations</span>
     </div>
     <table class="insight-table">
       <thead><tr><th>#</th><th>Action</th><th>Addresses</th><th>Impact</th><th>Effort</th></tr></thead>
@@ -2107,8 +2107,8 @@
 
   <div class="panel mb16">
     <div class="panel-title">
-      <span class="dot" style="background:#5b6ef5"></span>
-      <span style="color:#5b6ef5;font-family:Syne,sans-serif;font-weight:700">Sales</span>
+      <span class="dot" style="background:#1f35c4"></span>
+      <span style="color:#1f35c4;font-family:Syne,sans-serif;font-weight:700">Sales</span>
     </div>
     <table class="insight-table">
       <thead><tr><th>#</th><th>Action</th><th>Addresses</th><th>Impact</th><th>Effort</th></tr></thead>
@@ -2126,8 +2126,8 @@
 
   <div class="panel mb16">
     <div class="panel-title">
-      <span class="dot" style="background:#1aaa6b"></span>
-      <span style="color:#1aaa6b;font-family:Syne,sans-serif;font-weight:700">Account Management</span>
+      <span class="dot" style="background:#0a7a4a"></span>
+      <span style="color:#0a7a4a;font-family:Syne,sans-serif;font-weight:700">Account Management</span>
     </div>
     <table class="insight-table">
       <thead><tr><th>#</th><th>Action</th><th>Addresses</th><th>Impact</th><th>Effort</th></tr></thead>
@@ -2175,32 +2175,32 @@
 <div id="dashboard-nov25">
 
   <div class="kpi-row">
-    <div class="kpi" style="--kpi-color:#ff6b47">
+    <div class="kpi" style="--kpi-color:#c94020">
       <div class="kpi-label">Total Cancellations</div>
       <div class="kpi-value">2</div>
       <div class="kpi-sub">Cancelled + Paused</div>
     </div>
-    <div class="kpi" style="--kpi-color:#ff4747">
+    <div class="kpi" style="--kpi-color:#c41f3b">
       <div class="kpi-label">Hard Cancels</div>
       <div class="kpi-value">2</div>
       <div class="kpi-sub">Confirmed exits</div>
     </div>
-    <div class="kpi" style="--kpi-color:#ffb347">
+    <div class="kpi" style="--kpi-color:#c45a00">
       <div class="kpi-label">Paused</div>
       <div class="kpi-value">0</div>
       <div class="kpi-sub">Re-engagement opportunity</div>
     </div>
-    <div class="kpi" style="--kpi-color:#47c8ff">
+    <div class="kpi" style="--kpi-color:#0077b8">
       <div class="kpi-label">Phase at Exit</div>
       <div class="kpi-value" style="font-size:20px;padding-top:4px">Ongoing</div>
       <div class="kpi-sub">Both clients were ongoing</div>
     </div>
-    <div class="kpi" style="--kpi-color:#e8ff47">
+    <div class="kpi" style="--kpi-color:#7a8a00">
       <div class="kpi-label">Top Churn Driver</div>
       <div class="kpi-value" style="font-size:18px;padding-top:4px">In-house BK</div>
       <div class="kpi-sub">100% of exits</div>
     </div>
-    <div class="kpi" style="--kpi-color:#47d98c">
+    <div class="kpi" style="--kpi-color:#0a7a4a">
       <div class="kpi-label">Preventable</div>
       <div class="kpi-value">0%</div>
       <div class="kpi-sub">Both unpreventable</div>
@@ -2283,8 +2283,8 @@
 
   <div class="panel mb16">
     <div class="panel-title">
-      <span class="dot" style="background:#5b6ef5"></span>
-      <span style="color:#5b6ef5;font-family:Syne,sans-serif;font-weight:700">Account Management</span>
+      <span class="dot" style="background:#1f35c4"></span>
+      <span style="color:#1f35c4;font-family:Syne,sans-serif;font-weight:700">Account Management</span>
     </div>
     <table class="insight-table">
       <thead>
