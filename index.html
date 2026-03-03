@@ -343,6 +343,63 @@
 
   .full-width { grid-column: 1 / -1; }
   .mb16 { margin-bottom: 16px; }
+  /* FILTER BAR */
+  .filter-bar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 16px;
+    align-items: center;
+  }
+  .filter-bar label {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+    text-transform: uppercase;
+    margin-right: 2px;
+  }
+  .filter-select {
+    appearance: none;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 6px 28px 6px 10px;
+    font-family: Verdana, Geneva, sans-serif;
+    font-size: 11px;
+    color: var(--text);
+    cursor: pointer;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%23505880' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 9px center;
+    transition: border-color 0.15s;
+    min-width: 120px;
+  }
+  .filter-select:focus { outline: none; border-color: var(--accent); }
+  .filter-select:hover { border-color: var(--accent); }
+  .filter-reset {
+    padding: 6px 12px;
+    font-family: Verdana, Geneva, sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    color: var(--muted);
+    background: transparent;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.15s;
+    text-transform: uppercase;
+  }
+  .filter-reset:hover { color: var(--accent); border-color: var(--accent); }
+  .filter-count {
+    font-size: 10px;
+    color: var(--muted);
+    margin-left: auto;
+    letter-spacing: 0.04em;
+  }
+  .filter-count span { color: var(--accent); font-weight: 700; }
+
 
   /* QUARTER SWITCHER */
   .quarter-switcher {
@@ -465,17 +522,17 @@
     <h1>Cancellation <span>Tracker</span></h1>
   </div>
   <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap">
-    <div class="period" id="active-period">November 2025</div>
+    <div class="period" id="active-period">Nov 2025 — Jan 2026</div>
     <div class="quarter-switcher">
       <button class="quarter-btn" id="quarter-btn" onclick="toggleDropdown()">
-        <span id="quarter-label">November 2025</span>
+        <span id="quarter-label">Overview</span>
         <span class="arrow">▼</span>
       </button>
       <div class="quarter-dropdown" id="quarter-dropdown">
-<div class="quarter-option" onclick="selectQuarter('overview')">
+<div class="quarter-option active" onclick="selectQuarter('overview')">
           Overview <span class="q-badge q-badge-live">All Months</span>
         </div>
-        <div class="quarter-option active" onclick="selectQuarter('nov25')">
+        <div class="quarter-option" onclick="selectQuarter('nov25')">
           November 2025 <span class="q-badge q-badge-live">Live</span>
         </div>
         <div class="quarter-option" onclick="selectQuarter('dec25')">
@@ -539,7 +596,7 @@
     <div class="kpi-sub">Cancelled + Paused</div>
   </div>
   <div class="kpi" style="--kpi-color:#c41f3b">
-    <div class="kpi-label">Hard Cancels</div>
+    <div class="kpi-label">Cancelled</div>
     <div class="kpi-value">24</div>
     <div class="kpi-sub">Confirmed exits</div>
   </div>
@@ -1046,7 +1103,7 @@
 
 
 <!-- OVERVIEW DASHBOARD -->
-<div id="dashboard-overview" style="display:none">
+<div id="dashboard-overview">
 
   <div class="section-label">All Months at a Glance</div>
 
@@ -1058,7 +1115,7 @@
       <div class="kpi-sub">Nov 2025 — Jan 2026</div>
     </div>
     <div class="kpi" style="--kpi-color:#c41f3b">
-      <div class="kpi-label">Hard Cancels</div>
+      <div class="kpi-label">Cancelled</div>
       <div class="kpi-value">23</div>
       <div class="kpi-sub">Confirmed exits</div>
     </div>
@@ -1094,7 +1151,7 @@
         <tr>
           <th>Month</th>
           <th>Total Exits</th>
-          <th>Hard Cancels</th>
+          <th>Cancelled</th>
           <th>Paused</th>
           <th>In Onboarding</th>
           <th>Top Driver</th>
@@ -1407,436 +1464,132 @@
 <div id="dashboard-jan" style="display:none">
 
   <div class="kpi-row">
-    <div class="kpi" style="--kpi-color:#c94020">
-      <div class="kpi-label">Total Cancellations</div>
-      <div class="kpi-value">16</div>
-      <div class="kpi-sub">Cancelled + Paused</div>
-    </div>
-    <div class="kpi" style="--kpi-color:#c41f3b">
-      <div class="kpi-label">Hard Cancels</div>
-      <div class="kpi-value">13</div>
-      <div class="kpi-sub">Confirmed exits</div>
-    </div>
-    <div class="kpi" style="--kpi-color:#c45a00">
-      <div class="kpi-label">Paused</div>
-      <div class="kpi-value">3</div>
-      <div class="kpi-sub">Re-engagement opportunity</div>
-    </div>
-    <div class="kpi" style="--kpi-color:#0077b8">
-      <div class="kpi-label">Lost in Onboarding</div>
-      <div class="kpi-value">9</div>
-      <div class="kpi-sub">56% of exits</div>
-    </div>
-    <div class="kpi" style="--kpi-color:#7a8a00">
-      <div class="kpi-label">Top Churn Driver</div>
-      <div class="kpi-value" style="font-size:18px;padding-top:4px">New CPA/BK</div>
-      <div class="kpi-sub">5 of 16 exits</div>
-    </div>
-    <div class="kpi" style="--kpi-color:#0a7a4a">
-      <div class="kpi-label">Preventable</div>
-      <div class="kpi-value">4</div>
-      <div class="kpi-sub">25% of exits</div>
-    </div>
+    <div class="kpi" style="--kpi-color:#c94020"><div class="kpi-label">Total Cancellations</div><div class="kpi-value">16</div><div class="kpi-sub">Cancelled + Paused</div></div>
+    <div class="kpi" style="--kpi-color:#c41f3b"><div class="kpi-label">Cancelled</div><div class="kpi-value">13</div><div class="kpi-sub">Confirmed exits</div></div>
+    <div class="kpi" style="--kpi-color:#c45a00"><div class="kpi-label">Paused</div><div class="kpi-value">3</div><div class="kpi-sub">Re-engagement opportunity</div></div>
+    <div class="kpi" style="--kpi-color:#0077b8"><div class="kpi-label">Lost in Onboarding</div><div class="kpi-value">9</div><div class="kpi-sub">56% of exits</div></div>
+    <div class="kpi" style="--kpi-color:#7a8a00"><div class="kpi-label">Top Churn Driver</div><div class="kpi-value" style="font-size:18px;padding-top:4px">New CPA/BK</div><div class="kpi-sub">5 of 16 exits</div></div>
+    <div class="kpi" style="--kpi-color:#0a7a4a"><div class="kpi-label">Preventable</div><div class="kpi-value">4</div><div class="kpi-sub">25% of exits</div></div>
   </div>
 
   <div class="section-label">Client Breakdown</div>
-
   <div class="panel mb16">
     <div class="panel-title"><span class="dot" style="background:var(--accent2)"></span>January 2026 Cancellations</div>
-    <table class="insight-table">
-      <thead>
-        <tr>
-          <th>Practice</th>
-          <th>Status</th>
-          <th>Phase</th>
-          <th>Months w/ Lucro</th>
-          <th>Primary Driver</th>
-          <th>Revenue Tier</th>
-          <th>Tone</th>
-          <th>Preventable</th>
-          <th>Client Reason</th>
-        </tr>
-      </thead>
+    
+  <div class="filter-bar" id="filter-bar-jan">
+    <label>Filter:</label>
+    <select class="filter-select" id="f-status-jan" onchange="filterTable('jan')">
+      <option value="">All Statuses</option>
+      <option value="Cancelled">Cancelled</option>
+      <option value="Paused">Paused</option>
+    </select>
+    <select class="filter-select" id="f-phase-jan" onchange="filterTable('jan')">
+      <option value="">All Phases</option>
+      <option value="Ongoing">Ongoing</option>
+      <option value="Onboarding">Onboarding</option>
+    </select>
+    <select class="filter-select" id="f-revenue-jan" onchange="filterTable('jan')">
+      <option value="">All Revenue Tiers</option>
+      <option value="$0">$0–$50k</option>
+      <option value="$51">$51k–$100k</option>
+      <option value="$101">$101k–$200k</option>
+      <option value="Unknown">Unknown</option>
+    </select>
+    <select class="filter-select" id="f-prev-jan" onchange="filterTable('jan')">
+      <option value="">All Preventable</option>
+      <option value="Yes">Yes</option>
+      <option value="No">No</option>
+      <option value="Unclear">Unclear</option>
+    </select>
+    <select class="filter-select" id="f-lead-jan" onchange="filterTable('jan')">
+      <option value="">All Lead Sources</option>
+      <option value="Referral">Referral</option>
+      <option value="Event">Event / Webinar / BPA</option>
+      <option value="Facebook">Facebook / Ad</option>
+      <option value="Instagram">Instagram</option>
+    </select>
+    <button class="filter-reset" onclick="resetFilters('jan')">✕ Reset</button>
+    <div class="filter-count" id="f-count-jan"></div>
+  </div>
+    <table class="insight-table" id="table-jan">
+      <thead><tr><th>Practice</th><th>Status</th><th>Phase</th><th>Days in OB</th><th>Months w/ Lucro</th><th>Primary Driver</th><th>Revenue Tier</th><th>Tone</th><th>Preventable</th><th>Lead Source</th><th>Client Reason</th></tr></thead>
       <tbody>
-        <tr>
-          <td>Elizabeth Casey</td>
-          <td><span class="tag tag-red">Cancelled</span></td>
-          <td><span class="tag tag-blue">Ongoing</span></td>
-          <td>17 months</td>
-          <td><span class="tag tag-orange">New CPA/BK</span></td>
-          <td>$101k–$200k</td><td>Neutral</td>
-          <td><span class="tag tag-green">Yes</span></td>
-          <td style="color:var(--muted)">"No longer need bookkeeping"</td>
-        </tr>
-        <tr>
-          <td>Steve Kreutz</td>
-          <td><span class="tag tag-red">Cancelled</span></td>
-          <td><span class="tag tag-blue">Ongoing</span></td>
-          <td>16 months</td>
-          <td><span class="tag tag-blue">Insights Not Relevant</span></td>
-          <td>$0–$50k</td><td>Positive</td>
-          <td><span class="tag tag-blue">Unclear</span></td>
-          <td style="color:var(--muted)">"I have learned about my practice"</td>
-        </tr>
-        <tr>
-          <td>Sarah Druckman</td>
-          <td><span class="tag tag-red">Cancelled</span></td>
-          <td><span class="tag tag-blue">Ongoing</span></td>
-          <td>15 months</td>
-          <td><span class="tag tag-orange">New CPA/BK</span></td>
-          <td>$51k–$100k</td><td>Positive</td>
-          <td><span class="tag tag-red">No</span></td>
-          <td style="color:var(--muted)">"CPA taking over services"</td>
-        </tr>
-        <tr>
-          <td>Chris Holet</td>
-          <td><span class="tag tag-red">Cancelled</span></td>
-          <td><span class="tag tag-blue">Ongoing</span></td>
-          <td>8 months</td>
-          <td><span class="tag tag-orange">Financial Burden</span></td>
-          <td>$51k–$100k</td><td>Positive</td>
-          <td><span class="tag tag-red">No</span></td>
-          <td style="color:var(--muted)">"Financial strain to continue"</td>
-        </tr>
-        <tr>
-          <td>Gerald Palmes</td>
-          <td><span class="tag tag-red">Cancelled</span></td>
-          <td><span class="tag tag-orange">Onboarding</span></td>
-          <td>8 months</td>
-          <td><span class="tag tag-orange">New CPA/BK</span></td>
-          <td>Unknown</td><td>Positive</td>
-          <td><span class="tag tag-red">No</span></td>
-          <td style="color:var(--muted)">"Moving to a local bookkeeper"</td>
-        </tr>
-        <tr>
-          <td>Andrew Quick</td>
-          <td><span class="tag tag-red">Cancelled</span></td>
-          <td><span class="tag tag-blue">Ongoing</span></td>
-          <td>7 months</td>
-          <td><span class="tag tag-orange">New CPA/BK</span></td>
-          <td>$51k–$100k</td><td>Neutral</td>
-          <td><span class="tag tag-red">No</span></td>
-          <td style="color:var(--muted)">"Moving back to father-in-law CPA"</td>
-        </tr>
-        <tr>
-          <td>Ali Mostafavi</td>
-          <td><span class="tag tag-orange">Paused</span></td>
-          <td><span class="tag tag-blue">Ongoing</span></td>
-          <td>3 months</td>
-          <td><span class="tag tag-orange">Financial Burden</span></td>
-          <td>$0–$50k</td><td>Positive</td>
-          <td><span class="tag tag-red">No</span></td>
-          <td style="color:var(--muted)">"Hit a bottleneck on expenses"</td>
-        </tr>
-        <tr>
-          <td>Sean Ostrowski</td>
-          <td><span class="tag tag-orange">Paused</span></td>
-          <td><span class="tag tag-orange">Onboarding</span></td>
-          <td>1 month</td>
-          <td><span class="tag tag-red">Sales Misalignment</span></td>
-          <td>$51k–$100k</td><td>Neutral</td>
-          <td><span class="tag tag-blue">Unclear</span></td>
-          <td style="color:var(--muted)">"Didn't want service before onboarding call"</td>
-        </tr>
-        <tr>
-          <td>Timothy Annis</td>
-          <td><span class="tag tag-red">Cancelled</span></td>
-          <td><span class="tag tag-orange">Onboarding</span></td>
-          <td>1 month</td>
-          <td><span class="tag tag-blue">Lack of Value</span></td>
-          <td>$0–$50k</td><td>Neutral</td>
-          <td><span class="tag tag-blue">Unclear</span></td>
-          <td style="color:var(--muted)">"Too expensive for services provided"</td>
-        </tr>
-        <tr>
-          <td>Trinh Tran (Transcend Health)</td>
-          <td><span class="tag tag-red">Cancelled</span></td>
-          <td><span class="tag tag-orange">Onboarding</span></td>
-          <td>1 month</td>
-          <td><span class="tag tag-red">Sales Misalignment</span></td>
-          <td>Unknown</td><td>Neutral</td>
-          <td><span class="tag tag-red">No</span></td>
-          <td style="color:var(--muted)">"Cannot afford, practice still small"</td>
-        </tr>
-        <tr>
-          <td>Tasnim Huque (HEA Longevity)</td>
-          <td><span class="tag tag-red">Cancelled</span></td>
-          <td><span class="tag tag-orange">Onboarding</span></td>
-          <td>1 month</td>
-          <td><span class="tag tag-red">Sales Misalignment</span></td>
-          <td>Unknown</td><td>Neutral</td>
-          <td><span class="tag tag-green">Yes</span></td>
-          <td style="color:var(--muted)">"Not aware of what Lucro was"</td>
-        </tr>
-        <tr>
-          <td>Suhyin An (Campbell Medical)</td>
-          <td><span class="tag tag-red">Cancelled</span></td>
-          <td><span class="tag tag-orange">Onboarding</span></td>
-          <td>1 month</td>
-          <td><span class="tag tag-red">Sales Misalignment</span></td>
-          <td>Unknown</td><td>Neutral</td>
-          <td><span class="tag tag-green">Yes</span></td>
-          <td style="color:var(--muted)">"Signed up at BPA — didn't know QBO needed"</td>
-        </tr>
-        <tr>
-          <td>James O'Reilly (Broadway Ortho)</td>
-          <td><span class="tag tag-red">Cancelled</span></td>
-          <td><span class="tag tag-orange">Onboarding</span></td>
-          <td>0 months</td>
-          <td><span class="tag tag-blue">Unclear</span></td>
-          <td>Unknown</td><td>Neutral</td>
-          <td><span class="tag tag-blue">Unclear</span></td>
-          <td style="color:var(--muted)">"Unresponsive — no QBO access"</td>
-        </tr>
-        <tr>
-          <td>Athena Payne</td>
-          <td><span class="tag tag-orange">Paused</span></td>
-          <td><span class="tag tag-orange">Onboarding</span></td>
-          <td>0 months</td>
-          <td><span class="tag tag-orange">Paused</span></td>
-          <td>Unknown</td><td>Positive</td>
-          <td><span class="tag tag-red">No</span></td>
-          <td style="color:var(--muted)">"Needs to clean up books 2021–2024 first"</td>
-        </tr>
-        <tr>
-          <td>Joe Brannigan</td>
-          <td><span class="tag tag-red">Cancelled</span></td>
-          <td><span class="tag tag-orange">Onboarding</span></td>
-          <td>0 months</td>
-          <td><span class="tag tag-blue">In-house Bookkeeping</span></td>
-          <td>$51k–$100k</td><td>Positive</td>
-          <td><span class="tag tag-green">Yes</span></td>
-          <td style="color:var(--muted)">"Cancelling services"</td>
-        </tr>
-        <tr>
-          <td>Austin Elkin</td>
-          <td><span class="tag tag-red">Cancelled</span></td>
-          <td><span class="tag tag-blue">Ongoing</span></td>
-          <td>17 months</td>
-          <td><span class="tag tag-orange">New CPA/BK</span></td>
-          <td>Unknown</td><td>Neutral</td>
-          <td><span class="tag tag-red">No</span></td>
-          <td style="color:var(--muted)">"CPA taking over"</td>
-        </tr>
+        <tr><td>Elizabeth Casey</td><td><span class="tag tag-red">Cancelled</span></td><td><span class="tag tag-blue">Ongoing</span></td><td>102 days</td><td>17 months</td><td><span class="tag tag-orange">New CPA/BK</span></td><td>$101k–$200k</td><td>Neutral</td><td><span class="tag tag-green">Yes</span></td><td>Quartermaster Tax (Referral)</td><td style="color:var(--muted)">"Books not kept in order"</td></tr>
+        <tr><td>Steve Kreutz</td><td><span class="tag tag-red">Cancelled</span></td><td><span class="tag tag-blue">Ongoing</span></td><td>86 days</td><td>16 months</td><td><span class="tag tag-blue">Insights Not Relevant</span></td><td>$0–$50k</td><td>Positive</td><td><span class="tag tag-blue">Unclear</span></td><td>Elite Seminar Atlanta (Event)</td><td style="color:var(--muted)">"Learned enough about practice"</td></tr>
+        <tr><td>Sarah Druckman</td><td><span class="tag tag-red">Cancelled</span></td><td><span class="tag tag-blue">Ongoing</span></td><td>79 days</td><td>15 months</td><td><span class="tag tag-orange">New CPA/BK</span></td><td>$51k–$100k</td><td>Positive</td><td><span class="tag tag-red">No</span></td><td>Chirowealthcon (Event)</td><td style="color:var(--muted)">"CPA taking over services"</td></tr>
+        <tr><td>Chris Holet</td><td><span class="tag tag-red">Cancelled</span></td><td><span class="tag tag-blue">Ongoing</span></td><td>118 days</td><td>8 months</td><td><span class="tag tag-orange">Financial Burden</span></td><td>$51k–$100k</td><td>Positive</td><td><span class="tag tag-red">No</span></td><td>N/A</td><td style="color:var(--muted)">"Financial strain"</td></tr>
+        <tr><td>Gerald Palmes</td><td><span class="tag tag-red">Cancelled</span></td><td><span class="tag tag-orange">Onboarding</span></td><td>—</td><td>8 months</td><td><span class="tag tag-orange">New CPA/BK</span></td><td>Unknown</td><td>Positive</td><td><span class="tag tag-red">No</span></td><td>Al Simone (Referral)</td><td style="color:var(--muted)">"Moving to local bookkeeper"</td></tr>
+        <tr><td>Andrew Quick</td><td><span class="tag tag-red">Cancelled</span></td><td><span class="tag tag-blue">Ongoing</span></td><td>86 days</td><td>7 months</td><td><span class="tag tag-orange">New CPA/BK</span></td><td>$51k–$100k</td><td>Neutral</td><td><span class="tag tag-red">No</span></td><td>TRP (Referral)</td><td style="color:var(--muted)">"Moving back to father-in-law CPA"</td></tr>
+        <tr><td>Ali Mostafavi</td><td><span class="tag tag-orange">Paused</span></td><td><span class="tag tag-blue">Ongoing</span></td><td>96 days</td><td>3 months</td><td><span class="tag tag-orange">Financial Burden</span></td><td>$0–$50k</td><td>Positive</td><td><span class="tag tag-red">No</span></td><td>Instagram (Ad)</td><td style="color:var(--muted)">"Hit a bottleneck on expenses"</td></tr>
+        <tr><td>Sean Ostrowski</td><td><span class="tag tag-orange">Paused</span></td><td><span class="tag tag-orange">Onboarding</span></td><td>—</td><td>1 month</td><td><span class="tag tag-red">Sales Misalignment</span></td><td>$51k–$100k</td><td>Neutral</td><td><span class="tag tag-blue">Unclear</span></td><td>N/A</td><td style="color:var(--muted)">"Didn't want service before onboarding"</td></tr>
+        <tr><td>Timothy Annis</td><td><span class="tag tag-red">Cancelled</span></td><td><span class="tag tag-orange">Onboarding</span></td><td>29 days</td><td>1 month</td><td><span class="tag tag-blue">Lack of Value</span></td><td>$0–$50k</td><td>Neutral</td><td><span class="tag tag-blue">Unclear</span></td><td>Facebook (Ad)</td><td style="color:var(--muted)">"Too expensive for services"</td></tr>
+        <tr><td>Trinh Tran (Transcend)</td><td><span class="tag tag-red">Cancelled</span></td><td><span class="tag tag-orange">Onboarding</span></td><td>—</td><td>1 month</td><td><span class="tag tag-red">Sales Misalignment</span></td><td>Unknown</td><td>Neutral</td><td><span class="tag tag-red">No</span></td><td>Sales Event</td><td style="color:var(--muted)">"Cannot afford, practice still small"</td></tr>
+        <tr><td>Tasnim Huque (HEA)</td><td><span class="tag tag-red">Cancelled</span></td><td><span class="tag tag-orange">Onboarding</span></td><td>—</td><td>1 month</td><td><span class="tag tag-red">Sales Misalignment</span></td><td>Unknown</td><td>Neutral</td><td><span class="tag tag-green">Yes</span></td><td>Webinar (Sales Event)</td><td style="color:var(--muted)">"Not aware of what Lucro was"</td></tr>
+        <tr><td>Suhyin An (Campbell)</td><td><span class="tag tag-red">Cancelled</span></td><td><span class="tag tag-orange">Onboarding</span></td><td>—</td><td>1 month</td><td><span class="tag tag-red">Sales Misalignment</span></td><td>Unknown</td><td>Neutral</td><td><span class="tag tag-green">Yes</span></td><td>BPA Event</td><td style="color:var(--muted)">"Didn't know QBO was needed"</td></tr>
+        <tr><td>James O'Reilly (Broadway)</td><td><span class="tag tag-red">Cancelled</span></td><td><span class="tag tag-orange">Onboarding</span></td><td>—</td><td>0 months</td><td><span class="tag tag-blue">Unclear</span></td><td>Unknown</td><td>Neutral</td><td><span class="tag tag-blue">Unclear</span></td><td>Facebook (Ad)</td><td style="color:var(--muted)">"Unresponsive — no QBO access"</td></tr>
+        <tr><td>Athena Payne</td><td><span class="tag tag-orange">Paused</span></td><td><span class="tag tag-orange">Onboarding</span></td><td>—</td><td>0 months</td><td><span class="tag tag-orange">Paused</span></td><td>Unknown</td><td>Positive</td><td><span class="tag tag-red">No</span></td><td>The Wealthy Practitioner</td><td style="color:var(--muted)">"Needs to clean up books first"</td></tr>
+        <tr><td>Joe Brannigan</td><td><span class="tag tag-red">Cancelled</span></td><td><span class="tag tag-orange">Onboarding</span></td><td>—</td><td>0 months</td><td><span class="tag tag-blue">In-house Bookkeeping</span></td><td>$51k–$100k</td><td>Positive</td><td><span class="tag tag-green">Yes</span></td><td>Blueprint (Event)</td><td style="color:var(--muted)">"Cancelling services"</td></tr>
+        <tr><td>Austin Elkin</td><td><span class="tag tag-red">Cancelled</span></td><td><span class="tag tag-blue">Ongoing</span></td><td>61 days</td><td>17 months</td><td><span class="tag tag-orange">New CPA/BK</span></td><td>Unknown</td><td>Neutral</td><td><span class="tag tag-red">No</span></td><td>Blueprint (Event)</td><td style="color:var(--muted)">"CPA taking over"</td></tr>
       </tbody>
     </table>
   </div>
 
-  <div class="section-label">Churn Drivers</div>
+  <div class="section-label">Churn Drivers & Lead Source</div>
   <div class="grid-2">
     <div class="panel">
-      <div class="panel-title"><span class="dot" style="background:var(--accent2)"></span>Primary Churn Reasons</div>
-      <div class="bar-item">
-        <div class="bar-label">New CPA / Bookkeeper</div>
-        <div class="bar-track"><div class="bar-fill" style="--bar-color:#c94020;width:0%" data-w="56"></div></div>
-        <div class="bar-count">5</div>
+      <div class="panel-title"><span class="dot" style="background:var(--accent2)"></span>Churn Drivers & Preventability</div>
+      <div class="bar-item"><div class="bar-label">New CPA / Bookkeeper</div><div class="bar-track"><div class="bar-fill" style="--bar-color:#c94020;width:0%" data-w="56"></div></div><div class="bar-count">5</div></div>
+      <div class="bar-item"><div class="bar-label">Sales Misalignment</div><div class="bar-track"><div class="bar-fill" style="--bar-color:#c45a00;width:0%" data-w="44"></div></div><div class="bar-count">4</div></div>
+      <div class="bar-item"><div class="bar-label">Financial Burden</div><div class="bar-track"><div class="bar-fill" style="--bar-color:#7a00c4;width:0%" data-w="22"></div></div><div class="bar-count">2</div></div>
+      <div class="bar-item"><div class="bar-label">Lack of Value / Insights</div><div class="bar-track"><div class="bar-fill" style="--bar-color:#b05a00;width:0%" data-w="22"></div></div><div class="bar-count">2</div></div>
+      <div class="bar-item"><div class="bar-label">In-house Bookkeeping</div><div class="bar-track"><div class="bar-fill" style="--bar-color:#0a7a4a;width:0%" data-w="11"></div></div><div class="bar-count">1</div></div>
+      <div class="bar-item"><div class="bar-label">Unclear / Paused</div><div class="bar-track"><div class="bar-fill" style="--bar-color:#3a4260;width:0%" data-w="13"></div></div><div class="bar-count">2</div></div>
+      <div style="height:1px;background:var(--border);margin:16px 0"></div>
+      <div style="font-size:11px;color:var(--muted);line-height:1.8">
+        <strong style="color:var(--text)">Preventable vs Structural:</strong><br>
+        4 preventable (3× sales event misalignment, 1× in-house bookkeeping decision).<br>
+        2 financial/life events (Chris Holet — cash flow crisis; Ali Mostafavi — paused on expenses).<br>
+        5 structural CPA exits — partially influenceable via partnership strategy, not eliminable.<br>
+        5 unclear or insufficient data.
       </div>
-      <div class="bar-item">
-        <div class="bar-label">Sales Misalignment</div>
-        <div class="bar-track"><div class="bar-fill" style="--bar-color:#c45a00;width:0%" data-w="44"></div></div>
-        <div class="bar-count">4</div>
+    </div>
+    <div class="panel">
+      <div class="panel-title"><span class="dot" style="background:var(--accent2)"></span>How They Heard About Us</div>
+      <div class="bar-item"><div class="bar-label">Sales Events / Webinar / BPA</div><div class="bar-track"><div class="bar-fill" style="--bar-color:#c41f3b;width:0%" data-w="50"></div></div><div class="bar-count">7</div></div>
+      <div class="bar-item"><div class="bar-label">Referral</div><div class="bar-track"><div class="bar-fill" style="--bar-color:#1f35c4;width:0%" data-w="25"></div></div><div class="bar-count">4</div></div>
+      <div class="bar-item"><div class="bar-label">Facebook / Instagram (Ad)</div><div class="bar-track"><div class="bar-fill" style="--bar-color:#0077b8;width:0%" data-w="19"></div></div><div class="bar-count">3</div></div>
+      <div class="bar-item"><div class="bar-label">Unknown</div><div class="bar-track"><div class="bar-fill" style="--bar-color:#3a4260;width:0%" data-w="13"></div></div><div class="bar-count">2</div></div>
+      <div style="height:1px;background:var(--border);margin:16px 0"></div>
+      <div style="font-size:11px;color:var(--muted);line-height:1.8">
+        Sales event leads (7) are the largest and most problematic source — 3 of 4 preventable exits came from this channel. Marketing's expectation framing at events is the root cause. Referral exits (4) are structural and harder to prevent. Ad exits (3) skew toward fit mismatch and pricing sensitivity.
       </div>
-      <div class="bar-item">
-        <div class="bar-label">Financial Burden</div>
-        <div class="bar-track"><div class="bar-fill" style="--bar-color:#7a00c4;width:0%" data-w="22"></div></div>
-        <div class="bar-count">2</div>
-      </div>
-      <div class="bar-item">
-        <div class="bar-label">Lack of Value / Insights</div>
-        <div class="bar-track"><div class="bar-fill" style="--bar-color:#b05a00;width:0%" data-w="22"></div></div>
-        <div class="bar-count">2</div>
-      </div>
-      <div class="bar-item">
-        <div class="bar-label">In-house Bookkeeping</div>
-        <div class="bar-track"><div class="bar-fill" style="--bar-color:#0a7a4a;width:0%" data-w="11"></div></div>
-        <div class="bar-count">1</div>
-      </div>
-      <div class="bar-item">
-        <div class="bar-label">Unclear</div>
-        <div class="bar-track"><div class="bar-fill" style="--bar-color:#3a4260;width:0%" data-w="11"></div></div>
-        <div class="bar-count">1</div>
-      </div>
-      <div class="bar-item">
-        <div class="bar-label">Paused</div>
-        <div class="bar-track"><div class="bar-fill" style="--bar-color:#0077b8;width:0%" data-w="11"></div></div>
-        <div class="bar-count">1</div>
-      </div>
+    </div>
+  </div>
+
+  <div class="section-label">Department Insights</div>
+  <div class="grid-2">
+
+    <div class="panel">
+      <div class="panel-title"><span class="dot" style="background:#1f35c4"></span><span style="color:#1f35c4;font-weight:700">Sales</span></div>
+      <p style="font-size:12px;line-height:1.8;color:var(--text);margin-bottom:10px">7 of 16 January exits came via sales events, webinars, or BPA — the highest event-sourced churn volume recorded to date. Three clients (Tasnim Huque, Suhyin An, Trinh Tran) left within their first month having not understood what Lucro was or that QBO was required. Sean Ostrowski signalled disinterest before his onboarding call had even begun.</p>
+      <p style="font-size:12px;line-height:1.8;color:var(--muted)">Lead sources this month: 7 events/webinars, 4 referrals, 3 Facebook/Instagram ads, 2 unknown.</p>
     </div>
 
     <div class="panel">
-      <div class="panel-title"><span class="dot" style="background:var(--ok)"></span>Preventability by Driver</div>
-      <table class="insight-table">
-        <thead>
-          <tr><th>Driver</th><th>Cases</th><th>Preventable?</th></tr>
-        </thead>
-        <tbody>
-          <tr><td>Sales Misalignment</td><td>4</td><td><span class="tag tag-green">Yes — 100%</span></td></tr>
-          <tr><td>In-house Bookkeeping</td><td>1</td><td><span class="tag tag-green">Yes — Likely</span></td></tr>
-          <tr><td>New CPA / Bookkeeper</td><td>5</td><td><span class="tag tag-orange">Partial</span></td></tr>
-          <tr><td>Lack of Value / Insights</td><td>2</td><td><span class="tag tag-orange">Partial</span></td></tr>
-          <tr><td>Financial Burden</td><td>2</td><td><span class="tag tag-orange">Partial</span></td></tr>
-          <tr><td>Unclear / Paused</td><td>2</td><td><span class="tag tag-blue">Unknown</span></td></tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
-
-  <div class="section-label">Key Observations</div>
-  <div class="panel mb16">
-    <div class="panel-title"><span class="dot" style="background:var(--danger)"></span>Insights</div>
-
-    <div class="alert alert-red">
-      <div class="alert-icon">🔴</div>
-      <div class="alert-body">
-        <div class="alert-title">Sales event misalignment hits peak — 4 exits in a single month</div>
-        <div class="alert-desc">January sees the highest concentration of sales misalignment exits to date. Tasnim Huque signed up at a webinar unaware of what Lucro was. Suhyin An signed up at BPA without knowing QBO was required. Sean Ostrowski signalled he didn't want the service before his onboarding call even started. This pattern is now a critical, recurring leak at the top of the funnel.</div>
-      </div>
+      <div class="panel-title"><span class="dot" style="background:#c45a00"></span><span style="color:#c45a00;font-weight:700">Onboarding</span></div>
+      <p style="font-size:12px;line-height:1.8;color:var(--text);margin-bottom:10px">9 of 16 January exits were still in onboarding at the time of cancellation — 56%, the highest rate across all tracked months. Several had no QBO access granted, no assigned bookkeeper, and no recorded meaningful interactions. Onboarding duration ranged from 0 to 118 days, with longer durations not necessarily correlating with better activation.</p>
     </div>
 
-    <div class="alert alert-red">
-      <div class="alert-icon">🔴</div>
-      <div class="alert-body">
-        <div class="alert-title">56% of January exits never made it out of onboarding</div>
-        <div class="alert-desc">9 of 16 exits were in the onboarding phase — the highest onboarding churn rate across all tracked months. Several had no QBO access, no recent interactions, and no assigned bookkeeper. These clients were not set up to succeed from day one.</div>
-      </div>
+    <div class="panel">
+      <div class="panel-title"><span class="dot" style="background:#0a7a4a"></span><span style="color:#0a7a4a;font-weight:700">Account Management</span></div>
+      <p style="font-size:12px;line-height:1.8;color:var(--text);margin-bottom:10px">5 of 16 January exits were CPA or bookkeeper takeovers. Andrew Quick moved back to a family CPA; Elizabeth Casey's CPA flagged bookkeeping quality issues. Both Chris Holet and Ali Mostafavi cited financial strain — Mostafavi is paused with a discount offered and a high re-engagement probability. Of the 3 paused accounts this month, all left on positive or neutral terms.</p>
     </div>
 
-    <div class="alert alert-orange">
-      <div class="alert-icon">🟠</div>
-      <div class="alert-body">
-        <div class="alert-title">CPA takeovers remain the #1 driver — 5 exits this month alone</div>
-        <div class="alert-desc">New CPA/BK is responsible for 5 of 16 January exits. Andrew Quick is moving back to his father-in-law who is a CPA. Elizabeth Casey's books were not maintained properly, giving her CPA grounds to take over. A CPA co-introduction strategy and partnership playbook is increasingly urgent.</div>
-      </div>
+    <div class="panel">
+      <div class="panel-title"><span class="dot" style="background:#080e2e"></span><span style="color:#080e2e;font-weight:700">Leadership & Strategy</span></div>
+      <p style="font-size:12px;line-height:1.8;color:var(--text);margin-bottom:10px">January is the highest-exit month since tracking began, with 16 exits — double December's 8. The exit profile is broad: CPA takeovers, sales misalignment, financial pressure, onboarding drop-offs, and unclear cases all feature. No single cause dominates to the extent that one fix would resolve the trend. The overall tone across January exits remains neutral to positive — no month with this volume has shown zero hostile exits.</p>
     </div>
 
-    <div class="alert alert-orange">
-      <div class="alert-icon">🟠</div>
-      <div class="alert-body">
-        <div class="alert-title">3 pauses are re-engagement opportunities — all with positive tone</div>
-        <div class="alert-desc">Ali Mostafavi, Sean Ostrowski, and Athena Payne are all paused with positive or neutral tone. Ali hit a financial bottleneck but has a discount offered and high re-engagement probability. Athena needs historical book cleanup before kickoff. Both are worth proactive re-engagement follow-up.</div>
-      </div>
-    </div>
-
-    <div class="alert alert-yellow">
-      <div class="alert-icon">🟡</div>
-      <div class="alert-body">
-        <div class="alert-title">Dominant tone is neutral — no strong negative sentiment</div>
-        <div class="alert-desc">9 of 16 exits left with a neutral tone and 7 with a positive tone. Zero frustrated exits this month. This suggests the relationships are intact even where the service didn't stick — an opportunity for re-engagement outreach across multiple January churns.</div>
-      </div>
-    </div>
-  </div>
-
-  <div class="section-label">Actions by Department</div>
-
-  <div class="panel mb16">
-    <div class="panel-title">
-      <span class="dot" style="background:#1f35c4"></span>
-      <span style="color:#1f35c4;font-family:Syne,sans-serif;font-weight:700">Sales</span>
-    </div>
-    <table class="insight-table">
-      <thead><tr><th>#</th><th>Action</th><th>Addresses</th><th>Impact</th><th>Effort</th></tr></thead>
-      <tbody>
-        <tr>
-          <td style="color:var(--muted)">S1</td>
-          <td>4 sales misalignment exits in January alone — this is now an urgent, recurring issue. Enforce a product explainer and QBO pre-check at every mass sales event immediately.</td>
-          <td><span class="tag tag-red">Sales Misalignment</span></td>
-          <td><span class="tag tag-red">High</span></td>
-          <td><span class="tag tag-green">Low</span></td>
-        </tr>
-        <tr>
-          <td style="color:var(--muted)">S2</td>
-          <td>Introduce CPA scenarios during sales calls to proactively address the most common churn driver before it becomes a cancellation.</td>
-          <td><span class="tag tag-orange">CPA Takeover</span></td>
-          <td><span class="tag tag-red">High</span></td>
-          <td><span class="tag tag-green">Low</span></td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-
-  <div class="panel mb16">
-    <div class="panel-title">
-      <span class="dot" style="background:#c45a00"></span>
-      <span style="color:#c45a00;font-family:Syne,sans-serif;font-weight:700">Onboarding</span>
-    </div>
-    <table class="insight-table">
-      <thead><tr><th>#</th><th>Action</th><th>Addresses</th><th>Impact</th><th>Effort</th></tr></thead>
-      <tbody>
-        <tr>
-          <td style="color:var(--muted)">O1</td>
-          <td>56% of January exits were in onboarding. Enforce mandatory QBO access confirmation before onboarding begins — James O'Reilly cancelled with no QBO access ever granted.</td>
-          <td><span class="tag tag-blue">Onboarding Churn</span></td>
-          <td><span class="tag tag-red">High</span></td>
-          <td><span class="tag tag-green">Low</span></td>
-        </tr>
-        <tr>
-          <td style="color:var(--muted)">O2</td>
-          <td>Audit the 90-day email connection strategy for reply rates — several January exits had no recent interactions despite being in active onboarding.</td>
-          <td><span class="tag tag-blue">Engagement Gap</span></td>
-          <td><span class="tag tag-red">High</span></td>
-          <td><span class="tag tag-green">In Progress</span></td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-
-  <div class="panel mb16">
-    <div class="panel-title">
-      <span class="dot" style="background:#0a7a4a"></span>
-      <span style="color:#0a7a4a;font-family:Syne,sans-serif;font-weight:700">Account Management</span>
-    </div>
-    <table class="insight-table">
-      <thead><tr><th>#</th><th>Action</th><th>Addresses</th><th>Impact</th><th>Effort</th></tr></thead>
-      <tbody>
-        <tr>
-          <td style="color:var(--muted)">A1</td>
-          <td>Initiate re-engagement outreach for Ali Mostafavi (discount offered, high probability) and Athena Payne (paused for book cleanup). Both have positive tone and are salvageable.</td>
-          <td><span class="tag tag-orange">Re-engagement</span></td>
-          <td><span class="tag tag-red">High</span></td>
-          <td><span class="tag tag-green">Low</span></td>
-        </tr>
-        <tr>
-          <td style="color:var(--muted)">A2</td>
-          <td>Build a CPA co-introduction call protocol — 5 CPA-related exits this month. Position Lucro as complementary to the incoming CPA rather than redundant.</td>
-          <td><span class="tag tag-orange">CPA Takeover</span></td>
-          <td><span class="tag tag-red">High</span></td>
-          <td><span class="tag tag-orange">Medium</span></td>
-        </tr>
-        <tr>
-          <td style="color:var(--muted)">A3</td>
-          <td>With neutral/positive tone dominating January exits, consider a 60-day re-engagement campaign across the full January cohort — the relationship goodwill is there.</td>
-          <td><span class="tag tag-blue">Retention</span></td>
-          <td><span class="tag tag-orange">Medium</span></td>
-          <td><span class="tag tag-orange">Medium</span></td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-
-  <div class="panel">
-    <div class="panel-title">
-      <span class="dot" style="background:#12183a"></span>
-      <span style="color:#12183a;font-family:Syne,sans-serif;font-weight:700">Leadership & Strategy</span>
-    </div>
-    <table class="insight-table">
-      <thead><tr><th>#</th><th>Action</th><th>Addresses</th><th>Impact</th><th>Effort</th></tr></thead>
-      <tbody>
-        <tr>
-          <td style="color:var(--muted)">L1</td>
-          <td>January marks the highest exit volume since tracking began. Establish a standing monthly retention review at leadership level to monitor trend direction and hold departments accountable to actions.</td>
-          <td><span class="tag tag-red">Churn Trend</span></td>
-          <td><span class="tag tag-red">High</span></td>
-          <td><span class="tag tag-green">Low</span></td>
-        </tr>
-        <tr>
-          <td style="color:var(--muted)">L2</td>
-          <td>Evaluate a formal CPA partnership programme — CPA takeovers have been the #1 driver every month since tracking began. Converting CPAs into referral partners would directly address this structural threat.</td>
-          <td><span class="tag tag-orange">CPA Takeover</span></td>
-          <td><span class="tag tag-red">High</span></td>
-          <td><span class="tag tag-orange">Medium</span></td>
-        </tr>
-      </tbody>
-    </table>
   </div>
 
 </div><!-- end dashboard-jan -->
@@ -1845,489 +1598,257 @@
 <div id="dashboard-dec25" style="display:none">
 
   <div class="kpi-row">
-    <div class="kpi" style="--kpi-color:#c94020">
-      <div class="kpi-label">Total Cancellations</div>
-      <div class="kpi-value">8</div>
-      <div class="kpi-sub">Cancelled + Paused</div>
-    </div>
-    <div class="kpi" style="--kpi-color:#c41f3b">
-      <div class="kpi-label">Hard Cancels</div>
-      <div class="kpi-value">8</div>
-      <div class="kpi-sub">Confirmed exits</div>
-    </div>
-    <div class="kpi" style="--kpi-color:#c45a00">
-      <div class="kpi-label">Paused</div>
-      <div class="kpi-value">0</div>
-      <div class="kpi-sub">Re-engagement opportunity</div>
-    </div>
-    <div class="kpi" style="--kpi-color:#0077b8">
-      <div class="kpi-label">Lost in Onboarding</div>
-      <div class="kpi-value">3</div>
-      <div class="kpi-sub">38% of exits</div>
-    </div>
-    <div class="kpi" style="--kpi-color:#7a8a00">
-      <div class="kpi-label">Top Churn Driver</div>
-      <div class="kpi-value" style="font-size:18px;padding-top:4px">New CPA/BK</div>
-      <div class="kpi-sub">2 of 8 exits</div>
-    </div>
-    <div class="kpi" style="--kpi-color:#0a7a4a">
-      <div class="kpi-label">Preventable</div>
-      <div class="kpi-value">2</div>
-      <div class="kpi-sub">25% of exits</div>
-    </div>
+    <div class="kpi" style="--kpi-color:#c94020"><div class="kpi-label">Total Cancellations</div><div class="kpi-value">8</div><div class="kpi-sub">Cancelled + Paused</div></div>
+    <div class="kpi" style="--kpi-color:#c41f3b"><div class="kpi-label">Cancelled</div><div class="kpi-value">8</div><div class="kpi-sub">Confirmed exits</div></div>
+    <div class="kpi" style="--kpi-color:#c45a00"><div class="kpi-label">Paused</div><div class="kpi-value">0</div><div class="kpi-sub">Re-engagement opportunity</div></div>
+    <div class="kpi" style="--kpi-color:#0077b8"><div class="kpi-label">Lost in Onboarding</div><div class="kpi-value">3</div><div class="kpi-sub">38% of exits</div></div>
+    <div class="kpi" style="--kpi-color:#7a8a00"><div class="kpi-label">Top Churn Driver</div><div class="kpi-value" style="font-size:18px;padding-top:4px">New CPA/BK</div><div class="kpi-sub">2 of 8 exits</div></div>
+    <div class="kpi" style="--kpi-color:#0a7a4a"><div class="kpi-label">Preventable</div><div class="kpi-value">2</div><div class="kpi-sub">25% of exits</div></div>
   </div>
 
   <div class="section-label">Client Breakdown</div>
-
   <div class="panel mb16">
     <div class="panel-title"><span class="dot" style="background:var(--accent2)"></span>December 2025 Cancellations</div>
-    <table class="insight-table">
-      <thead>
-        <tr>
-          <th>Practice</th>
-          <th>Phase</th>
-          <th>Months w/ Lucro</th>
-          <th>Primary Driver</th>
-          <th>Revenue Tier</th>
-          <th>Tone</th>
-          <th>Preventable</th>
-          <th>Client Reason</th>
-        </tr>
-      </thead>
+    
+  <div class="filter-bar" id="filter-bar-dec25">
+    <label>Filter:</label>
+    <select class="filter-select" id="f-status-dec25" onchange="filterTable('dec25')">
+      <option value="">All Statuses</option>
+      <option value="Cancelled">Cancelled</option>
+      <option value="Paused">Paused</option>
+    </select>
+    <select class="filter-select" id="f-phase-dec25" onchange="filterTable('dec25')">
+      <option value="">All Phases</option>
+      <option value="Ongoing">Ongoing</option>
+      <option value="Onboarding">Onboarding</option>
+    </select>
+    <select class="filter-select" id="f-revenue-dec25" onchange="filterTable('dec25')">
+      <option value="">All Revenue Tiers</option>
+      <option value="$0">$0–$50k</option>
+      <option value="$51">$51k–$100k</option>
+      <option value="$101">$101k–$200k</option>
+      <option value="Unknown">Unknown</option>
+    </select>
+    <select class="filter-select" id="f-prev-dec25" onchange="filterTable('dec25')">
+      <option value="">All Preventable</option>
+      <option value="Yes">Yes</option>
+      <option value="No">No</option>
+      <option value="Unclear">Unclear</option>
+    </select>
+    <select class="filter-select" id="f-lead-dec25" onchange="filterTable('dec25')">
+      <option value="">All Lead Sources</option>
+      <option value="Referral">Referral</option>
+      <option value="Event">Event / Webinar / BPA</option>
+      <option value="Facebook">Facebook / Ad</option>
+      <option value="Instagram">Instagram</option>
+    </select>
+    <button class="filter-reset" onclick="resetFilters('dec25')">✕ Reset</button>
+    <div class="filter-count" id="f-count-dec25"></div>
+  </div>
+    <table class="insight-table" id="table-dec25">
+      <thead><tr><th>Practice</th><th>Phase</th><th>Days in Onboarding</th><th>Months w/ Lucro</th><th>Primary Driver</th><th>Revenue Tier</th><th>Tone</th><th>Preventable</th><th>Lead Source</th><th>Client Reason</th></tr></thead>
       <tbody>
-        <tr>
-          <td>Optimize Chiropractic</td>
-          <td><span class="tag tag-blue">Ongoing</span></td>
-          <td>14 months</td>
-          <td><span class="tag tag-blue">Lack of Value</span></td>
-          <td>$101k – $200k</td>
-          <td>Neutral</td>
-          <td><span class="tag tag-green">Yes</span></td>
-          <td style="color:var(--muted)">"We hired a company to take over"</td>
-        </tr>
-        <tr>
-          <td>Texas Functional Health</td>
-          <td><span class="tag tag-blue">Ongoing</span></td>
-          <td>13 months</td>
-          <td><span class="tag tag-orange">New CPA/BK</span></td>
-          <td>$0 – $50k</td>
-          <td>Neutral</td>
-          <td><span class="tag tag-red">No</span></td>
-          <td style="color:var(--muted)">"We will be transitioning our services"</td>
-        </tr>
-        <tr>
-          <td>Independence City Holdings (1)</td>
-          <td><span class="tag tag-blue">Ongoing</span></td>
-          <td>12 months</td>
-          <td><span class="tag tag-red">Practice Ceased</span></td>
-          <td>$0 – $50k</td>
-          <td>Positive</td>
-          <td><span class="tag tag-red">No</span></td>
-          <td style="color:var(--muted)">"Practice ceased operations"</td>
-        </tr>
-        <tr>
-          <td>Independence City Holdings (2)</td>
-          <td><span class="tag tag-blue">Ongoing</span></td>
-          <td>12 months</td>
-          <td><span class="tag tag-red">Practice Ceased</span></td>
-          <td>$0 – $50k</td>
-          <td>Positive</td>
-          <td><span class="tag tag-red">No</span></td>
-          <td style="color:var(--muted)">"Practice ceased operations"</td>
-        </tr>
-        <tr>
-          <td>Dr. Lea Cornish</td>
-          <td><span class="tag tag-orange">Onboarding</span></td>
-          <td>11 months</td>
-          <td><span class="tag tag-blue">Insights Not Relevant</span></td>
-          <td>$0 – $50k</td>
-          <td>Frustrated</td>
-          <td><span class="tag tag-red">No</span></td>
-          <td style="color:var(--muted)">"I'm just not seeing anything new"</td>
-        </tr>
-        <tr>
-          <td>Fiorini Chiropractic</td>
-          <td><span class="tag tag-blue">Ongoing</span></td>
-          <td>8 months</td>
-          <td><span class="tag tag-orange">New CPA/BK</span></td>
-          <td>$101k – $200k</td>
-          <td>Positive</td>
-          <td><span class="tag tag-red">No</span></td>
-          <td style="color:var(--muted)">"Our CPA does all of this for us"</td>
-        </tr>
-        <tr>
-          <td>South Florida Injury (Wilner)</td>
-          <td><span class="tag tag-orange">Onboarding</span></td>
-          <td>3 months</td>
-          <td><span class="tag tag-orange">Pricing</span></td>
-          <td>$0 – $50k</td>
-          <td>Neutral</td>
-          <td><span class="tag tag-red">No</span></td>
-          <td style="color:var(--muted)">"Pricing concerns, limited value"</td>
-        </tr>
-        <tr>
-          <td>Tinsley Surgical</td>
-          <td><span class="tag tag-orange">Onboarding</span></td>
-          <td>1 month</td>
-          <td><span class="tag tag-red">Sales Misalignment</span></td>
-          <td>Unknown</td>
-          <td>Frustrated</td>
-          <td><span class="tag tag-green">Yes</span></td>
-          <td style="color:var(--muted)">"Signed up during a webinar"</td>
-        </tr>
+        <tr><td>Optimize Chiropractic</td><td><span class="tag tag-blue">Ongoing</span></td><td>135 days</td><td>14 months</td><td><span class="tag tag-blue">Lack of Value</span></td><td>$101k–$200k</td><td>Neutral</td><td><span class="tag tag-green">Yes</span></td><td>Blueprint (Event)</td><td style="color:var(--muted)">"We hired a company to take over"</td></tr>
+        <tr><td>Texas Functional Health</td><td><span class="tag tag-blue">Ongoing</span></td><td>95 days</td><td>13 months</td><td><span class="tag tag-orange">New CPA/BK</span></td><td>$0–$50k</td><td>Neutral</td><td><span class="tag tag-red">No</span></td><td>Parker Seminars (Event)</td><td style="color:var(--muted)">"Transitioning to in-house"</td></tr>
+        <tr><td>Independence City</td><td><span class="tag tag-blue">Ongoing</span></td><td>66 days</td><td>12 months</td><td><span class="tag tag-red">Practice Ceased</span></td><td>$0–$50k</td><td>Positive</td><td><span class="tag tag-red">No</span></td><td>Referral (Wife)</td><td style="color:var(--muted)">"Practice ceased operations"</td></tr>
+        <tr><td>100 Chiro Burell</td><td><span class="tag tag-blue">Ongoing</span></td><td>66 days</td><td>12 months</td><td><span class="tag tag-red">Practice Ceased</span></td><td>$0–$50k</td><td>Positive</td><td><span class="tag tag-red">No</span></td><td>Referral (Wife)</td><td style="color:var(--muted)">"Practice ceased operations"</td></tr>
+        <tr><td>Dr. Lea Cornish</td><td><span class="tag tag-orange">Onboarding</span></td><td>85 days</td><td>11 months</td><td><span class="tag tag-blue">Insights Not Relevant</span></td><td>$0–$50k</td><td>Frustrated</td><td><span class="tag tag-red">No</span></td><td>BPA Las Vegas (Event)</td><td style="color:var(--muted)">"I'm just not seeing anything new"</td></tr>
+        <tr><td>Fiorini Chiropractic</td><td><span class="tag tag-blue">Ongoing</span></td><td>49 days</td><td>8 months</td><td><span class="tag tag-orange">New CPA/BK</span></td><td>$101k–$200k</td><td>Positive</td><td><span class="tag tag-red">No</span></td><td>Referral</td><td style="color:var(--muted)">"Our CPA does all of this for us"</td></tr>
+        <tr><td>South Florida Injury (Wilner)</td><td><span class="tag tag-orange">Onboarding</span></td><td>45 days</td><td>3 months</td><td><span class="tag tag-orange">Pricing</span></td><td>$0–$50k</td><td>Neutral</td><td><span class="tag tag-red">No</span></td><td>Facebook (Ad)</td><td style="color:var(--muted)">"Pricing concerns, limited value"</td></tr>
+        <tr><td>Tinsley Surgical</td><td><span class="tag tag-orange">Onboarding</span></td><td>—</td><td>1 month</td><td><span class="tag tag-red">Sales Misalignment</span></td><td>Unknown</td><td>Frustrated</td><td><span class="tag tag-green">Yes</span></td><td>Webinar (Sales Event)</td><td style="color:var(--muted)">"Signed up during a webinar"</td></tr>
       </tbody>
     </table>
   </div>
 
-  <div class="section-label">Churn Drivers</div>
+  <div class="section-label">Churn Drivers & Lead Source</div>
   <div class="grid-2">
     <div class="panel">
-      <div class="panel-title"><span class="dot" style="background:var(--accent2)"></span>Primary Churn Reasons</div>
-      <div class="bar-item">
-        <div class="bar-label">New CPA / Bookkeeper</div>
-        <div class="bar-track"><div class="bar-fill" style="--bar-color:#c94020;width:0%" data-w="50"></div></div>
-        <div class="bar-count">2</div>
+      <div class="panel-title"><span class="dot" style="background:var(--accent2)"></span>Churn Drivers & Preventability</div>
+      <div class="bar-item"><div class="bar-label">New CPA / Bookkeeper</div><div class="bar-track"><div class="bar-fill" style="--bar-color:#c94020;width:0%" data-w="50"></div></div><div class="bar-count">2</div></div>
+      <div class="bar-item"><div class="bar-label">Practice Ceased Ops</div><div class="bar-track"><div class="bar-fill" style="--bar-color:#0077b8;width:0%" data-w="50"></div></div><div class="bar-count">2</div></div>
+      <div class="bar-item"><div class="bar-label">Lack of Value / Insights</div><div class="bar-track"><div class="bar-fill" style="--bar-color:#b05a00;width:0%" data-w="25"></div></div><div class="bar-count">2</div></div>
+      <div class="bar-item"><div class="bar-label">Sales Misalignment</div><div class="bar-track"><div class="bar-fill" style="--bar-color:#c45a00;width:0%" data-w="13"></div></div><div class="bar-count">1</div></div>
+      <div class="bar-item"><div class="bar-label">Pricing</div><div class="bar-track"><div class="bar-fill" style="--bar-color:#7a00c4;width:0%" data-w="13"></div></div><div class="bar-count">1</div></div>
+      <div style="height:1px;background:var(--border);margin:16px 0"></div>
+      <div style="font-size:11px;color:var(--muted);line-height:1.8">
+        <strong style="color:var(--text)">Preventable vs Structural:</strong><br>
+        2 preventable (Optimize — poor internal handoff; Tinsley — webinar misalignment).<br>
+        2 life events (practice closures — outside Lucro's control).<br>
+        4 structural or fit-mismatch exits (CPA takeovers, pricing, insights not relevant).
       </div>
-      <div class="bar-item">
-        <div class="bar-label">Practice Ceased Ops</div>
-        <div class="bar-track"><div class="bar-fill" style="--bar-color:#0077b8;width:0%" data-w="50"></div></div>
-        <div class="bar-count">2</div>
+    </div>
+    <div class="panel">
+      <div class="panel-title"><span class="dot" style="background:var(--accent2)"></span>How They Heard About Us</div>
+      <div class="bar-item"><div class="bar-label">Sales Events / Webinar</div><div class="bar-track"><div class="bar-fill" style="--bar-color:#c41f3b;width:0%" data-w="38"></div></div><div class="bar-count">3</div></div>
+      <div class="bar-item"><div class="bar-label">Referral</div><div class="bar-track"><div class="bar-fill" style="--bar-color:#1f35c4;width:0%" data-w="38"></div></div><div class="bar-count">3</div></div>
+      <div class="bar-item"><div class="bar-label">Facebook / Ad</div><div class="bar-track"><div class="bar-fill" style="--bar-color:#0077b8;width:0%" data-w="13"></div></div><div class="bar-count">1</div></div>
+      <div class="bar-item"><div class="bar-label">Unknown</div><div class="bar-track"><div class="bar-fill" style="--bar-color:#3a4260;width:0%" data-w="13"></div></div><div class="bar-count">1</div></div>
+      <div style="height:1px;background:var(--border);margin:16px 0"></div>
+      <div style="font-size:11px;color:var(--muted);line-height:1.8">
+        Sales event signups (3) produced 2 frustrated exits and 1 preventable misalignment. Referral exits (3) were structural or life-event driven — better-qualified leads, harder-to-prevent churn.
       </div>
-      <div class="bar-item">
-        <div class="bar-label">Lack of Value / Insights</div>
-        <div class="bar-track"><div class="bar-fill" style="--bar-color:#b05a00;width:0%" data-w="25"></div></div>
-        <div class="bar-count">2</div>
-      </div>
-      <div class="bar-item">
-        <div class="bar-label">Sales Misalignment</div>
-        <div class="bar-track"><div class="bar-fill" style="--bar-color:#c45a00;width:0%" data-w="12"></div></div>
-        <div class="bar-count">1</div>
-      </div>
-      <div class="bar-item">
-        <div class="bar-label">Pricing</div>
-        <div class="bar-track"><div class="bar-fill" style="--bar-color:#7a00c4;width:0%" data-w="12"></div></div>
-        <div class="bar-count">1</div>
-      </div>
+    </div>
+  </div>
+
+  <div class="section-label">Department Insights</div>
+  <div class="grid-2">
+
+    <div class="panel">
+      <div class="panel-title"><span class="dot" style="background:#1f35c4"></span><span style="color:#1f35c4;font-weight:700">Sales</span></div>
+      <p style="font-size:12px;line-height:1.8;color:var(--text);margin-bottom:10px">Tinsley Surgical signed up at a webinar and left frustrated after 1 month — they were not aware Lucro takes over bookkeeping. Cornish and Wilner both arrived via events (BPA Las Vegas, Facebook) expecting strategic guidance beyond what was delivered. 3 of 8 December exits originated from sales or marketing channels, and all 3 involved a mismatch between what was communicated and what was experienced.</p>
+      <p style="font-size:12px;line-height:1.8;color:var(--muted)">Lead sources this month: 3 sales events/ads, 3 referrals, 1 Facebook, 1 unknown.</p>
     </div>
 
     <div class="panel">
-      <div class="panel-title"><span class="dot" style="background:var(--ok)"></span>Preventability by Driver</div>
-      <table class="insight-table">
-        <thead>
-          <tr><th>Driver</th><th>Cases</th><th>Preventable?</th></tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>Sales Misalignment</td><td>1</td>
-            <td><span class="tag tag-green">Yes — 100%</span></td>
-          </tr>
-          <tr>
-            <td>Lack of Value / Internal Handoff</td><td>1</td>
-            <td><span class="tag tag-green">Yes — Likely</span></td>
-          </tr>
-          <tr>
-            <td>New CPA / Bookkeeper</td><td>2</td>
-            <td><span class="tag tag-orange">Partial</span></td>
-          </tr>
-          <tr>
-            <td>Pricing</td><td>1</td>
-            <td><span class="tag tag-orange">Partial</span></td>
-          </tr>
-          <tr>
-            <td>Insights Not Relevant</td><td>1</td>
-            <td><span class="tag tag-orange">Partial</span></td>
-          </tr>
-          <tr>
-            <td>Practice Ceased Operations</td><td>2</td>
-            <td><span class="tag tag-red">No</span></td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
-
-  <div class="section-label">Key Observations</div>
-
-  <div class="panel mb16">
-    <div class="panel-title"><span class="dot" style="background:var(--danger)"></span>Insights</div>
-
-    <div class="alert alert-red">
-      <div class="alert-icon">🔴</div>
-      <div class="alert-body">
-        <div class="alert-title">Poor internal bookkeeper transition directly caused a preventable exit</div>
-        <div class="alert-desc">Optimize Chiropractic cancelled specifically because their internal Lucro bookkeeper transition was handled poorly. This is entirely within Lucro's control — a formal handoff protocol with a post-transition satisfaction check would have likely prevented this exit.</div>
-      </div>
+      <div class="panel-title"><span class="dot" style="background:#c41f3b"></span><span style="color:#c41f3b;font-weight:700">Operations</span></div>
+      <p style="font-size:12px;line-height:1.8;color:var(--text);margin-bottom:10px">Optimize Chiropractic explicitly cited a negative internal bookkeeper transition as the reason for their exit after 14 months. The client noted that changes made during the transition caused them to end the relationship. This is the only December exit where internal process was directly named as the cause.</p>
     </div>
 
-    <div class="alert alert-red">
-      <div class="alert-icon">🔴</div>
-      <div class="alert-body">
-        <div class="alert-title">Tinsley Surgical — another preventable webinar misalignment exit</div>
-        <div class="alert-desc">Signed up at a sales event without understanding Lucro takes over bookkeeping. Left frustrated. This mirrors a recurring pattern — mass sales events are generating misaligned signups that churn within onboarding.</div>
-      </div>
+    <div class="panel">
+      <div class="panel-title"><span class="dot" style="background:#0a7a4a"></span><span style="color:#0a7a4a;font-weight:700">Account Management</span></div>
+      <p style="font-size:12px;line-height:1.8;color:var(--text);margin-bottom:10px">Independence City (two entities) and 100 Chiro Burell both exited due to practice closures — fully outside Lucro's influence. Notably, Lucro supported their closure process, which was reflected in their positive tone at exit. Fiorini (CPA takeover) and Texas Functional Health (in-house transition) both left with neutral or positive sentiment after 8–13 months of service.</p>
     </div>
 
-    <div class="alert alert-orange">
-      <div class="alert-icon">🟠</div>
-      <div class="alert-body">
-        <div class="alert-title">Two practice closures — both with high engagement and positive tone</div>
-        <div class="alert-desc">Independence City Holdings (two entities) both ceased operations. Despite high engagement and a positive relationship, these exits were unpreventable. Worth noting that Lucro supported the closure process — a strong example of the relationship value Lucro provides beyond bookkeeping.</div>
-      </div>
+    <div class="panel">
+      <div class="panel-title"><span class="dot" style="background:#080e2e"></span><span style="color:#080e2e;font-weight:700">Leadership & Strategy</span></div>
+      <p style="font-size:12px;line-height:1.8;color:var(--text);margin-bottom:10px">December saw a significant jump from 2 exits in November to 8. Of the 8, 2 were life events (practice closures), 2 were structural CPA/in-house exits, 1 was a preventable handoff failure, and 3 involved some form of expectation or fit mismatch. The month signals that churn is becoming more diverse in its causes — not driven by a single issue.</p>
     </div>
 
-    <div class="alert alert-yellow">
-      <div class="alert-icon">🟡</div>
-      <div class="alert-body">
-        <div class="alert-title">Value proposition gap persists — Dr. Lea Cornish and Bryan Wilner</div>
-        <div class="alert-desc">Two separate clients cited that Lucro's dashboard and insights weren't meeting expectations. Cornish left frustrated after 11 months, stating she already knew what Lucro was showing her. Wilner wanted a more structured improvement plan. Both point to the same gap: clients expect strategic guidance, not just reporting.</div>
-      </div>
-    </div>
-  </div>
-
-  <div class="section-label">Actions by Department</div>
-
-  <div class="panel mb16">
-    <div class="panel-title">
-      <span class="dot" style="background:#c41f3b"></span>
-      <span style="color:#c41f3b;font-family:Syne,sans-serif;font-weight:700">Operations</span>
-    </div>
-    <table class="insight-table">
-      <thead><tr><th>#</th><th>Action</th><th>Addresses</th><th>Impact</th><th>Effort</th></tr></thead>
-      <tbody>
-        <tr>
-          <td style="color:var(--muted)">P1</td>
-          <td>Implement a post-bookkeeper-transition satisfaction check within 7 days. Optimize Chiropractic is a direct example of a preventable exit from a poor internal handoff.</td>
-          <td><span class="tag tag-orange">Internal Handoffs</span></td>
-          <td><span class="tag tag-red">High</span></td>
-          <td><span class="tag tag-green">Low</span></td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-
-  <div class="panel mb16">
-    <div class="panel-title">
-      <span class="dot" style="background:#1f35c4"></span>
-      <span style="color:#1f35c4;font-family:Syne,sans-serif;font-weight:700">Sales</span>
-    </div>
-    <table class="insight-table">
-      <thead><tr><th>#</th><th>Action</th><th>Addresses</th><th>Impact</th><th>Effort</th></tr></thead>
-      <tbody>
-        <tr>
-          <td style="color:var(--muted)">S1</td>
-          <td>Tinsley Surgical is the second webinar misalignment exit in consecutive months. Reinforce explicit product explainer at all mass sales events immediately — this pattern is compounding.</td>
-          <td><span class="tag tag-red">Sales Misalignment</span></td>
-          <td><span class="tag tag-red">High</span></td>
-          <td><span class="tag tag-green">Low</span></td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-
-  <div class="panel mb16">
-    <div class="panel-title">
-      <span class="dot" style="background:#0a7a4a"></span>
-      <span style="color:#0a7a4a;font-family:Syne,sans-serif;font-weight:700">Account Management</span>
-    </div>
-    <table class="insight-table">
-      <thead><tr><th>#</th><th>Action</th><th>Addresses</th><th>Impact</th><th>Effort</th></tr></thead>
-      <tbody>
-        <tr>
-          <td style="color:var(--muted)">A1</td>
-          <td>For clients showing low engagement and no recent interactions (Cornish, Fiorini), initiate proactive check-ins before they reach cancellation stage.</td>
-          <td><span class="tag tag-blue">Engagement Gap</span></td>
-          <td><span class="tag tag-orange">Medium</span></td>
-          <td><span class="tag tag-green">Low</span></td>
-        </tr>
-        <tr>
-          <td style="color:var(--muted)">A2</td>
-          <td>Introduce a CPA co-introduction call for Fiorini and Texas Functional Health scenarios — position Lucro as complementary to their new CPA rather than redundant.</td>
-          <td><span class="tag tag-orange">CPA Takeover</span></td>
-          <td><span class="tag tag-orange">Medium</span></td>
-          <td><span class="tag tag-green">Low</span></td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-
-  <div class="panel">
-    <div class="panel-title">
-      <span class="dot" style="background:#12183a"></span>
-      <span style="color:#12183a;font-family:Syne,sans-serif;font-weight:700">Leadership & Strategy</span>
-    </div>
-    <table class="insight-table">
-      <thead><tr><th>#</th><th>Action</th><th>Addresses</th><th>Impact</th><th>Effort</th></tr></thead>
-      <tbody>
-        <tr>
-          <td style="color:var(--muted)">L1</td>
-          <td>The value proposition gap (Cornish, Wilner) is a recurring December theme. Clients expect strategic guidance beyond reporting. Evaluate adding a structured improvement plan component to the core offering.</td>
-          <td><span class="tag tag-blue">Lack of Value</span></td>
-          <td><span class="tag tag-red">High</span></td>
-          <td><span class="tag tag-orange">Medium</span></td>
-        </tr>
-      </tbody>
-    </table>
   </div>
 
 </div><!-- end dashboard-dec25 -->
 
 <!-- NOVEMBER 2025 DASHBOARD -->
-<div id="dashboard-nov25">
+<div id="dashboard-nov25" style="display:none">
 
   <div class="kpi-row">
-    <div class="kpi" style="--kpi-color:#c94020">
-      <div class="kpi-label">Total Cancellations</div>
-      <div class="kpi-value">2</div>
-      <div class="kpi-sub">Cancelled + Paused</div>
-    </div>
-    <div class="kpi" style="--kpi-color:#c41f3b">
-      <div class="kpi-label">Hard Cancels</div>
-      <div class="kpi-value">2</div>
-      <div class="kpi-sub">Confirmed exits</div>
-    </div>
-    <div class="kpi" style="--kpi-color:#c45a00">
-      <div class="kpi-label">Paused</div>
-      <div class="kpi-value">0</div>
-      <div class="kpi-sub">Re-engagement opportunity</div>
-    </div>
-    <div class="kpi" style="--kpi-color:#0077b8">
-      <div class="kpi-label">Phase at Exit</div>
-      <div class="kpi-value" style="font-size:20px;padding-top:4px">Ongoing</div>
-      <div class="kpi-sub">Both clients were ongoing</div>
-    </div>
-    <div class="kpi" style="--kpi-color:#7a8a00">
-      <div class="kpi-label">Top Churn Driver</div>
-      <div class="kpi-value" style="font-size:18px;padding-top:4px">In-house BK</div>
-      <div class="kpi-sub">100% of exits</div>
-    </div>
-    <div class="kpi" style="--kpi-color:#0a7a4a">
-      <div class="kpi-label">Preventable</div>
-      <div class="kpi-value">0%</div>
-      <div class="kpi-sub">Both unpreventable</div>
-    </div>
+    <div class="kpi" style="--kpi-color:#c94020"><div class="kpi-label">Total Cancellations</div><div class="kpi-value">2</div><div class="kpi-sub">Cancelled + Paused</div></div>
+    <div class="kpi" style="--kpi-color:#c41f3b"><div class="kpi-label">Cancelled</div><div class="kpi-value">2</div><div class="kpi-sub">Confirmed exits</div></div>
+    <div class="kpi" style="--kpi-color:#c45a00"><div class="kpi-label">Paused</div><div class="kpi-value">0</div><div class="kpi-sub">Re-engagement opportunity</div></div>
+    <div class="kpi" style="--kpi-color:#0077b8"><div class="kpi-label">Phase at Exit</div><div class="kpi-value" style="font-size:20px;padding-top:4px">Ongoing</div><div class="kpi-sub">Both clients were ongoing</div></div>
+    <div class="kpi" style="--kpi-color:#7a8a00"><div class="kpi-label">Top Churn Driver</div><div class="kpi-value" style="font-size:18px;padding-top:4px">In-house BK</div><div class="kpi-sub">100% of exits</div></div>
+    <div class="kpi" style="--kpi-color:#0a7a4a"><div class="kpi-label">Preventable</div><div class="kpi-value">0%</div><div class="kpi-sub">Both structural exits</div></div>
   </div>
 
   <div class="section-label">Client Breakdown</div>
-
   <div class="panel mb16">
     <div class="panel-title"><span class="dot" style="background:var(--accent2)"></span>November 2025 Cancellations</div>
-    <table class="insight-table">
-      <thead>
-        <tr>
-          <th>Practice</th>
-          <th>Phase</th>
-          <th>Months w/ Lucro</th>
-          <th>Primary Driver</th>
-          <th>Revenue Tier</th>
-          <th>Tone</th>
-          <th>Preventable</th>
-          <th>Client Reason</th>
-        </tr>
-      </thead>
+    
+  <div class="filter-bar" id="filter-bar-nov25">
+    <label>Filter:</label>
+    <select class="filter-select" id="f-status-nov25" onchange="filterTable('nov25')">
+      <option value="">All Statuses</option>
+      <option value="Cancelled">Cancelled</option>
+      <option value="Paused">Paused</option>
+    </select>
+    <select class="filter-select" id="f-phase-nov25" onchange="filterTable('nov25')">
+      <option value="">All Phases</option>
+      <option value="Ongoing">Ongoing</option>
+      <option value="Onboarding">Onboarding</option>
+    </select>
+    <select class="filter-select" id="f-revenue-nov25" onchange="filterTable('nov25')">
+      <option value="">All Revenue Tiers</option>
+      <option value="$0">$0–$50k</option>
+      <option value="$51">$51k–$100k</option>
+      <option value="$101">$101k–$200k</option>
+      <option value="Unknown">Unknown</option>
+    </select>
+    <select class="filter-select" id="f-prev-nov25" onchange="filterTable('nov25')">
+      <option value="">All Preventable</option>
+      <option value="Yes">Yes</option>
+      <option value="No">No</option>
+      <option value="Unclear">Unclear</option>
+    </select>
+    <select class="filter-select" id="f-lead-nov25" onchange="filterTable('nov25')">
+      <option value="">All Lead Sources</option>
+      <option value="Referral">Referral</option>
+      <option value="Event">Event / Webinar / BPA</option>
+      <option value="Facebook">Facebook / Ad</option>
+      <option value="Instagram">Instagram</option>
+    </select>
+    <button class="filter-reset" onclick="resetFilters('nov25')">✕ Reset</button>
+    <div class="filter-count" id="f-count-nov25"></div>
+  </div>
+    <table class="insight-table" id="table-nov25">
+      <thead><tr><th>Practice</th><th>Phase</th><th>Days in Onboarding</th><th>Months w/ Lucro</th><th>Primary Driver</th><th>Revenue Tier</th><th>Tone</th><th>Preventable</th><th>Lead Source</th><th>Client Reason</th></tr></thead>
       <tbody>
         <tr>
           <td>DiMartino Chiropractic</td>
           <td><span class="tag tag-blue">Ongoing</span></td>
-          <td>21 months</td>
+          <td>64 days</td><td>21 months</td>
           <td><span class="tag tag-orange">In-house Bookkeeping</span></td>
-          <td>$101k – $200k</td>
-          <td>Positive</td>
+          <td>$101k–$200k</td><td>Positive</td>
           <td><span class="tag tag-red">No</span></td>
+          <td>TRP (Referral)</td>
           <td style="color:var(--muted)">"You guys are amazing but..."</td>
         </tr>
         <tr>
           <td>Green Circle Wellness</td>
           <td><span class="tag tag-blue">Ongoing</span></td>
-          <td>3 months</td>
+          <td>59 days</td><td>3 months</td>
           <td><span class="tag tag-orange">In-house Bookkeeping</span></td>
-          <td>$101k – $200k</td>
-          <td>Neutral</td>
+          <td>$101k–$200k</td><td>Neutral</td>
           <td><span class="tag tag-red">No</span></td>
+          <td>Referral (Josiah)</td>
           <td style="color:var(--muted)">"My CFO and I can manage"</td>
         </tr>
       </tbody>
     </table>
   </div>
 
-  <div class="section-label">Key Observations</div>
-
-  <div class="panel mb16">
-    <div class="panel-title"><span class="dot" style="background:var(--danger)"></span>Insights</div>
-
-    <div class="alert alert-orange">
-      <div class="alert-icon">🟠</div>
-      <div class="alert-body">
-        <div class="alert-title">Both exits driven by in-house capability — not dissatisfaction</div>
-        <div class="alert-desc">Neither client left due to a negative experience. DiMartino was actively promoting Lucro and is fluent in P&L reading. Green Circle's CFO felt they could manage independently. These are confidence-driven exits, not service failures — largely unpreventable but worth monitoring as a pattern.</div>
+  <div class="section-label">Churn Drivers & Lead Source</div>
+  <div class="grid-2">
+    <div class="panel">
+      <div class="panel-title"><span class="dot" style="background:var(--accent2)"></span>Churn Drivers & Preventability</div>
+      <table class="insight-table">
+        <thead><tr><th>Driver</th><th>Cases</th><th>Type</th></tr></thead>
+        <tbody>
+          <tr><td>In-house Bookkeeping</td><td>2</td><td><span class="tag tag-red">Structural</span></td></tr>
+        </tbody>
+      </table>
+      <div style="height:1px;background:var(--border);margin:16px 0"></div>
+      <div style="font-size:11px;color:var(--muted);line-height:1.8">
+        <strong style="color:var(--text)">Preventable vs Structural:</strong><br>
+        Both exits are structural — clients with strong internal finance capability chose to manage independently. No fit mismatch or implementation resistance. These exits cannot be influenced by process changes.
       </div>
     </div>
-
-    <div class="alert alert-yellow">
-      <div class="alert-icon">🟡</div>
-      <div class="alert-body">
-        <div class="alert-title">Both clients in the $101k–$200k revenue tier</div>
-        <div class="alert-desc">Higher-revenue practices with stronger internal finance capability appear more likely to outgrow the need for external bookkeeping. This cohort may benefit from a more advanced offering to retain them long-term.</div>
+    <div class="panel">
+      <div class="panel-title"><span class="dot" style="background:var(--accent2)"></span>How They Heard About Us</div>
+      <div class="bar-item">
+        <div class="bar-label">Referral / TRP</div>
+        <div class="bar-track"><div class="bar-fill" style="--bar-color:#1f35c4;width:0%" data-w="100"></div></div>
+        <div class="bar-count">2</div>
       </div>
-    </div>
-
-    <div class="alert alert-yellow">
-      <div class="alert-icon">🟡</div>
-      <div class="alert-body">
-        <div class="alert-title">DiMartino — a lost advocate</div>
-        <div class="alert-desc">This client was actively helping promote Lucro. Losing an advocate is a compounded loss — not just a revenue exit but a referral pipeline hit. Re-engagement outreach is worth pursuing given the positive tone at cancellation.</div>
+      <div style="height:1px;background:var(--border);margin:16px 0"></div>
+      <div style="font-size:11px;color:var(--muted);line-height:1.8">
+        Both November exits came via referral channels — not ads or webinars. These were well-qualified leads who genuinely engaged with Lucro before deciding to manage in-house.
       </div>
     </div>
   </div>
 
-  <div class="section-label">Actions by Department</div>
+  <div class="section-label">Department Insights</div>
+  <div class="grid-2">
 
-  <div class="panel mb16">
-    <div class="panel-title">
-      <span class="dot" style="background:#1f35c4"></span>
-      <span style="color:#1f35c4;font-family:Syne,sans-serif;font-weight:700">Account Management</span>
+    <div class="panel">
+      <div class="panel-title"><span class="dot" style="background:#1f35c4"></span><span style="color:#1f35c4;font-weight:700">Sales</span></div>
+      <p style="font-size:12px;line-height:1.8;color:var(--text);margin-bottom:10px">Both clients came via referral channels — not ads or events. Referral leads tend to arrive with strong financial literacy and internal capability, which makes them more likely to self-suffice over time. This month's exits are not a signal of sales process failure.</p>
     </div>
-    <table class="insight-table">
-      <thead>
-        <tr><th>#</th><th>Action</th><th>Addresses</th><th>Impact</th><th>Effort</th></tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td style="color:var(--muted)">A1</td>
-          <td>Initiate re-engagement outreach to DiMartino Chiropractic — given their positive tone and advocate status, a check-in call in 60–90 days may convert them back or generate a referral.</td>
-          <td><span class="tag tag-orange">Re-engagement</span></td>
-          <td><span class="tag tag-orange">Medium</span></td>
-          <td><span class="tag tag-green">Low</span></td>
-        </tr>
-        <tr>
-          <td style="color:var(--muted)">A2</td>
-          <td>For higher-revenue practices ($101k+) showing internal capability, proactively present an advanced value proposition before they self-select out.</td>
-          <td><span class="tag tag-blue">Retention</span></td>
-          <td><span class="tag tag-orange">Medium</span></td>
-          <td><span class="tag tag-orange">Medium</span></td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
 
-  <div class="panel">
-    <div class="panel-title">
-      <span class="dot" style="background:#12183a"></span>
-      <span style="color:#12183a;font-family:Syne,sans-serif;font-weight:700">Leadership & Strategy</span>
+    <div class="panel">
+      <div class="panel-title"><span class="dot" style="background:#0a7a4a"></span><span style="color:#0a7a4a;font-weight:700">Account Management</span></div>
+      <p style="font-size:12px;line-height:1.8;color:var(--text);margin-bottom:10px">DiMartino was an active Lucro advocate before exiting — he was referring others and had 21 months of positive tenure. Both exits left on good terms with no animosity recorded. The relationship equity here remains intact.</p>
     </div>
-    <table class="insight-table">
-      <thead>
-        <tr><th>#</th><th>Action</th><th>Addresses</th><th>Impact</th><th>Effort</th></tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td style="color:var(--muted)">L1</td>
-          <td>Evaluate whether a premium or advisory tier could serve financially capable practices ($101k+) who are outgrowing standard bookkeeping — turning potential churns into upsells.</td>
-          <td><span class="tag tag-blue">Product Strategy</span></td>
-          <td><span class="tag tag-red">High</span></td>
-          <td><span class="tag tag-orange">Medium</span></td>
-        </tr>
-      </tbody>
-    </table>
+
+    <div class="panel">
+      <div class="panel-title"><span class="dot" style="background:#c45a00"></span><span style="color:#c45a00;font-weight:700">Onboarding</span></div>
+      <p style="font-size:12px;line-height:1.8;color:var(--text);margin-bottom:10px">Neither client exited during onboarding — both completed the process and transitioned to ongoing. DiMartino spent 64 days in onboarding, Green Circle 59 days. No onboarding friction was cited as a factor in either exit.</p>
+    </div>
+
+    <div class="panel">
+      <div class="panel-title"><span class="dot" style="background:#080e2e"></span><span style="color:#080e2e;font-weight:700">Leadership & Strategy</span></div>
+      <p style="font-size:12px;line-height:1.8;color:var(--text);margin-bottom:10px">Both exits are structural — clients with strong internal finance capability outgrew the need for external bookkeeping. This represents a natural ceiling for a certain client profile. November is a low-volume month with no preventable exits, and no service failures are reflected in the data.</p>
+    </div>
+
   </div>
 
 </div><!-- end dashboard-nov25 -->
@@ -2352,7 +1873,7 @@
     dec:  { label: 'December 2026',  period: 'December 2026' },
   };
 
-  let currentQuarter = 'nov25';
+  let currentQuarter = 'overview';
 
   function toggleDropdown() {
     const btn = document.getElementById('quarter-btn');
@@ -2405,5 +1926,57 @@
     }
   });
 </script>
+
+<script>
+  function filterTable(monthId) {
+    const status  = document.getElementById('f-status-'  + monthId).value.toLowerCase();
+    const phase   = document.getElementById('f-phase-'   + monthId).value.toLowerCase();
+    const revenue = document.getElementById('f-revenue-' + monthId).value.toLowerCase();
+    const prev    = document.getElementById('f-prev-'    + monthId).value.toLowerCase();
+    const lead    = document.getElementById('f-lead-'    + monthId).value.toLowerCase();
+
+    const table = document.getElementById('table-' + monthId);
+    const rows = table.querySelectorAll('tbody tr');
+    let visible = 0;
+
+    rows.forEach(row => {
+      const cells = row.querySelectorAll('td');
+      if (!cells.length) return;
+
+      const rowText = row.innerText.toLowerCase();
+
+      // Column positions vary slightly; use full row text for simple matching
+      const statusMatch  = !status  || rowText.includes(status);
+      const phaseMatch   = !phase   || rowText.includes(phase);
+      const revenueMatch = !revenue || rowText.includes(revenue);
+      const prevMatch    = !prev    || rowText.includes(prev);
+
+      // Lead source: map dropdown value to text pattern
+      let leadMatch = true;
+      if (lead === 'referral') leadMatch = rowText.includes('referral');
+      else if (lead === 'event') leadMatch = rowText.includes('event') || rowText.includes('webinar') || rowText.includes('bpa') || rowText.includes('seminar') || rowText.includes('blueprint');
+      else if (lead === 'facebook') leadMatch = rowText.includes('facebook');
+      else if (lead === 'instagram') leadMatch = rowText.includes('instagram');
+
+      const show = statusMatch && phaseMatch && revenueMatch && prevMatch && leadMatch;
+      row.style.display = show ? '' : 'none';
+      if (show) visible++;
+    });
+
+    const countEl = document.getElementById('f-count-' + monthId);
+    if (countEl) countEl.innerHTML = 'Showing <span>' + visible + '</span> of ' + rows.length + ' clients';
+  }
+
+  function resetFilters(monthId) {
+    ['f-status-', 'f-phase-', 'f-revenue-', 'f-prev-', 'f-lead-'].forEach(prefix => {
+      const el = document.getElementById(prefix + monthId);
+      if (el) el.value = '';
+    });
+    filterTable(monthId);
+    const countEl = document.getElementById('f-count-' + monthId);
+    if (countEl) countEl.innerHTML = '';
+  }
+</script>
+
 </body>
 </html>
