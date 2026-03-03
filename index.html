@@ -472,7 +472,10 @@
         <span class="arrow">▼</span>
       </button>
       <div class="quarter-dropdown" id="quarter-dropdown">
-<div class="quarter-option" onclick="selectQuarter('nov25')">
+<div class="quarter-option" onclick="selectQuarter('overview')">
+          Overview <span class="q-badge q-badge-live">All Months</span>
+        </div>
+        <div class="quarter-option active" onclick="selectQuarter('nov25')">
           November 2025 <span class="q-badge q-badge-live">Live</span>
         </div>
         <div class="quarter-option" onclick="selectQuarter('dec25')">
@@ -1041,6 +1044,364 @@
   }, 200);
 </script>
 
+
+<!-- OVERVIEW DASHBOARD -->
+<div id="dashboard-overview" style="display:none">
+
+  <div class="section-label">All Months at a Glance</div>
+
+  <!-- Summary KPIs across all months -->
+  <div class="kpi-row">
+    <div class="kpi" style="--kpi-color:#ff6b47">
+      <div class="kpi-label">Total Exits Tracked</div>
+      <div class="kpi-value">26</div>
+      <div class="kpi-sub">Nov 2025 — Jan 2026</div>
+    </div>
+    <div class="kpi" style="--kpi-color:#ff4747">
+      <div class="kpi-label">Hard Cancels</div>
+      <div class="kpi-value">23</div>
+      <div class="kpi-sub">Confirmed exits</div>
+    </div>
+    <div class="kpi" style="--kpi-color:#ffb347">
+      <div class="kpi-label">Paused</div>
+      <div class="kpi-value">3</div>
+      <div class="kpi-sub">Re-engagement opportunity</div>
+    </div>
+    <div class="kpi" style="--kpi-color:#47c8ff">
+      <div class="kpi-label">Lost in Onboarding</div>
+      <div class="kpi-value">14</div>
+      <div class="kpi-sub">54% of all exits</div>
+    </div>
+    <div class="kpi" style="--kpi-color:#e8ff47">
+      <div class="kpi-label">Top Churn Driver</div>
+      <div class="kpi-value" style="font-size:18px;padding-top:4px">New CPA/BK</div>
+      <div class="kpi-sub">17 of 26 exits</div>
+    </div>
+    <div class="kpi" style="--kpi-color:#47d98c">
+      <div class="kpi-label">Clearly Preventable</div>
+      <div class="kpi-value">6</div>
+      <div class="kpi-sub">23% of all exits</div>
+    </div>
+  </div>
+
+  <div class="section-label">Month by Month</div>
+
+  <!-- Monthly comparison table -->
+  <div class="panel mb16">
+    <div class="panel-title"><span class="dot"></span>Monthly Cancellation Summary</div>
+    <table class="insight-table">
+      <thead>
+        <tr>
+          <th>Month</th>
+          <th>Total Exits</th>
+          <th>Hard Cancels</th>
+          <th>Paused</th>
+          <th>In Onboarding</th>
+          <th>Top Driver</th>
+          <th>Preventable</th>
+          <th>Avg Tone</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td style="font-family:'Syne',sans-serif;font-weight:700">November 2025</td>
+          <td>2</td><td>2</td><td>0</td>
+          <td>0 (0%)</td>
+          <td><span class="tag tag-orange">In-house Bookkeeping</span></td>
+          <td><span class="tag tag-red">0 (0%)</span></td>
+          <td>Positive / Neutral</td>
+        </tr>
+        <tr>
+          <td style="font-family:'Syne',sans-serif;font-weight:700">December 2025</td>
+          <td>8</td><td>8</td><td>0</td>
+          <td>3 (38%)</td>
+          <td><span class="tag tag-orange">New CPA/BK</span></td>
+          <td><span class="tag tag-orange">2 (25%)</span></td>
+          <td>Neutral / Positive</td>
+        </tr>
+        <tr>
+          <td style="font-family:'Syne',sans-serif;font-weight:700">January 2026</td>
+          <td>16</td><td>13</td><td>3</td>
+          <td>9 (56%)</td>
+          <td><span class="tag tag-orange">New CPA/BK</span></td>
+          <td><span class="tag tag-green">4 (25%)</span></td>
+          <td>Neutral / Positive</td>
+        </tr>
+        <tr style="background:rgba(91,110,245,0.04);font-weight:600">
+          <td style="font-family:'Syne',sans-serif;font-weight:800">Total</td>
+          <td>26</td><td>23</td><td>3</td>
+          <td>12 (46%)</td>
+          <td><span class="tag tag-orange">New CPA/BK</span></td>
+          <td><span class="tag tag-green">6 (23%)</span></td>
+          <td>Neutral / Positive</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Monthly volume bar chart -->
+  <div class="grid-2">
+    <div class="panel">
+      <div class="panel-title"><span class="dot" style="background:var(--accent2)"></span>Exit Volume by Month</div>
+      <div class="bar-item">
+        <div class="bar-label">November 2025</div>
+        <div class="bar-track"><div class="bar-fill" style="--bar-color:#47d98c;width:0%" data-w="13"></div></div>
+        <div class="bar-count">2</div>
+      </div>
+      <div class="bar-item">
+        <div class="bar-label">December 2025</div>
+        <div class="bar-track"><div class="bar-fill" style="--bar-color:#ffb347;width:0%" data-w="50"></div></div>
+        <div class="bar-count">8</div>
+      </div>
+      <div class="bar-item">
+        <div class="bar-label">January 2026</div>
+        <div class="bar-track"><div class="bar-fill" style="--bar-color:#ff4747;width:0%" data-w="100"></div></div>
+        <div class="bar-count">16</div>
+      </div>
+      <div style="height:1px;background:var(--border);margin:18px 0"></div>
+      <div style="font-size:11px;color:var(--muted);line-height:1.7">
+        Exit volume has grown <span style="color:var(--danger);font-weight:600">700%</span> from November to January. The trend is accelerating month on month with no signs of plateauing.
+      </div>
+    </div>
+
+    <div class="panel">
+      <div class="panel-title"><span class="dot" style="background:var(--accent2)"></span>Top Churn Drivers — All Months</div>
+      <div class="bar-item">
+        <div class="bar-label">New CPA / Bookkeeper</div>
+        <div class="bar-track"><div class="bar-fill" style="--bar-color:#ff6b47;width:0%" data-w="65"></div></div>
+        <div class="bar-count">17</div>
+      </div>
+      <div class="bar-item">
+        <div class="bar-label">Sales Misalignment</div>
+        <div class="bar-track"><div class="bar-fill" style="--bar-color:#ffb347;width:0%" data-w="35"></div></div>
+        <div class="bar-count">9</div>
+      </div>
+      <div class="bar-item">
+        <div class="bar-label">In-house Bookkeeping</div>
+        <div class="bar-track"><div class="bar-fill" style="--bar-color:#47d98c;width:0%" data-w="23"></div></div>
+        <div class="bar-count">6</div>
+      </div>
+      <div class="bar-item">
+        <div class="bar-label">Lack of Value / Insights</div>
+        <div class="bar-track"><div class="bar-fill" style="--bar-color:#e8a347;width:0%" data-w="19"></div></div>
+        <div class="bar-count">5</div>
+      </div>
+      <div class="bar-item">
+        <div class="bar-label">Financial Burden</div>
+        <div class="bar-track"><div class="bar-fill" style="--bar-color:#c847ff;width:0%" data-w="15"></div></div>
+        <div class="bar-count">4</div>
+      </div>
+      <div class="bar-item">
+        <div class="bar-label">Practice Ceased Ops</div>
+        <div class="bar-track"><div class="bar-fill" style="--bar-color:#47c8ff;width:0%" data-w="12"></div></div>
+        <div class="bar-count">3</div>
+      </div>
+      <div class="bar-item">
+        <div class="bar-label">Pricing / Unclear</div>
+        <div class="bar-track"><div class="bar-fill" style="--bar-color:#6b7585;width:0%" data-w="8"></div></div>
+        <div class="bar-count">2</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-label">Preventability & Phase</div>
+
+  <div class="grid-2">
+    <div class="panel">
+      <div class="panel-title"><span class="dot" style="background:var(--ok)"></span>Preventability by Churn Driver — All Months</div>
+      <table class="insight-table">
+        <thead>
+          <tr><th>Churn Driver</th><th>Cases</th><th>Preventable?</th><th>Why</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Sales Misalignment</td><td>9</td>
+            <td><span class="tag tag-green">Yes — 100%</span></td>
+            <td style="color:var(--muted)">Better event qualification eliminates this entirely</td>
+          </tr>
+          <tr>
+            <td>New CPA / Bookkeeper</td><td>17</td>
+            <td><span class="tag tag-orange">Partial</span></td>
+            <td style="color:var(--muted)">CPA partnership positioning could retain a portion</td>
+          </tr>
+          <tr>
+            <td>In-house Bookkeeping</td><td>6</td>
+            <td><span class="tag tag-orange">Partial</span></td>
+            <td style="color:var(--muted)">Better ICP screening reduces this at the sales stage</td>
+          </tr>
+          <tr>
+            <td>Lack of Value / Insights</td><td>5</td>
+            <td><span class="tag tag-orange">Partial</span></td>
+            <td style="color:var(--muted)">Stronger onboarding value demonstration helps</td>
+          </tr>
+          <tr>
+            <td>Financial Burden</td><td>4</td>
+            <td><span class="tag tag-orange">Partial</span></td>
+            <td style="color:var(--muted)">Pause/discount offers can save some cases</td>
+          </tr>
+          <tr>
+            <td>Practice Ceased Operations</td><td>3</td>
+            <td><span class="tag tag-red">No</span></td>
+            <td style="color:var(--muted)">Outside Lucro's control</td>
+          </tr>
+          <tr>
+            <td>Pricing / Unclear</td><td>2</td>
+            <td><span class="tag tag-blue">Unknown</span></td>
+            <td style="color:var(--muted)">Insufficient data — exit surveys needed</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="panel">
+      <div class="panel-title"><span class="dot" style="background:var(--accent3)"></span>Exit Phase — All Months</div>
+      <div class="donut-wrap">
+        <svg class="donut" width="130" height="130" viewBox="0 0 130 130">
+          <circle cx="65" cy="65" r="50" fill="none" stroke="#dde0f0" stroke-width="22"/>
+          <!-- Onboarding: 12/26 = 46% -->
+          <circle cx="65" cy="65" r="50" fill="none" stroke="#47c8ff" stroke-width="22"
+            stroke-dasharray="145 169" stroke-dashoffset="78.5" stroke-linecap="butt"/>
+          <!-- Ongoing: 14/26 = 54% -->
+          <circle cx="65" cy="65" r="50" fill="none" stroke="#47d98c" stroke-width="22"
+            stroke-dasharray="169 145" stroke-dashoffset="-66" stroke-linecap="butt"/>
+          <text x="65" y="61" text-anchor="middle" fill="#12183a" font-family="Syne,sans-serif" font-size="20" font-weight="800">26</text>
+          <text x="65" y="76" text-anchor="middle" fill="#7b82a8" font-family="DM Mono,monospace" font-size="9">total exits</text>
+        </svg>
+        <div class="legend">
+          <div class="legend-item"><div class="legend-dot" style="background:#47d98c"></div>Ongoing (14 · 54%)</div>
+          <div class="legend-item"><div class="legend-dot" style="background:#47c8ff"></div>Onboarding (12 · 46%)</div>
+        </div>
+      </div>
+      <div style="height:1px;background:var(--border);margin:18px 0"></div>
+      <div style="font-size:11px;color:var(--muted);line-height:1.7">
+        Nearly half of all exits are happening <span style="color:var(--danger);font-weight:600">before clients ever fully activate.</span> The onboarding phase is the single biggest retention risk.
+      </div>
+    </div>
+  </div>
+
+  <div class="section-label">Key Trends</div>
+
+  <div class="panel">
+    <div class="panel-title"><span class="dot" style="background:var(--accent)"></span>Monthly Cancellation Trends</div>
+    <div style="position:relative;height:320px">
+      <canvas id="trendChart"></canvas>
+    </div>
+  </div>
+
+</div><!-- end dashboard-overview -->
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<script>
+  const months = ['November 2025', 'December 2025', 'January 2026'];
+
+  const trendCtx = document.getElementById('trendChart').getContext('2d');
+  new Chart(trendCtx, {
+    type: 'line',
+    data: {
+      labels: months,
+      datasets: [
+        {
+          label: 'Total Exits',
+          data: [2, 8, 16],
+          borderColor: '#ff6b47',
+          backgroundColor: 'rgba(255,107,71,0.08)',
+          borderWidth: 3,
+          pointBackgroundColor: '#ff6b47',
+          pointRadius: 6,
+          pointHoverRadius: 8,
+          tension: 0.35,
+          fill: true,
+        },
+        {
+          label: 'New CPA/BK',
+          data: [0, 2, 5],
+          borderColor: '#5b6ef5',
+          backgroundColor: 'rgba(91,110,245,0.06)',
+          borderWidth: 2,
+          pointBackgroundColor: '#5b6ef5',
+          pointRadius: 5,
+          pointHoverRadius: 7,
+          tension: 0.35,
+          fill: false,
+          borderDash: [],
+        },
+        {
+          label: 'Sales Misalignment',
+          data: [0, 1, 4],
+          borderColor: '#ffb347',
+          backgroundColor: 'rgba(255,179,71,0.06)',
+          borderWidth: 2,
+          pointBackgroundColor: '#ffb347',
+          pointRadius: 5,
+          pointHoverRadius: 7,
+          tension: 0.35,
+          fill: false,
+        },
+        {
+          label: 'Lost in Onboarding',
+          data: [0, 3, 9],
+          borderColor: '#47c8ff',
+          backgroundColor: 'rgba(71,200,255,0.06)',
+          borderWidth: 2,
+          pointBackgroundColor: '#47c8ff',
+          pointRadius: 5,
+          pointHoverRadius: 7,
+          tension: 0.35,
+          fill: false,
+          borderDash: [5,3],
+        },
+      ]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      interaction: { mode: 'index', intersect: false },
+      plugins: {
+        legend: {
+          position: 'bottom',
+          labels: {
+            font: { family: "'DM Mono', monospace", size: 11 },
+            color: '#7b82a8',
+            padding: 20,
+            usePointStyle: true,
+            pointStyleWidth: 10,
+          }
+        },
+        tooltip: {
+          backgroundColor: '#ffffff',
+          borderColor: '#dde0f0',
+          borderWidth: 1,
+          titleColor: '#12183a',
+          bodyColor: '#7b82a8',
+          titleFont: { family: "'Syne', sans-serif", weight: '700', size: 12 },
+          bodyFont: { family: "'DM Mono', monospace", size: 11 },
+          padding: 12,
+          callbacks: {
+            label: ctx => `  ${ctx.dataset.label}: ${ctx.parsed.y}`
+          }
+        }
+      },
+      scales: {
+        x: {
+          grid: { color: '#f0f1f8' },
+          ticks: {
+            font: { family: "'DM Mono', monospace", size: 11 },
+            color: '#7b82a8',
+          }
+        },
+        y: {
+          beginAtZero: true,
+          grid: { color: '#f0f1f8' },
+          ticks: {
+            font: { family: "'DM Mono', monospace", size: 11 },
+            color: '#7b82a8',
+            stepSize: 2,
+          }
+        }
+      }
+    }
+  });
+</script>
 
 <!-- JANUARY 2026 DASHBOARD -->
 <div id="dashboard-jan" style="display:none">
@@ -1974,6 +2335,7 @@
 <script>
   // Quarter switcher logic
   const quarters = {
+    overview: { label: 'Overview', period: 'Nov 2025 — Jan 2026' },
     nov25: { label: 'November 2025',  period: 'November 2025' },
     dec25: { label: 'December 2025',  period: 'December 2025' },
     jan:  { label: 'January 2026',   period: 'January 2026' },
@@ -2013,11 +2375,12 @@
     event.currentTarget.classList.add('active');
 
     // Show/hide dashboard vs placeholder
-    const dashboards = { nov25: 'dashboard-nov25', dec25: 'dashboard-dec25', jan: 'dashboard-jan' };
+    const dashboards = { overview: 'dashboard-overview', nov25: 'dashboard-nov25', dec25: 'dashboard-dec25', jan: 'dashboard-jan' };
     const activeDashboard = dashboards[q];
 
     // Hide all views first
     document.getElementById('placeholder-view').style.display = 'none';
+    document.getElementById('dashboard-overview').style.display = 'none';
 
     document.getElementById('dashboard-nov25').style.display = 'none';
     document.getElementById('dashboard-dec25').style.display = 'none';
