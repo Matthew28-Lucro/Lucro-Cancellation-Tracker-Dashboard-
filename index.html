@@ -522,7 +522,7 @@
     <h1>Cancellation <span>Tracker</span></h1>
   </div>
   <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap">
-    <div class="period" id="active-period">Nov 2025 — Jan 2026</div>
+    <div class="period" id="active-period"></div>
     <div class="quarter-switcher">
       <button class="quarter-btn" id="quarter-btn" onclick="toggleDropdown()">
         <span id="quarter-label">Overview</span>
@@ -1112,7 +1112,7 @@
     <div class="kpi" style="--kpi-color:#c94020">
       <div class="kpi-label">Total Exits Tracked</div>
       <div class="kpi-value">26</div>
-      <div class="kpi-sub">Nov 2025 — Jan 2026</div>
+      <div class="kpi-sub">Tracked exits</div>
     </div>
     <div class="kpi" style="--kpi-color:#c41f3b">
       <div class="kpi-label">Cancelled</div>
@@ -1856,7 +1856,7 @@
 <script>
   // Quarter switcher logic
   const quarters = {
-    overview: { label: 'Overview', period: 'Nov 2025 — Jan 2026' },
+    overview: { label: 'Overview', period: '' },
     nov25: { label: 'November 2025',  period: 'November 2025' },
     dec25: { label: 'December 2025',  period: 'December 2025' },
     jan:  { label: 'January 2026',   period: 'January 2026' },
