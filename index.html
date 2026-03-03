@@ -475,17 +475,41 @@
         <div class="quarter-option active" onclick="selectQuarter('test')">
           2026 Test <span class="q-badge q-badge-test">Current</span>
         </div>
-        <div class="quarter-option" onclick="selectQuarter('q1')">
-          2026 Q1 <span class="q-badge q-badge-soon">Coming Soon</span>
+        <div class="quarter-option" onclick="selectQuarter('jan')">
+          January 2026 <span class="q-badge q-badge-soon">Coming Soon</span>
         </div>
-        <div class="quarter-option" onclick="selectQuarter('q2')">
-          2026 Q2 <span class="q-badge q-badge-soon">Coming Soon</span>
+        <div class="quarter-option" onclick="selectQuarter('feb')">
+          February 2026 <span class="q-badge q-badge-soon">Coming Soon</span>
         </div>
-        <div class="quarter-option" onclick="selectQuarter('q3')">
-          2026 Q3 <span class="q-badge q-badge-soon">Coming Soon</span>
+        <div class="quarter-option" onclick="selectQuarter('mar')">
+          March 2026 <span class="q-badge q-badge-soon">Coming Soon</span>
         </div>
-        <div class="quarter-option" onclick="selectQuarter('q4')">
-          2026 Q4 <span class="q-badge q-badge-soon">Coming Soon</span>
+        <div class="quarter-option" onclick="selectQuarter('apr')">
+          April 2026 <span class="q-badge q-badge-soon">Coming Soon</span>
+        </div>
+        <div class="quarter-option" onclick="selectQuarter('may')">
+          May 2026 <span class="q-badge q-badge-soon">Coming Soon</span>
+        </div>
+        <div class="quarter-option" onclick="selectQuarter('jun')">
+          June 2026 <span class="q-badge q-badge-soon">Coming Soon</span>
+        </div>
+        <div class="quarter-option" onclick="selectQuarter('jul')">
+          July 2026 <span class="q-badge q-badge-soon">Coming Soon</span>
+        </div>
+        <div class="quarter-option" onclick="selectQuarter('aug')">
+          August 2026 <span class="q-badge q-badge-soon">Coming Soon</span>
+        </div>
+        <div class="quarter-option" onclick="selectQuarter('sep')">
+          September 2026 <span class="q-badge q-badge-soon">Coming Soon</span>
+        </div>
+        <div class="quarter-option" onclick="selectQuarter('oct')">
+          October 2026 <span class="q-badge q-badge-soon">Coming Soon</span>
+        </div>
+        <div class="quarter-option" onclick="selectQuarter('nov')">
+          November 2026 <span class="q-badge q-badge-soon">Coming Soon</span>
+        </div>
+        <div class="quarter-option" onclick="selectQuarter('dec')">
+          December 2026 <span class="q-badge q-badge-soon">Coming Soon</span>
         </div>
       </div>
     </div>
@@ -1018,10 +1042,18 @@
   // Quarter switcher logic
   const quarters = {
     test: { label: '2026 Test', period: 'Oct 2025 — Feb 2026' },
-    q1:   { label: '2026 Q1',   period: 'Jan 2026 — Mar 2026' },
-    q2:   { label: '2026 Q2',   period: 'Apr 2026 — Jun 2026' },
-    q3:   { label: '2026 Q3',   period: 'Jul 2026 — Sep 2026' },
-    q4:   { label: '2026 Q4',   period: 'Oct 2026 — Dec 2026' },
+    jan:  { label: 'January 2026',   period: 'January 2026' },
+    feb:  { label: 'February 2026',  period: 'February 2026' },
+    mar:  { label: 'March 2026',     period: 'March 2026' },
+    apr:  { label: 'April 2026',     period: 'April 2026' },
+    may:  { label: 'May 2026',       period: 'May 2026' },
+    jun:  { label: 'June 2026',      period: 'June 2026' },
+    jul:  { label: 'July 2026',      period: 'July 2026' },
+    aug:  { label: 'August 2026',    period: 'August 2026' },
+    sep:  { label: 'September 2026', period: 'September 2026' },
+    oct:  { label: 'October 2026',   period: 'October 2026' },
+    nov:  { label: 'November 2026',  period: 'November 2026' },
+    dec:  { label: 'December 2026',  period: 'December 2026' },
   };
 
   let currentQuarter = 'test';
