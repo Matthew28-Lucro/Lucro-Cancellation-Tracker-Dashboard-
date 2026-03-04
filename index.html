@@ -542,7 +542,7 @@
           January 2026 <span class="q-badge q-badge-live">Live</span>
         </div>
         <div class="quarter-option" onclick="selectQuarter('feb')">
-          February 2026 <span class="q-badge q-badge-soon">Coming Soon</span>
+          February 2026 <span class="q-badge q-badge-live">Live</span>
         </div>
         <div class="quarter-option" onclick="selectQuarter('mar')">
           March 2026 <span class="q-badge q-badge-soon">Coming Soon</span>
@@ -1093,12 +1093,14 @@
 </style>
 
 <script>
-  // Animate bars on load
-  setTimeout(() => {
-    document.querySelectorAll('.bar-fill').forEach(el => {
+  // Animate bars — runs on load and whenever a tab is shown
+  function animateBars(container) {
+    const target = container || document;
+    target.querySelectorAll('.bar-fill').forEach(el => {
       el.style.width = el.dataset.w + '%';
     });
-  }, 200);
+  }
+  setTimeout(() => animateBars(), 200);
 </script>
 
 
@@ -1111,33 +1113,33 @@
   <div class="kpi-row">
     <div class="kpi" style="--kpi-color:#c94020">
       <div class="kpi-label">Total Exits Tracked</div>
-      <div class="kpi-value">26</div>
+      <div class="kpi-value">42</div>
       <div class="kpi-sub">Tracked exits</div>
     </div>
     <div class="kpi" style="--kpi-color:#c41f3b">
       <div class="kpi-label">Cancelled</div>
-      <div class="kpi-value">23</div>
+      <div class="kpi-value">37</div>
       <div class="kpi-sub">Confirmed exits</div>
     </div>
     <div class="kpi" style="--kpi-color:#c45a00">
       <div class="kpi-label">Paused</div>
-      <div class="kpi-value">3</div>
+      <div class="kpi-value">5</div>
       <div class="kpi-sub">Re-engagement opportunity</div>
     </div>
     <div class="kpi" style="--kpi-color:#0077b8">
       <div class="kpi-label">Lost in Onboarding</div>
-      <div class="kpi-value">14</div>
-      <div class="kpi-sub">54% of all exits</div>
+      <div class="kpi-value">16</div>
+      <div class="kpi-sub">38% of all exits</div>
     </div>
     <div class="kpi" style="--kpi-color:#7a8a00">
       <div class="kpi-label">Top Churn Driver</div>
       <div class="kpi-value" style="font-size:18px;padding-top:4px">New CPA/BK</div>
-      <div class="kpi-sub">17 of 26 exits</div>
+      <div class="kpi-sub">21 of 42 exits</div>
     </div>
     <div class="kpi" style="--kpi-color:#0a7a4a">
       <div class="kpi-label">Clearly Preventable</div>
       <div class="kpi-value">6</div>
-      <div class="kpi-sub">23% of all exits</div>
+      <div class="kpi-sub">14% of all exits</div>
     </div>
   </div>
 
@@ -1184,12 +1186,20 @@
           <td><span class="tag tag-green">4 (25%)</span></td>
           <td>Neutral / Positive</td>
         </tr>
-        <tr style="background:rgba(91,110,245,0.04);font-weight:600">
-          <td style="font-family:Verdana,Geneva,sans-serif;font-weight:800">Total</td>
-          <td>26</td><td>23</td><td>3</td>
-          <td>12 (46%)</td>
+        <tr>
+          <td style="font-family:Verdana,Geneva,sans-serif;font-weight:700">February 2026</td>
+          <td>16</td><td>14</td><td>2</td>
+          <td>4 (25%)</td>
           <td><span class="tag tag-orange">New CPA/BK</span></td>
-          <td><span class="tag tag-green">6 (23%)</span></td>
+          <td><span class="tag tag-red">0 (0%)</span></td>
+          <td>Positive / Neutral</td>
+        </tr>
+        <tr style="background:rgba(91,110,245,0.04);font-weight:600">
+          <td style="font-weight:800">Total</td>
+          <td>42</td><td>37</td><td>5</td>
+          <td>16 (38%)</td>
+          <td><span class="tag tag-orange">New CPA/BK</span></td>
+          <td><span class="tag tag-green">6 (14%)</span></td>
           <td>Neutral / Positive</td>
         </tr>
       </tbody>
@@ -1215,9 +1225,14 @@
         <div class="bar-track"><div class="bar-fill" style="--bar-color:#ff4747;width:0%" data-w="100"></div></div>
         <div class="bar-count">16</div>
       </div>
+      <div class="bar-item">
+        <div class="bar-label">February 2026</div>
+        <div class="bar-track"><div class="bar-fill" style="--bar-color:#c41f3b;width:0%" data-w="100"></div></div>
+        <div class="bar-count">16</div>
+      </div>
       <div style="height:1px;background:var(--border);margin:18px 0"></div>
       <div style="font-size:11px;color:var(--muted);line-height:1.7">
-        Exit volume has grown <span style="color:var(--danger);font-weight:600">700%</span> from November to January. The trend is accelerating month on month with no signs of plateauing.
+        Exit volume peaked in January and held steady in February at 16. While the acceleration from November has stabilised, the monthly volume remains at its highest point since tracking began.
       </div>
     </div>
 
@@ -1225,33 +1240,33 @@
       <div class="panel-title"><span class="dot" style="background:var(--accent2)"></span>Top Churn Drivers — All Months</div>
       <div class="bar-item">
         <div class="bar-label">New CPA / Bookkeeper</div>
-        <div class="bar-track"><div class="bar-fill" style="--bar-color:#c94020;width:0%" data-w="65"></div></div>
-        <div class="bar-count">17</div>
+        <div class="bar-track"><div class="bar-fill" style="--bar-color:#c94020;width:0%" data-w="100"></div></div>
+        <div class="bar-count">21</div>
       </div>
       <div class="bar-item">
         <div class="bar-label">Sales Misalignment</div>
-        <div class="bar-track"><div class="bar-fill" style="--bar-color:#c45a00;width:0%" data-w="35"></div></div>
+        <div class="bar-track"><div class="bar-fill" style="--bar-color:#c45a00;width:0%" data-w="43"></div></div>
         <div class="bar-count">9</div>
       </div>
       <div class="bar-item">
         <div class="bar-label">In-house Bookkeeping</div>
-        <div class="bar-track"><div class="bar-fill" style="--bar-color:#0a7a4a;width:0%" data-w="23"></div></div>
-        <div class="bar-count">6</div>
+        <div class="bar-track"><div class="bar-fill" style="--bar-color:#0a7a4a;width:0%" data-w="33"></div></div>
+        <div class="bar-count">7</div>
       </div>
       <div class="bar-item">
         <div class="bar-label">Lack of Value / Insights</div>
-        <div class="bar-track"><div class="bar-fill" style="--bar-color:#b05a00;width:0%" data-w="19"></div></div>
-        <div class="bar-count">5</div>
+        <div class="bar-track"><div class="bar-fill" style="--bar-color:#b05a00;width:0%" data-w="33"></div></div>
+        <div class="bar-count">7</div>
       </div>
       <div class="bar-item">
         <div class="bar-label">Financial Burden</div>
-        <div class="bar-track"><div class="bar-fill" style="--bar-color:#7a00c4;width:0%" data-w="15"></div></div>
-        <div class="bar-count">4</div>
+        <div class="bar-track"><div class="bar-fill" style="--bar-color:#7a00c4;width:0%" data-w="24"></div></div>
+        <div class="bar-count">5</div>
       </div>
       <div class="bar-item">
         <div class="bar-label">Practice Ceased Ops</div>
-        <div class="bar-track"><div class="bar-fill" style="--bar-color:#0077b8;width:0%" data-w="12"></div></div>
-        <div class="bar-count">3</div>
+        <div class="bar-track"><div class="bar-fill" style="--bar-color:#0077b8;width:0%" data-w="33"></div></div>
+        <div class="bar-count">7</div>
       </div>
       <div class="bar-item">
         <div class="bar-label">Pricing / Unclear</div>
@@ -1349,7 +1364,7 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
 <script>
-  const months = ['November 2025', 'December 2025', 'January 2026'];
+  const months = ['November 2025', 'December 2025', 'January 2026', 'February 2026'];
 
   const trendCtx = document.getElementById('trendChart').getContext('2d');
   new Chart(trendCtx, {
@@ -1359,7 +1374,7 @@
       datasets: [
         {
           label: 'Total Exits',
-          data: [2, 8, 16],
+          data: [2, 8, 16, 16],
           borderColor: '#c94020',
           backgroundColor: 'rgba(201,64,32,0.08)',
           borderWidth: 3,
@@ -1371,7 +1386,7 @@
         },
         {
           label: 'New CPA/BK',
-          data: [0, 2, 5],
+          data: [0, 2, 5, 4],
           borderColor: '#1f35c4',
           backgroundColor: 'rgba(31,53,196,0.08)',
           borderWidth: 2,
@@ -1384,7 +1399,7 @@
         },
         {
           label: 'Sales Misalignment',
-          data: [0, 1, 4],
+          data: [0, 1, 4, 0],
           borderColor: '#c45a00',
           backgroundColor: 'rgba(196,90,0,0.08)',
           borderWidth: 2,
@@ -1396,7 +1411,7 @@
         },
         {
           label: 'Lost in Onboarding',
-          data: [0, 3, 9],
+          data: [0, 3, 9, 4],
           borderColor: '#0077b8',
           backgroundColor: 'rgba(0,119,184,0.08)',
           borderWidth: 2,
@@ -1460,13 +1475,151 @@
   });
 </script>
 
+<!-- FEBRUARY 2026 DASHBOARD -->
+<div id="dashboard-feb" style="display:none">
+
+  <div class="kpi-row">
+    <div class="kpi" style="--kpi-color:#c94020"><div class="kpi-label">Total Cancellations</div><div class="kpi-value">16</div><div class="kpi-sub">Cancelled + Paused</div></div>
+    <div class="kpi" style="--kpi-color:#c41f3b"><div class="kpi-label">Cancelled</div><div class="kpi-value">14</div><div class="kpi-sub">Confirmed exits</div></div>
+    <div class="kpi" style="--kpi-color:#c45a00"><div class="kpi-label">Paused</div><div class="kpi-value">2</div><div class="kpi-sub">Re-engagement opportunity</div></div>
+    <div class="kpi" style="--kpi-color:#0077b8"><div class="kpi-label">Lost in Onboarding</div><div class="kpi-value">4</div><div class="kpi-sub">25% of exits</div></div>
+    <div class="kpi" style="--kpi-color:#7a8a00"><div class="kpi-label">Top Churn Driver</div><div class="kpi-value" style="font-size:18px;padding-top:4px">New CPA/BK</div><div class="kpi-sub">4 of 16 exits</div></div>
+    <div class="kpi" style="--kpi-color:#0a7a4a"><div class="kpi-label">Preventable</div><div class="kpi-value">0</div><div class="kpi-sub">No preventable exits this month</div></div>
+  </div>
+
+  <div class="section-label">Client Breakdown</div>
+  <div class="panel mb16">
+    <div class="panel-title"><span class="dot" style="background:var(--accent2)"></span>February 2026 Cancellations</div>
+
+    <div class="filter-bar" id="filter-bar-feb">
+      <label>Filter:</label>
+      <select class="filter-select" id="f-status-feb" onchange="filterTable('feb')">
+        <option value="">All Statuses</option>
+        <option value="Cancelled">Cancelled</option>
+        <option value="Paused">Paused</option>
+      </select>
+      <select class="filter-select" id="f-phase-feb" onchange="filterTable('feb')">
+        <option value="">All Phases</option>
+        <option value="Ongoing">Ongoing</option>
+        <option value="Onboarding">Onboarding</option>
+      </select>
+      <select class="filter-select" id="f-revenue-feb" onchange="filterTable('feb')">
+        <option value="">All Revenue Tiers</option>
+        <option value="$0">$0–$50k</option>
+        <option value="$51">$51k–$100k</option>
+        <option value="$101">$101k–$200k</option>
+        <option value="Unknown">Unknown</option>
+      </select>
+      <select class="filter-select" id="f-prev-feb" onchange="filterTable('feb')">
+        <option value="">All Preventable</option>
+        <option value="Yes">Yes</option>
+        <option value="No">No</option>
+        <option value="Unclear">Unclear</option>
+      </select>
+      <select class="filter-select" id="f-lead-feb" onchange="filterTable('feb')">
+        <option value="">All Lead Sources</option>
+        <option value="Referral">Referral</option>
+        <option value="Event">Event / Webinar / BPA</option>
+        <option value="Facebook">Facebook / Ad</option>
+        <option value="Instagram">Instagram</option>
+      </select>
+      <button class="filter-reset" onclick="resetFilters('feb')">✕ Reset</button>
+      <div class="filter-count" id="f-count-feb"></div>
+    </div>
+
+    <table class="insight-table" id="table-feb">
+      <thead><tr><th>Practice</th><th>Status</th><th>Phase</th><th>Days in OB</th><th>Months w/ Lucro</th><th>Primary Driver</th><th>Revenue Tier</th><th>Tone</th><th>Preventable</th><th>Lead Source</th><th>Client Reason</th></tr></thead>
+      <tbody>
+        <tr><td>Hawk Ridge Family Chiropractic</td><td><span class="tag tag-red">Cancelled</span></td><td><span class="tag tag-blue">Ongoing</span></td><td>—</td><td>21 months</td><td><span class="tag tag-red">Not Satisfied</span></td><td>$101k–$200k</td><td>Defensive</td><td><span class="tag tag-red">No</span></td><td>Unknown</td><td style="color:var(--muted)">"Frustrated with service after bookkeeper change"</td></tr>
+        <tr><td>NexMed</td><td><span class="tag tag-red">Cancelled</span></td><td><span class="tag tag-blue">Ongoing</span></td><td>32 days</td><td>22 months</td><td><span class="tag tag-blue">In-house Bookkeeping</span></td><td>$51k–$100k</td><td>Neutral</td><td><span class="tag tag-red">No</span></td><td>Referral (Bill Lewis)</td><td style="color:var(--muted)">"No longer need bookkeeping"</td></tr>
+        <tr><td>Pure Family Chiropractic</td><td><span class="tag tag-red">Cancelled</span></td><td><span class="tag tag-blue">Ongoing</span></td><td>99 days</td><td>21 months</td><td><span class="tag tag-orange">New CPA/BK</span></td><td>$51k–$100k</td><td>Neutral</td><td><span class="tag tag-red">No</span></td><td>BP (Event)</td><td style="color:var(--muted)">"CPA taking over"</td></tr>
+        <tr><td>MoveWell Spine & Sport</td><td><span class="tag tag-orange">Paused</span></td><td><span class="tag tag-blue">Ongoing</span></td><td>—</td><td>21 months</td><td><span class="tag tag-orange">New CPA/BK</span></td><td>Unknown</td><td>Unknown</td><td><span class="tag tag-red">No</span></td><td>Unknown</td><td style="color:var(--muted)">"CPA taking over"</td></tr>
+        <tr><td>HealthSource of Huntsville</td><td><span class="tag tag-red">Cancelled</span></td><td><span class="tag tag-blue">Ongoing</span></td><td>109 days</td><td>15 months</td><td><span class="tag tag-orange">New CPA/BK</span></td><td>$51k–$100k</td><td>Neutral</td><td><span class="tag tag-red">No</span></td><td>CFC</td><td style="color:var(--muted)">"New bookkeeper taking over"</td></tr>
+        <tr><td>Beverly Family Chiropractic</td><td><span class="tag tag-red">Cancelled</span></td><td><span class="tag tag-blue">Ongoing</span></td><td>153 days</td><td>14 months</td><td><span class="tag tag-blue">Not Using Insights</span></td><td>$0–$50k</td><td>Positive</td><td><span class="tag tag-red">No</span></td><td>Referral (Bryant Harris)</td><td style="color:var(--muted)">"Not using the insights"</td></tr>
+        <tr><td>Quill Family Chiropractic</td><td><span class="tag tag-red">Cancelled</span></td><td><span class="tag tag-blue">Ongoing</span></td><td>—</td><td>14 months</td><td><span class="tag tag-blue">Unclear</span></td><td>Unknown</td><td>Unknown</td><td><span class="tag tag-blue">Unclear</span></td><td>Unknown</td><td style="color:var(--muted)">"Unclear"</td></tr>
+        <tr><td>Barnard Chiropractic</td><td><span class="tag tag-red">Cancelled</span></td><td><span class="tag tag-blue">Ongoing</span></td><td>44 days</td><td>17 months</td><td><span class="tag tag-red">Practice Ceased</span></td><td>$0–$50k</td><td>Positive</td><td><span class="tag tag-red">No</span></td><td>BP (Event)</td><td style="color:var(--muted)">"Practice ceased operations"</td></tr>
+        <tr><td>Cinque Chiropractic</td><td><span class="tag tag-red">Cancelled</span></td><td><span class="tag tag-blue">Ongoing</span></td><td>134 days</td><td>10 months</td><td><span class="tag tag-orange">New CPA/BK</span></td><td>$51k–$100k</td><td>Positive</td><td><span class="tag tag-red">No</span></td><td>Chirowealthcon (Event)</td><td style="color:var(--muted)">"New CPA's bookkeeping taking over"</td></tr>
+        <tr><td>Vital Life Chiropractic</td><td><span class="tag tag-red">Cancelled</span></td><td><span class="tag tag-blue">Ongoing</span></td><td>105 days</td><td>10 months</td><td><span class="tag tag-red">Practice Ceased</span></td><td>$0–$50k</td><td>Positive</td><td><span class="tag tag-red">No</span></td><td>Instagram (Ad)</td><td style="color:var(--muted)">"Practice ceased operations"</td></tr>
+        <tr><td>Optimum Wellness</td><td><span class="tag tag-red">Cancelled</span></td><td><span class="tag tag-blue">Ongoing</span></td><td>50 days</td><td>5 months</td><td><span class="tag tag-blue">Unclear</span></td><td>$51k–$100k</td><td>Neutral</td><td><span class="tag tag-blue">Unclear</span></td><td>Lucro Masterclass</td><td style="color:var(--muted)">"Unclear"</td></tr>
+        <tr><td>DRBE Doral</td><td><span class="tag tag-red">Cancelled</span></td><td><span class="tag tag-blue">Ongoing</span></td><td>62 days</td><td>13 months</td><td><span class="tag tag-blue">Unclear</span></td><td>$0–$50k</td><td>Positive</td><td><span class="tag tag-red">No</span></td><td>Referral (Ericka Lupardus)</td><td style="color:var(--muted)">"Unclear"</td></tr>
+        <tr><td>Delaware Integrative Health</td><td><span class="tag tag-red">Cancelled</span></td><td><span class="tag tag-orange">Onboarding</span></td><td>—</td><td>1 month</td><td><span class="tag tag-orange">Financial Burden</span></td><td>$0–$50k</td><td>Positive</td><td><span class="tag tag-red">No</span></td><td>Growth & Strategy</td><td style="color:var(--muted)">"Under financial stress"</td></tr>
+        <tr><td>Lockport Chiropractic</td><td><span class="tag tag-red">Cancelled</span></td><td><span class="tag tag-orange">Onboarding</span></td><td>—</td><td>2 months</td><td><span class="tag tag-blue">Unclear</span></td><td>$0–$50k</td><td>Unknown</td><td><span class="tag tag-blue">Unclear</span></td><td>Unknown</td><td style="color:var(--muted)">"Unclear"</td></tr>
+        <tr><td>Zelko Aesthetics</td><td><span class="tag tag-red">Cancelled</span></td><td><span class="tag tag-orange">Onboarding</span></td><td>—</td><td>2 months</td><td><span class="tag tag-blue">Not Interested</span></td><td>Unknown</td><td>Frustrated</td><td><span class="tag tag-red">No</span></td><td>Financial Clarity</td><td style="color:var(--muted)">"Not interested"</td></tr>
+        <tr><td>Circle of Life Chiropractic</td><td><span class="tag tag-orange">Paused</span></td><td><span class="tag tag-orange">Onboarding</span></td><td>—</td><td>1 month</td><td><span class="tag tag-orange">Paused</span></td><td>Unknown</td><td>Unknown</td><td><span class="tag tag-red">No</span></td><td>Unknown</td><td style="color:var(--muted)">"Mid-onboarding pause"</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="section-label">Churn Drivers & Lead Source</div>
+  <div class="grid-2">
+    <div class="panel">
+      <div class="panel-title"><span class="dot" style="background:var(--accent2)"></span>Churn Drivers & Preventability</div>
+      <div class="bar-item"><div class="bar-label">New CPA / Bookkeeper</div><div class="bar-track"><div class="bar-fill" style="--bar-color:#c94020;width:0%" data-w="50"></div></div><div class="bar-count">4</div></div>
+      <div class="bar-item"><div class="bar-label">Unclear</div><div class="bar-track"><div class="bar-fill" style="--bar-color:#3a4260;width:0%" data-w="50"></div></div><div class="bar-count">4</div></div>
+      <div class="bar-item"><div class="bar-label">Practice Ceased</div><div class="bar-track"><div class="bar-fill" style="--bar-color:#0077b8;width:0%" data-w="25"></div></div><div class="bar-count">2</div></div>
+      <div class="bar-item"><div class="bar-label">In-house Bookkeeping</div><div class="bar-track"><div class="bar-fill" style="--bar-color:#0a7a4a;width:0%" data-w="13"></div></div><div class="bar-count">1</div></div>
+      <div class="bar-item"><div class="bar-label">Not Using Insights</div><div class="bar-track"><div class="bar-fill" style="--bar-color:#b05a00;width:0%" data-w="13"></div></div><div class="bar-count">1</div></div>
+      <div class="bar-item"><div class="bar-label">Not Satisfied</div><div class="bar-track"><div class="bar-fill" style="--bar-color:#c41f3b;width:0%" data-w="13"></div></div><div class="bar-count">1</div></div>
+      <div class="bar-item"><div class="bar-label">Financial Burden</div><div class="bar-track"><div class="bar-fill" style="--bar-color:#7a00c4;width:0%" data-w="13"></div></div><div class="bar-count">1</div></div>
+      <div class="bar-item"><div class="bar-label">Not Interested / Paused</div><div class="bar-track"><div class="bar-fill" style="--bar-color:#505880;width:0%" data-w="13"></div></div><div class="bar-count">2</div></div>
+      <div style="height:1px;background:var(--border);margin:16px 0"></div>
+      <div style="font-size:11px;color:var(--muted);line-height:1.8">
+        <strong style="color:var(--text)">Preventable vs Structural:</strong><br>
+        0 preventable exits this month — the first month with no clearly preventable churn.<br>
+        4 structural CPA/in-house exits. 2 life events (practice closures).<br>
+        4 exits recorded as unclear — insufficient data to classify. Exit survey completion remains low.
+      </div>
+    </div>
+    <div class="panel">
+      <div class="panel-title"><span class="dot" style="background:var(--accent2)"></span>How They Heard About Us</div>
+      <div class="bar-item"><div class="bar-label">Events / Webinar / BP</div><div class="bar-track"><div class="bar-fill" style="--bar-color:#c41f3b;width:0%" data-w="38"></div></div><div class="bar-count">4</div></div>
+      <div class="bar-item"><div class="bar-label">Referral</div><div class="bar-track"><div class="bar-fill" style="--bar-color:#1f35c4;width:0%" data-w="38"></div></div><div class="bar-count">3</div></div>
+      <div class="bar-item"><div class="bar-label">Unknown</div><div class="bar-track"><div class="bar-fill" style="--bar-color:#3a4260;width:0%" data-w="50"></div></div><div class="bar-count">5</div></div>
+      <div class="bar-item"><div class="bar-label">Instagram / Ad</div><div class="bar-track"><div class="bar-fill" style="--bar-color:#0077b8;width:0%" data-w="13"></div></div><div class="bar-count">1</div></div>
+      <div class="bar-item"><div class="bar-label">Lucro Masterclass</div><div class="bar-track"><div class="bar-fill" style="--bar-color:#7a00c4;width:0%" data-w="13"></div></div><div class="bar-count">1</div></div>
+      <div class="bar-item"><div class="bar-label">Financial Clarity / Growth Strategy</div><div class="bar-track"><div class="bar-fill" style="--bar-color:#b05a00;width:0%" data-w="25"></div></div><div class="bar-count">2</div></div>
+      <div style="height:1px;background:var(--border);margin:16px 0"></div>
+      <div style="font-size:11px;color:var(--muted);line-height:1.8">
+        5 of 16 exits have unknown lead sources — the highest unknown rate recorded. Event-sourced exits (4) this month are structural CPA/in-house transitions, not misalignment exits. Referral exits (3) followed the same pattern, suggesting February churn is driven by market forces rather than acquisition channel quality.
+      </div>
+    </div>
+  </div>
+
+  <div class="section-label">Department Insights</div>
+  <div class="grid-2">
+
+    <div class="panel">
+      <div class="panel-title"><span class="dot" style="background:#1f35c4"></span><span style="color:#1f35c4;font-weight:700">Sales</span></div>
+      <p style="font-size:12px;line-height:1.8;color:var(--text);margin-bottom:10px">Unlike January, no February exits are linked to event misalignment or expectation mismatch at signup. Event-sourced clients this month (BP, Chirowealthcon) were long-tenured and left for structural reasons — CPA takeovers after 10–21 months. February is the first month where the sales channel does not appear as a contributing factor to churn.</p>
+      <p style="font-size:12px;line-height:1.8;color:var(--muted)">Lead sources this month: 4 events, 3 referrals, 1 Instagram, 1 Lucro Masterclass, 2 Financial Clarity/Growth Strategy, 5 unknown.</p>
+    </div>
+
+    <div class="panel">
+      <div class="panel-title"><span class="dot" style="background:#c41f3b"></span><span style="color:#c41f3b;font-weight:700">Operations</span></div>
+      <p style="font-size:12px;line-height:1.8;color:var(--text);margin-bottom:10px">Hawk Ridge Family Chiropractic is the most operationally significant exit this month. After 21 months, the client left with a defensive tone citing frustration with a bookkeeper change — specifically poor communication, repeated information requests, and errors. This mirrors the Optimize Chiropractic situation from December. Beverly Family Chiropractic (14 months, 153 days in onboarding) also exited citing that the insights Lucro provided were not being used — a signal that the service was not embedded into their workflow.</p>
+    </div>
+
+    <div class="panel">
+      <div class="panel-title"><span class="dot" style="background:#0a7a4a"></span><span style="color:#0a7a4a;font-weight:700">Account Management</span></div>
+      <p style="font-size:12px;line-height:1.8;color:var(--text);margin-bottom:10px">February sees the highest proportion of long-tenured ongoing exits — 10 of 14 cancelled clients had been with Lucro for 10 months or more. Most left on positive or neutral terms. MoveWell Spine & Sport (21 months) is paused rather than cancelled — a potential re-engagement opportunity. The 4 unclear exits (Quill, Optimum Wellness, DRBE Doral, Lockport) represent cases where Lucro does not have a recorded reason, which limits any retention analysis for this cohort.</p>
+    </div>
+
+    <div class="panel">
+      <div class="panel-title"><span class="dot" style="background:#080e2e"></span><span style="color:#080e2e;font-weight:700">Leadership & Strategy</span></div>
+      <p style="font-size:12px;line-height:1.8;color:var(--text);margin-bottom:10px">February holds at 16 exits — level with January's peak, but with a very different composition. There are zero preventable exits for the first time across all tracked months. The dominant themes are CPA structural churn (4), unclear exits (4), and practice closures (2). The high volume of unclear exits (25% of the month) points to a data quality gap — without exit reasons, it is difficult to assess whether these represent a trend or noise. The Hawk Ridge exit, while not preventable in the traditional sense, surfaces a recurring pattern around internal bookkeeper transitions causing relationship damage.</p>
+    </div>
+
+  </div>
+
+</div><!-- end dashboard-feb -->
+
 <!-- JANUARY 2026 DASHBOARD -->
 <div id="dashboard-jan" style="display:none">
 
   <div class="kpi-row">
     <div class="kpi" style="--kpi-color:#c94020"><div class="kpi-label">Total Cancellations</div><div class="kpi-value">16</div><div class="kpi-sub">Cancelled + Paused</div></div>
     <div class="kpi" style="--kpi-color:#c41f3b"><div class="kpi-label">Cancelled</div><div class="kpi-value">13</div><div class="kpi-sub">Confirmed exits</div></div>
-    <div class="kpi" style="--kpi-color:#c45a00"><div class="kpi-label">Paused</div><div class="kpi-value">3</div><div class="kpi-sub">Re-engagement opportunity</div></div>
+    <div class="kpi" style="--kpi-color:#c45a00"><div class="kpi-label">Paused</div><div class="kpi-value">5</div><div class="kpi-sub">Re-engagement opportunity</div></div>
     <div class="kpi" style="--kpi-color:#0077b8"><div class="kpi-label">Lost in Onboarding</div><div class="kpi-value">9</div><div class="kpi-sub">56% of exits</div></div>
     <div class="kpi" style="--kpi-color:#7a8a00"><div class="kpi-label">Top Churn Driver</div><div class="kpi-value" style="font-size:18px;padding-top:4px">New CPA/BK</div><div class="kpi-sub">5 of 16 exits</div></div>
     <div class="kpi" style="--kpi-color:#0a7a4a"><div class="kpi-label">Preventable</div><div class="kpi-value">4</div><div class="kpi-sub">25% of exits</div></div>
@@ -1896,7 +2049,7 @@
     event.currentTarget.classList.add('active');
 
     // Show/hide dashboard vs placeholder
-    const dashboards = { overview: 'dashboard-overview', nov25: 'dashboard-nov25', dec25: 'dashboard-dec25', jan: 'dashboard-jan' };
+    const dashboards = { overview: 'dashboard-overview', nov25: 'dashboard-nov25', dec25: 'dashboard-dec25', jan: 'dashboard-jan', feb: 'dashboard-feb' };
     const activeDashboard = dashboards[q];
 
     // Hide all views first
@@ -1906,9 +2059,12 @@
     document.getElementById('dashboard-nov25').style.display = 'none';
     document.getElementById('dashboard-dec25').style.display = 'none';
     document.getElementById('dashboard-jan').style.display = 'none';
+    document.getElementById('dashboard-feb').style.display = 'none';
 
     if (activeDashboard) {
-      document.getElementById(activeDashboard).style.display = 'block';
+      const el = document.getElementById(activeDashboard);
+      el.style.display = 'block';
+      setTimeout(() => animateBars(el), 50);
     } else {
       document.getElementById('placeholder-view').style.display = 'block';
     }
